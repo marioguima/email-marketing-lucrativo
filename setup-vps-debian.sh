@@ -8,13 +8,12 @@ clear
 menu_idioma() {
   printf "\n"
   printf "Escolha seu idioma / Choose your language / Elija su idioma / Choisissez votre langue / Scegli la tua lingua\n"
-  printf "1) Português\n"
-  printf "2) English\n"
-  printf "3) Español\n"
-  printf "4) Français\n"
-  printf "5) Italiano\n"
+  printf "1) Português - Digite 1 e pressione ENTER\n"
+  printf "2) English   - Enter 2 and press ENTER\n"
+  printf "3) Español   - Escriba 3 y presione ENTER\n"
+  printf "4) Français  - Entrez 4 et appuyez sur ENTER\n"
+  printf "5) Italiano  - Inserisci 5 e premi INVIO\n"
   printf "\n"
-  printf "Digite o número / Enter the number / Escriba el número / Entrez le numéro / Inserisci il numero\n"
   read -p "> " idioma
 }
 
