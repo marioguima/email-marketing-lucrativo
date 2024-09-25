@@ -37,7 +37,7 @@ done
 # Passo 2: Baixar o arquivo stack-traefik-v2.yml e substituir o email pelo informado
 echo ""
 echo "Passo 2: Baixando a stack Traefik e substituindo o e-mail..."
-curl -s https://github.com/marioguima/email-marketing-lucrativo/raw/refs/heads/main/stack-traefik-v2.yml | sed "s/meuemail@email.com/$EMAIL/g" > stack-traefik-v2.yml
+curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-traefik-v2.yml | sed "s/meuemail@email.com/$EMAIL/g" > stack-traefik-v2.yml
 
 if [ $? -eq 0 ]; then
   echo "Passo 2 concluído. Stack Traefik baixada e e-mail substituído com sucesso."
