@@ -298,7 +298,12 @@ definir_mensagens() {
       msg_script_executado_ok="🚀 Script eseguito con successo!"
       ;;
     *)
-      echo "Opção inválida. Tente novamente. / Invalid option. Please try again. / Opción inválida. Inténtalo de nuevo. / Option invalide. Veuillez réessayer. / Opzione non valida. Riprova."
+      echo "Português: Opção inválida. Tente novamente."
+      echo "English: Invalid option. Please try again."
+      echo "Español: Opción inválida. Inténtalo de nuevo."
+      echo "Français: Option invalide. Veuillez réessayer."
+      echo "Italiano: Opzione non valida. Riprova."
+
       return 1
       ;;
   esac
