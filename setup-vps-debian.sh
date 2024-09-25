@@ -27,7 +27,7 @@ definir_mensagens() {
       msg_passo1="Passo 1: Insira o domínio para ser utilizado pelo Mautic:"
       msg_solicita_dominio="📧 Por favor, insira um domínio (com ou sem subdomínio):"
       msg_dominio_valido="✅ Domínio válido:"
-      msg_dominio_invalido="❌ Domínio não válido. Por favor, tente novamente."
+      msg_dominio_invalido="❌ Domínio inválido. Por favor, tente novamente."
 
       msg_passo2="Passo 2: Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
       msg_solicita_email="📧 Por favor, insira seu e-mail:"
@@ -373,6 +373,7 @@ while true; do
     break
   else
     echo -e "$msg_dominio_invalido"
+    echo ""
   fi
 done
 
