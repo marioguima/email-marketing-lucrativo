@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ################
-# Obtem e-mail #
+# Obtém e-mail #
 ################
 
 # Função para validar email
@@ -14,138 +14,131 @@ validar_email() {
   fi
 }
 
-# Passo 1: Solicitar o email do usuário
-echo ""
-echo "Passo 1: Solicitar o email do usuário"
+# Passo 1: Solicitar o e-mail do usuário
+echo -e "\n===================="
+echo " Passo 1: Insira o seu e-mail"
+echo "===================="
+
 while true; do
-  echo ""
-  read -p "Por favor, insira seu e-mail: " EMAIL
+  echo -e "\n📧 Por favor, insira seu e-mail:"
+  read -p "> " EMAIL
   if validar_email "$EMAIL"; then
-    echo ""
-    echo "Passo 1 concluído com sucesso. Email válido: $EMAIL"
+    echo -e "\n✅ Email válido: $EMAIL"
+    echo "--------------------"
     break
   else
-    echo "Erro no Passo 1: Email inválido. Tente novamente."
+    echo -e "❌ Email inválido. Tente novamente."
   fi
 done
 
+
 ########################
-# Baixar stack traefik #
+# Baixar stack Traefik #
 ########################
 
-# Passo 2: Baixar o arquivo stack-traefik-v2.yml e substituir o email pelo informado
-echo ""
-echo "Passo 2: Baixando a stack Traefik e substituindo o e-mail..."
+# Passo 2: Baixar o arquivo stack-traefik-v2.yml e substituir o e-mail pelo informado
+echo -e "\n=============================="
+echo " Passo 2: Baixando Stack Traefik"
+echo "=============================="
+echo "🔄 Substituindo o e-mail no arquivo..."
 
-# Utiliza chaves para proteger a variável
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-traefik-v2.yml | sed "s/meuemail@email.com/${EMAIL}/g" > stack-traefik-v2.yml
 
-# Verifica se o arquivo foi gerado com sucesso
 if [[ -s stack-traefik-v2.yml ]]; then
-  echo "Passo 2 concluído: Stack Traefik baixada e e-mail substituído com sucesso."
+  echo -e "✅ Stack Traefik baixada e e-mail substituído com sucesso."
 else
-  echo "Erro no Passo 2: O arquivo final da Stack Traefik está vazio ou não foi gerado corretamente."
+  echo -e "❌ Erro: Arquivo final da Stack Traefik está vazio ou não foi gerado corretamente."
   exit 1
 fi
-echo ""
 
 
 #######################
 # Update repositórios #
 #######################
 
-# Passo 3: Atualizr os repositórios e instalar as dependências necessárias
-echo "Passo 3: Atualizando repositórios e instalando dependências necessárias..."
-echo ""
-apt-get update
-apt install -y sudo gnupg2 wget ca-certificates apt-transport-https curl gnupg nano htop
+echo -e "\n=============================="
+echo " Passo 3: Atualizando Repositórios"
+echo "=============================="
+apt-get update && apt install -y sudo gnupg2 wget ca-certificates apt-transport-https curl gnupg nano htop
 
-echo ""
 if [ $? -eq 0 ]; then
-    echo "Passo 3 concluído com sucesso."
+    echo -e "✅ Repositórios atualizados com sucesso."
 else
-    echo "Erro no Passo 3: Falha ao atualizar repositórios e instalar dependências."
+    echo -e "❌ Erro ao atualizar repositórios."
     exit 1
 fi
+
 
 ##########
 # Docker #
 ##########
 
-# Passo 4: Adicionar a chave GPG do Docker
-echo ""
-echo "Passo 4: Adicionando chave GPG do Docker..."
+echo -e "\n=============================="
+echo " Passo 4: Verificando Chave GPG do Docker"
+echo "=============================="
 if [ ! -f /etc/apt/keyrings/docker.gpg ]; then
     sudo install -m 0755 -d /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
     sudo chmod a+r /etc/apt/keyrings/docker.gpg
-    echo ""
 else
-    echo "Aviso no Passo 4: Chave GPG do Docker já existe. Pulando este passo."
+    echo "⚠️  Chave GPG do Docker já existe. Pulando."
 fi
 
 if [ $? -eq 0 ]; then
-    echo "Passo 4 concluído com sucesso."
+    echo -e "✅ Chave GPG adicionada com sucesso."
 else
-    echo "Erro no Passo 4: Falha ao adicionar a chave GPG do Docker."
+    echo -e "❌ Erro ao adicionar chave GPG."
     exit 1
 fi
 
-# Passo 5: Configurr os repositórios do Docker
-echo ""
-echo "Passo 5: Configurando os repositórios do Docker..."
+
+# Passo 5: Configurando Repositórios do Docker
+echo -e "\n=============================="
+echo " Passo 5: Configurando Repositórios do Docker"
+echo "=============================="
 if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
-    echo \
-      "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-      "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" |
-      sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+    echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+    "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
     sudo apt-get update
-    echo ""
 else
-    echo "Aviso no Passo 5: Repositórios do Docker já configurados. Pulando este passo."
+    echo "⚠️  Repositórios do Docker já configurados. Pulando."
 fi
 
 if [ $? -eq 0 ]; then
-    echo "Passo 5 concluído com sucesso."
+    echo -e "✅ Repositórios do Docker configurados com sucesso."
 else
-    echo "Erro no Passo 5: Falha ao configurar os repositórios do Docker."
+    echo -e "❌ Erro ao configurar repositórios do Docker."
     exit 1
 fi
 
-# Passo 6: Instalar o Docker
-echo ""
-echo "Passo 6: Instalando o Docker..."
-# Verifica se Docker está instalado
+
+# Passo 6: Instalar Docker
+echo -e "\n=============================="
+echo " Passo 6: Instalando Docker"
+echo "=============================="
 if ! command -v docker &> /dev/null; then
-    echo "Aviso do Passo6: Docker não está instalado. Instalando..."
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-    echo ""
     if [ $? -eq 0 ]; then
-        echo "Passo 6: Docker instalado com sucesso."
+        echo -e "✅ Docker instalado com sucesso."
     else
-        echo "Erro no Passo 6: Falha ao instalar o Docker."
+        echo -e "❌ Erro ao instalar o Docker."
         exit 1
     fi
 else
-    echo "Aviso no Passo 6: Docker já está instalado. Pulando a instalação."
+    echo "⚠️  Docker já instalado. Pulando."
 fi
 
-# Passo 7: Configurar o docker para iniciar automaticamente
-echo ""
-echo "Passo 7: Verificando se o Docker está configurado para iniciar automaticamente..."
+
+# Passo 7: Configurar Docker para iniciar automaticamente
+echo -e "\n=============================="
+echo " Passo 7: Configurando Docker para iniciar automaticamente"
+echo "=============================="
 if systemctl is-enabled docker.service | grep -q "enabled"; then
-    echo "Aviso no Passo 7: Serviço Docker já está configurado para iniciar automaticamente."
+    echo "⚠️  Docker já configurado para iniciar automaticamente."
 else
-    echo "Aviso do Passo 7: Habilitando o serviço Docker para iniciar automaticamente..."
     sudo systemctl enable docker.service
     sudo systemctl enable containerd.service
-fi
-
-if [ $? -eq 0 ]; then
-    echo "Passo 7 concluído com sucesso."
-else
-    echo "Erro no Passo 7: Falha ao configurar o Docker para iniciar automaticamente."
-    exit 1
+    echo "✅ Serviço Docker configurado para iniciar automaticamente."
 fi
 
 
@@ -153,57 +146,55 @@ fi
 # Inicia o Swarm #
 ##################
 
-# Passo 8: Obtém o IP da máquina
-echo ""
-echo "Passo 8: Obtendo o IP da máquina..."
+# Passo 8: Obter o IP da máquina
+echo -e "\n=============================="
+echo " Passo 8: Obtendo IP da máquina"
+echo "=============================="
 IP_ADDR=$(hostname -I | awk '{print $1}')
 
 if [ -z "$IP_ADDR" ]; then
-    echo "Erro no Passo 8: Não foi possível obter o IP da máquina."
+    echo -e "❌ Erro ao obter IP da máquina."
     exit 1
 else
-    echo "Passo 8 concluído com sucesso. IP da máquina obtido: $IP_ADDR"
+    echo -e "✅ IP da máquina: $IP_ADDR"
 fi
 
-# Passo 9: Verifica se Swarm já está inicializado
-echo ""
+
+# Passo 9: Verificar se Docker Swarm já está inicializado
+echo -e "\n=============================="
+echo " Passo 9: Verificando Docker Swarm"
+echo "=============================="
 if docker info | grep -q "Swarm: active"; then
-    echo "Aviso do Passo 9: Docker Swarm já foi inicializado. Pulando esta etapa."
+    echo "⚠️  Docker Swarm já inicializado. Pulando."
 else
-    echo "Aviso do Passo 9: Inicializando o Docker Swarm..."
     docker swarm init --advertise-addr=$IP_ADDR
-    echo ""
     if [ $? -eq 0 ]; then
-        echo "Passo 9: Docker Swarm inicializado com sucesso."
+        echo -e "✅ Docker Swarm inicializado com sucesso."
     else
-        echo "Erro no Passo 9: Falha ao inicializar o Docker Swarm."
+        echo -e "❌ Erro ao inicializar Docker Swarm."
         exit 1
     fi
 fi
 
 
-#####################
-# Verificar e criar #
-# a rede se preciso #
-#####################
+#######################
+# Verificar/criar rede#
+#######################
 
-# Passo 10: Verificar se a rede 'network_swarm_public' se já existe
-echo ""
-echo "Passo 10: Verificando se a rede 'network_swarm_public' já existe..."
-
-# Verificar se a rede existe
+# Passo 10: Verificar/criar a rede
+echo -e "\n=============================="
+echo " Passo 10: Verificando Rede 'network_swarm_public'"
+echo "=============================="
 if docker network ls | grep -q "network_swarm_public"; then
-  echo "Aviso do Passo 10: A rede 'network_swarm_public' já existe."
+    echo "⚠️  Rede 'network_swarm_public' já existe. Pulando."
 else
-  echo "Aviso do Passo 10: Criando a rede 'network_swarm_public'..."
-  docker network create --driver=overlay network_swarm_public
-  
-  # Verificar se a criação da rede foi bem-sucedida
-  if [[ $? -eq 0 ]]; then
-    echo "Passo 10 concluído com sucesso. Rede 'network_swarm_public' criada com sucesso."
-  else
-    echo "Erro no Passo 10: Erro ao criar a rede 'network_swarm_public'. Verifique o ambiente Docker."
-  fi
+    docker network create --driver=overlay network_swarm_public
+    if [ $? -eq 0 ]; then
+        echo -e "✅ Rede 'network_swarm_public' criada com sucesso."
+    else
+        echo -e "❌ Erro ao criar a rede."
+        exit 1
+    fi
 fi
 
 
@@ -211,17 +202,17 @@ fi
 # Stack Traefik #
 #################
 
-# Passo 11: Subir a stack do Traefik com o Docker Swarm
-echo ""
-echo "Passo 11: Subindo a stack do Traefik com o Docker Swarm..."
+# Passo 11: Subir stack do Traefik
+echo -e "\n=============================="
+echo " Passo 11: Subindo Stack Traefik"
+echo "=============================="
 docker stack deploy --prune --detach=false --resolve-image always -c stack-traefik-v2.yml traefik
 
-echo ""
 if [ $? -eq 0 ]; then
-    echo "Passo 11 executado com sucesso. Stack Traefik implantada com sucesso."
+    echo -e "✅ Stack Traefik implantada com sucesso!"
 else
-    echo "Erro no Passo 11: Falha ao implantar a stack Traefik."
+    echo -e "❌ Erro ao implantar Stack Traefik."
     exit 1
 fi
 
-echo "Script executado com sucesso!"
+echo -e "\n🚀 Script executado com sucesso!"
