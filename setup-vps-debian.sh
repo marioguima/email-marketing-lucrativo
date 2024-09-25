@@ -6,15 +6,15 @@ clear
 # Função para exibir o menu #
 #############################
 menu_idioma() {
-  echo ""
-  echo "Escolha seu idioma / Choose your language / Elija su idioma / Choisissez votre langue / Scegli la tua lingua"
-  echo "1) Português"
-  echo "2) English"
-  echo "3) Español"
-  echo "4) Français"
-  echo "5) Italiano"
-  echo ""
-  echo "Digite o número / Enter the number / Escriba el número / Entrez le numéro / Inserisci il numero"
+  printf "\n"
+  printf "Escolha seu idioma / Choose your language / Elija su idioma / Choisissez votre langue / Scegli la tua lingua\n"
+  printf "1) Português\n"
+  printf "2) English\n"
+  printf "3) Español\n"
+  printf "4) Français\n"
+  printf "5) Italiano\n"
+  printf "\n"
+  printf "Digite o número / Enter the number / Escriba el número / Entrez le numéro / Inserisci il numero\n"
   read -p "> " idioma
 }
 
