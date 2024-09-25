@@ -17,9 +17,9 @@ validar_email() {
 }
 
 # Passo 1: Solicitar o e-mail do usuário
-echo -e "\n============================="
-echo " Passo 1: Insira o seu e-mail"
-echo "============================="
+echo -e "\n==========================================================================================="
+echo " Passo 1: Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
+echo "==========================================================================================="
 
 while true; do
   echo -e "\n📧 Por favor, insira seu e-mail:"
