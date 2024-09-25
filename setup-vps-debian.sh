@@ -183,21 +183,21 @@ else
 fi
 
 
-# #################
-# # Stack Traefik #
-# #################
+#################
+# Stack Traefik #
+#################
 
-# # Passo 10: Subir a stack do Traefik com o Docker Swarm
-# echo ""
-# echo "Passo 10: Subindo a stack do Traefik com o Docker Swarm..."
-# docker stack deploy --prune --detach=false --resolve-image always -c stack-traefik-v2.yml traefik
+# Passo 10: Subir a stack do Traefik com o Docker Swarm
+echo ""
+echo "Passo 10: Subindo a stack do Traefik com o Docker Swarm..."
+docker stack deploy --prune --detach=false --resolve-image always -c stack-traefik-v2.yml traefik
 
-# echo ""
-# if [ $? -eq 0 ]; then
-#     echo "Passo 10 executado com sucesso. Stack Traefik implantada com sucesso."
-# else
-#     echo "Erro no Passo 10: Falha ao implantar a stack Traefik."
-#     exit 1
-# fi
+echo ""
+if [ $? -eq 0 ]; then
+    echo "Passo 10 executado com sucesso. Stack Traefik implantada com sucesso."
+else
+    echo "Erro no Passo 10: Falha ao implantar a stack Traefik."
+    exit 1
+fi
 
-# echo "Script executado com sucesso!"
+echo "Script executado com sucesso!"
