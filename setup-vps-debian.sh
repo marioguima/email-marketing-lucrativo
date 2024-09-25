@@ -15,16 +15,16 @@ validar_email() {
 }
 
 # Passo 1: Solicitar o e-mail do usuário
-echo -e "\n===================="
+echo -e "\n============================="
 echo " Passo 1: Insira o seu e-mail"
-echo "===================="
+echo "============================="
 
 while true; do
   echo -e "\n📧 Por favor, insira seu e-mail:"
   read -p "> " EMAIL
   if validar_email "$EMAIL"; then
     echo -e "\n✅ Email válido: $EMAIL"
-    echo "--------------------"
+    echo "----------------"
     break
   else
     echo -e "❌ Email inválido. Tente novamente."
@@ -37,9 +37,9 @@ done
 ########################
 
 # Passo 2: Baixar o arquivo stack-traefik-v2.yml e substituir o e-mail pelo informado
-echo -e "\n=============================="
+echo -e "\n================================"
 echo " Passo 2: Baixando Stack Traefik"
-echo "=============================="
+echo "================================"
 echo "🔄 Substituindo o e-mail no arquivo..."
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-traefik-v2.yml | sed "s/meuemail@email.com/${EMAIL}/g" > stack-traefik-v2.yml
@@ -56,9 +56,9 @@ fi
 # Update repositórios #
 #######################
 
-echo -e "\n=============================="
+echo -e "\n=================================="
 echo " Passo 3: Atualizando Repositórios"
-echo "=============================="
+echo "=================================="
 apt-get update && apt install -y sudo gnupg2 wget ca-certificates apt-transport-https curl gnupg nano htop
 
 if [ $? -eq 0 ]; then
@@ -73,9 +73,9 @@ fi
 # Docker #
 ##########
 
-echo -e "\n=============================="
+echo -e "\n========================================="
 echo " Passo 4: Verificando Chave GPG do Docker"
-echo "=============================="
+echo "========================================="
 if [ ! -f /etc/apt/keyrings/docker.gpg ]; then
     sudo install -m 0755 -d /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -93,9 +93,9 @@ fi
 
 
 # Passo 5: Configurando Repositórios do Docker
-echo -e "\n=============================="
+echo -e "\n============================================="
 echo " Passo 5: Configurando Repositórios do Docker"
-echo "=============================="
+echo "============================================="
 if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
     echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
     "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
@@ -113,9 +113,9 @@ fi
 
 
 # Passo 6: Instalar Docker
-echo -e "\n=============================="
+echo -e "\n==========================="
 echo " Passo 6: Instalando Docker"
-echo "=============================="
+echo "==========================="
 if ! command -v docker &> /dev/null; then
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     if [ $? -eq 0 ]; then
@@ -130,9 +130,9 @@ fi
 
 
 # Passo 7: Configurar Docker para iniciar automaticamente
-echo -e "\n=============================="
+echo -e "\n=========================================================="
 echo " Passo 7: Configurando Docker para iniciar automaticamente"
-echo "=============================="
+echo "=========================================================="
 if systemctl is-enabled docker.service | grep -q "enabled"; then
     echo "⚠️  Docker já configurado para iniciar automaticamente."
 else
@@ -147,9 +147,9 @@ fi
 ##################
 
 # Passo 8: Obter o IP da máquina
-echo -e "\n=============================="
+echo -e "\n==============================="
 echo " Passo 8: Obtendo IP da máquina"
-echo "=============================="
+echo "==============================="
 IP_ADDR=$(hostname -I | awk '{print $1}')
 
 if [ -z "$IP_ADDR" ]; then
@@ -161,9 +161,9 @@ fi
 
 
 # Passo 9: Verificar se Docker Swarm já está inicializado
-echo -e "\n=============================="
+echo -e "\n=================================="
 echo " Passo 9: Verificando Docker Swarm"
-echo "=============================="
+echo "=================================="
 if docker info | grep -q "Swarm: active"; then
     echo "⚠️  Docker Swarm já inicializado. Pulando."
 else
@@ -182,9 +182,9 @@ fi
 #######################
 
 # Passo 10: Verificar/criar a rede
-echo -e "\n=============================="
+echo -e "\n=================================================="
 echo " Passo 10: Verificando Rede 'network_swarm_public'"
-echo "=============================="
+echo "=================================================="
 if docker network ls | grep -q "network_swarm_public"; then
     echo "⚠️  Rede 'network_swarm_public' já existe. Pulando."
 else
@@ -203,9 +203,9 @@ fi
 #################
 
 # Passo 11: Subir stack do Traefik
-echo -e "\n=============================="
+echo -e "\n================================"
 echo " Passo 11: Subindo Stack Traefik"
-echo "=============================="
+echo "================================"
 docker stack deploy --prune --detach=false --resolve-image always -c stack-traefik-v2.yml traefik
 
 if [ $? -eq 0 ]; then
