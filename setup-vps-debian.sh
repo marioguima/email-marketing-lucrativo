@@ -303,7 +303,6 @@ definir_mensagens() {
       echo "Español: Opción inválida. Inténtalo de nuevo."
       echo "Français: Option invalide. Veuillez réessayer."
       echo "Italiano: Opzione non valida. Riprova."
-
       return 1
       ;;
   esac
