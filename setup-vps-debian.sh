@@ -14,6 +14,7 @@ menu_idioma() {
   printf "5) Italiano  - Inserisci 5 e premi INVIO\n"
   printf "\n"
   read -p "> " idioma
+  echo ""
 }
 
 #########################################
@@ -23,7 +24,7 @@ definir_mensagens() {
   case $idioma in
     1)
       # Português
-      msg_passo1="Passo 1: Insira o domínio com o subdomínio, caso haja, para ser utilizado pelo Mautic:"
+      msg_passo1="Passo 1: Insira o domínio para ser utilizado pelo Mautic:"
       msg_solicita_dominio="📧 Por favor, insira um domínio (com ou sem subdomínio):"
       msg_dominio_valido="✅ Domínio válido:"
       msg_dominio_invalido="❌ Domínio não válido. Por favor, tente novamente."
