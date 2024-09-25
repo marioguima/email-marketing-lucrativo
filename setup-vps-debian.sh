@@ -158,7 +158,6 @@ echo ""
 echo "Passo 8: Obtendo o IP da máquina..."
 IP_ADDR=$(hostname -I | awk '{print $1}')
 
-echo ""
 if [ -z "$IP_ADDR" ]; then
     echo "Erro no Passo 8: Não foi possível obter o IP da máquina."
     exit 1
