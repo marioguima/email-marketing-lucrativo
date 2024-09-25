@@ -17,10 +17,11 @@ validar_email() {
 # Passo 1: Solicitar o email do usuário
 echo ""
 echo "Passo 1: Solicitar o email do usuário"
-echo ""
 while true; do
+  echo ""
   read -p "Por favor, insira seu e-mail: " EMAIL
   if validar_email "$EMAIL"; then
+    echo ""
     echo "Passo 1 concluído com sucesso. Email válido: $EMAIL"
     break
   else
@@ -34,6 +35,7 @@ done
 ########################
 
 # Passo 2: Baixar o arquivo stack-traefik-v2.yml e substituir o email pelo informado
+echo ""
 echo "Passo 2: Baixando a stack Traefik e substituindo o e-mail..."
 curl -s https://github.com/marioguima/email-marketing-lucrativo/raw/refs/heads/main/stack-traefik-v2.yml | sed "s/meuemail@email.com/$EMAIL/g" > stack-traefik-v2.yml
 
@@ -63,33 +65,32 @@ else
     echo "Erro no Passo 3: Falha ao atualizar repositórios e instalar dependências."
     exit 1
 fi
-echo ""
-
 
 ##########
 # Docker #
 ##########
 
 # Passo 4: Adicionar a chave GPG do Docker
+echo ""
 echo "Passo 4: Adicionando chave GPG do Docker..."
 if [ ! -f /etc/apt/keyrings/docker.gpg ]; then
     sudo install -m 0755 -d /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
     sudo chmod a+r /etc/apt/keyrings/docker.gpg
+    echo ""
 else
     echo "Aviso no Passo 4: Chave GPG do Docker já existe. Pulando este passo."
 fi
 
-echo ""
 if [ $? -eq 0 ]; then
     echo "Passo 4 concluído com sucesso."
 else
     echo "Erro no Passo 4: Falha ao adicionar a chave GPG do Docker."
     exit 1
 fi
-echo ""
 
 # Passo 5: Configurr os repositórios do Docker
+echo ""
 echo "Passo 5: Configurando os repositórios do Docker..."
 if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
     echo \
@@ -97,20 +98,20 @@ if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
       "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" |
       sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
     sudo apt-get update
+    echo ""
 else
     echo "Aviso no Passo 5: Repositórios do Docker já configurados. Pulando este passo."
 fi
 
-echo ""
 if [ $? -eq 0 ]; then
     echo "Passo 5 concluído com sucesso."
 else
     echo "Erro no Passo 5: Falha ao configurar os repositórios do Docker."
     exit 1
 fi
-echo ""
 
 # Passo 6: Instalar o Docker
+echo ""
 echo "Passo 6: Instalando o Docker..."
 # Verifica se Docker está instalado
 if ! command -v docker &> /dev/null; then
@@ -126,9 +127,9 @@ if ! command -v docker &> /dev/null; then
 else
     echo "Aviso no Passo 6: Docker já está instalado. Pulando a instalação."
 fi
-echo ""
 
 # Passo 7: Configurar o docker para iniciar automaticamente
+echo ""
 echo "Passo 7: Verificando se o Docker está configurado para iniciar automaticamente..."
 if systemctl is-enabled docker.service | grep -q "enabled"; then
     echo "Aviso no Passo 7: Serviço Docker já está configurado para iniciar automaticamente."
@@ -138,14 +139,12 @@ else
     sudo systemctl enable containerd.service
 fi
 
-echo ""
 if [ $? -eq 0 ]; then
     echo "Passo 7 concluído com sucesso."
 else
     echo "Erro no Passo 7: Falha ao configurar o Docker para iniciar automaticamente."
     exit 1
 fi
-echo ""
 
 
 ##################
@@ -153,6 +152,7 @@ echo ""
 ##################
 
 # Passo 8: Obtém o IP da máquina
+echo ""
 echo "Passo 8: Obtendo o IP da máquina..."
 IP_ADDR=$(hostname -I | awk '{print $1}')
 
@@ -163,9 +163,9 @@ if [ -z "$IP_ADDR" ]; then
 else
     echo "Passo 8 concluído com sucesso. IP da máquina obtido: $IP_ADDR"
 fi
-echo ""
 
 # Passo 9: Verifica se Swarm já está inicializado
+echo ""
 if docker info | grep -q "Swarm: active"; then
     echo "Aviso do Passo 9: Docker Swarm já foi inicializado. Pulando esta etapa."
 else
@@ -179,7 +179,6 @@ else
         exit 1
     fi
 fi
-echo ""
 
 
 #################
@@ -187,6 +186,7 @@ echo ""
 #################
 
 # Passo 10: Subir a stack do Traefik com o Docker Swarm
+echo ""
 echo "Passo 10: Subindo a stack do Traefik com o Docker Swarm..."
 docker stack deploy --prune --detach=false --resolve-image always -c stack-traefik-v2.yml traefik
 
