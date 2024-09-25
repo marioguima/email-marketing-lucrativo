@@ -6,7 +6,6 @@ clear
 # Função para exibir o menu #
 #############################
 menu_idioma() {
-  printf "\n"
   printf "Escolha seu idioma / Choose your language / Elija su idioma / Choisissez votre langue / Scegli la tua lingua\n"
   printf "1) Português - Digite 1 e pressione ENTER\n"
   printf "2) English   - Enter 2 and press ENTER\n"
