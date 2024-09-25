@@ -41,6 +41,7 @@ definir_mensagens() {
       msg_chave_erro="❌ Erro ao adicionar chave GPG."
       msg_swarm_ok="✅ Docker Swarm inicializado com sucesso."
       msg_swarm_erro="❌ Erro ao inicializar Docker Swarm."
+      return 0
       ;;
     2)
       # English
@@ -61,6 +62,7 @@ definir_mensagens() {
       msg_chave_erro="❌ Error adding GPG key."
       msg_swarm_ok="✅ Docker Swarm initialized successfully."
       msg_swarm_erro="❌ Error initializing Docker Swarm."
+      return 0
       ;;
     3)
       # Español
@@ -81,6 +83,7 @@ definir_mensagens() {
       msg_chave_erro="❌ Error al añadir clave GPG."
       msg_swarm_ok="✅ Docker Swarm iniciado correctamente."
       msg_swarm_erro="❌ Error al iniciar Docker Swarm."
+      return 0
       ;;
     4)
       # Français
@@ -101,6 +104,7 @@ definir_mensagens() {
       msg_chave_erro="❌ Erreur lors de l'ajout de la clé GPG."
       msg_swarm_ok="✅ Docker Swarm initialisé avec succès."
       msg_swarm_erro="❌ Erreur lors de l'initialisation de Docker Swarm."
+      return 0
       ;;
     5)
       # Italiano
@@ -121,6 +125,7 @@ definir_mensagens() {
       msg_chave_erro="❌ Errore durante l'aggiunta della chiave GPG."
       msg_swarm_ok="✅ Docker Swarm avviato con successo."
       msg_swarm_erro="❌ Errore durante l'avvio di Docker Swarm."
+      return 0
       ;;
     *)
       echo "Opção inválida. Tente novamente."
@@ -140,12 +145,6 @@ while true; do
     break
   fi
 done
-
-############################
-# Menu de escolha do idioma #
-############################
-menu_idioma
-definir_mensagens
 
 #############################################################
 # Função para imprimir uma linha de caracteres com um texto #
