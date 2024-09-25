@@ -182,20 +182,45 @@ else
 fi
 
 
+#####################
+# Verificar e criar #
+# a rede se preciso #
+#####################
+
+# Passo 10: Verificar se a rede 'network_swarm_public' se já existe
+echo ""
+echo "Passo 10: Verificando se a rede 'network_swarm_public' já existe..."
+
+# Verificar se a rede existe
+if docker network ls | grep -q "network_swarm_public"; then
+  echo "Aviso do Passo 10: A rede 'network_swarm_public' já existe."
+else
+  echo "Aviso do Passo 10: Criando a rede 'network_swarm_public'..."
+  docker network create --driver=overlay network_swarm_public
+  
+  # Verificar se a criação da rede foi bem-sucedida
+  if [[ $? -eq 0 ]]; then
+    echo "Passo 10 concluído com sucesso. Rede 'network_swarm_public' criada com sucesso."
+  else
+    echo "Erro no Passo 10: Erro ao criar a rede 'network_swarm_public'. Verifique o ambiente Docker."
+  fi
+fi
+
+
 #################
 # Stack Traefik #
 #################
 
-# Passo 10: Subir a stack do Traefik com o Docker Swarm
+# Passo 11: Subir a stack do Traefik com o Docker Swarm
 echo ""
-echo "Passo 10: Subindo a stack do Traefik com o Docker Swarm..."
+echo "Passo 11: Subindo a stack do Traefik com o Docker Swarm..."
 docker stack deploy --prune --detach=false --resolve-image always -c stack-traefik-v2.yml traefik
 
 echo ""
 if [ $? -eq 0 ]; then
-    echo "Passo 10 executado com sucesso. Stack Traefik implantada com sucesso."
+    echo "Passo 11 executado com sucesso. Stack Traefik implantada com sucesso."
 else
-    echo "Erro no Passo 10: Falha ao implantar a stack Traefik."
+    echo "Erro no Passo 11: Falha ao implantar a stack Traefik."
     exit 1
 fi
 
