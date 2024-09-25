@@ -29,7 +29,6 @@ while true; do
   fi
 done
 
-
 ########################
 # Baixar stack traefik #
 ########################
@@ -37,12 +36,15 @@ done
 # Passo 2: Baixar o arquivo stack-traefik-v2.yml e substituir o email pelo informado
 echo ""
 echo "Passo 2: Baixando a stack Traefik e substituindo o e-mail..."
-curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-traefik-v2.yml | sed "s/meuemail@email.com/$EMAIL/g" > stack-traefik-v2.yml
 
-if [ $? -eq 0 ]; then
-  echo "Passo 2 concluído. Stack Traefik baixada e e-mail substituído com sucesso."
+# Utiliza chaves para proteger a variável
+curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-traefik-v2.yml | sed "s/meuemail@email.com/${EMAIL}/g" > stack-traefik-v2.yml
+
+# Verifica se o arquivo foi gerado com sucesso
+if [[ -s stack-traefik-v2.yml ]]; then
+  echo "Passo 2 concluído: Stack Traefik baixada e e-mail substituído com sucesso."
 else
-  echo "Erro no Passo 2: Erro ao baixar ou modificar a stack Traefik."
+  echo "Erro no Passo 2: O arquivo final da Stack Traefik está vazio ou não foi gerado corretamente."
   exit 1
 fi
 echo ""
@@ -181,21 +183,21 @@ else
 fi
 
 
-#################
-# Stack Traefik #
-#################
+# #################
+# # Stack Traefik #
+# #################
 
-# Passo 10: Subir a stack do Traefik com o Docker Swarm
-echo ""
-echo "Passo 10: Subindo a stack do Traefik com o Docker Swarm..."
-docker stack deploy --prune --detach=false --resolve-image always -c stack-traefik-v2.yml traefik
+# # Passo 10: Subir a stack do Traefik com o Docker Swarm
+# echo ""
+# echo "Passo 10: Subindo a stack do Traefik com o Docker Swarm..."
+# docker stack deploy --prune --detach=false --resolve-image always -c stack-traefik-v2.yml traefik
 
-echo ""
-if [ $? -eq 0 ]; then
-    echo "Passo 10 executado com sucesso. Stack Traefik implantada com sucesso."
-else
-    echo "Erro no Passo 10: Falha ao implantar a stack Traefik."
-    exit 1
-fi
+# echo ""
+# if [ $? -eq 0 ]; then
+#     echo "Passo 10 executado com sucesso. Stack Traefik implantada com sucesso."
+# else
+#     echo "Erro no Passo 10: Falha ao implantar a stack Traefik."
+#     exit 1
+# fi
 
-echo "Script executado com sucesso!"
+# echo "Script executado com sucesso!"
