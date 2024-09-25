@@ -13,7 +13,7 @@ menu_idioma() {
   echo "3) Español"
   echo "4) Français"
   echo "5) Italiano"
-  echo -e "\n"
+  echo ""
   echo -e "Digite o número / Enter the number / Escriba el número / Entrez le numéro / Inserisci il numero"
   read -p "> " idioma
 }
