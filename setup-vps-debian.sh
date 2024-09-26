@@ -585,11 +585,12 @@ print_with_line "$msg_dominio"
 # Loop para garantir a definição do domínio
 #------------------------------------------
 while true; do
-  echo -e "$msg_dominio_solicitar\n"
+  echo -e "$msg_dominio_solicitar"
   read -p "> " DOMINIO
   if validar_dominio "$DOMINIO"; then
     echo ""
     print_with_line "$msg_dominio_valido $DOMINIO" "-"
+    echo ""
     break
   else
     echo -e "$msg_dominio_invalido"
@@ -603,15 +604,16 @@ done
 print_with_line "$msg_traefik_obter_email"
 
 while true; do
-  echo -e "\n$msg_email_solicitar"
+  echo -e "$msg_email_solicitar"
   read -p "> " CHANGE_EMAIL_TRAEFIK
   echo # Para nova linha
   if validar_email "$CHANGE_EMAIL_TRAEFIK"; then
-    echo -e "\n$msg_email_valido $CHANGE_EMAIL_TRAEFIK"
-    echo "----------------"
+    print_with_line "$msg_email_valido $CHANGE_EMAIL_TRAEFIK" "-"
+    echo ""
     break
   else
     echo -e "$msg_email_invalido"
+    echo ""
   fi
 done
 
