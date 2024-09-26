@@ -745,7 +745,6 @@ while true; do
   read -s -p "> " CHANGE_PORTAINER_ADMIN_PASSWORD
   echo # Para nova linha
   if validar_senha "$CHANGE_PORTAINER_ADMIN_PASSWORD"; then
-    echo ""
     print_with_line "$msg_senha_ok" "-"
     echo ""
     break
@@ -763,7 +762,6 @@ while true; do
   read -s -p "> " CHANGE_MYSQL_ROOT_PASSWORD
   echo # Para nova linha
   if validar_senha "$CHANGE_MYSQL_ROOT_PASSWORD"; then
-    echo ""
     print_with_line "$msg_senha_ok" "-"
     echo ""
     break
@@ -847,7 +845,6 @@ while true; do
   read -s -p "> " CHANGE_MAUTIC_ADMIN_PASSWORD
   echo # Para nova linha
   if validar_senha "$CHANGE_MAUTIC_ADMIN_PASSWORD"; then
-    echo ""
     print_with_line "$msg_senha_ok" "-"
     echo ""
     break
