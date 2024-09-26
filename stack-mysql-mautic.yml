@@ -1,0 +1,71 @@
+version: "3.7"
+
+########################################
+#
+# Stack do Percona Server 8
+#
+########################################
+
+# define os serviços do stack
+services:
+  # define o serviço do MySQL
+  mysql_mautic:
+    # define a imagem do MySQL
+    image: percona:8
+    # Define o Hostname do MySQL
+    hostname: "{{.Service.Name}}.{{.Task.Slot}}"
+    # define o comando de inicialização do MySQL
+    command:
+      [
+        --character-set-server=utf8mb4,
+        --collation-server=utf8mb4_general_ci,
+        --sql-mode=,
+        --default-authentication-plugin=mysql_native_password,
+        --max-allowed-packet=512MB,
+        --port=3306,
+      ]
+    # define a rede que o container vai usar
+    networks:
+      - network_swarm_public
+    # # Define as portas do container
+    # ports:
+    #  - 3306:3306
+    # define o volume que vai armazenar os dados do MySQL
+    volumes:
+      - mysql_data:/var/lib/mysql
+    # define as variaveis de ambiente que o container vai usar
+    environment:
+      # define o usuario root do MySQL
+      - MYSQL_ROOT_PASSWORD=CHANGE_MYSQL_ROOT_PASSWORD
+      # define o Timezone do MySQL
+      - TZ=America/Fortaleza
+    # define o modo de deploy do container
+    deploy:
+      # configura o modo de deploy do serviço do postgres
+      mode: replicated
+      # configura o numero de replicas do serviço do postgres (1 é o padrão)
+      replicas: 1
+      # Define a estratégia de deploy do serviço
+      placement:
+        constraints:
+          ## Informa ao Docker para alocar o serviço no manager
+          - node.role == manager
+          # # Aloca o Serviço num Worher chamado database
+          # - node.hostname == database01
+      resources:
+        # define os limites de recursos do container
+        limits:
+          # define o limite de CPU do container
+          cpus: "1"
+          # define o limite de memoria do container
+          memory: 2048M
+
+volumes:
+  mysql_data:
+    external: true
+    name: mysql_data
+
+networks:
+  network_swarm_public:
+    external: true
+    name: network_swarm_public

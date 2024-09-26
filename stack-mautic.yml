@@ -1,0 +1,82 @@
+version: "3.7"
+
+services:
+  # Define o serviço do Mautic
+  mautic:
+    # Define a imagem do Mautic 4
+    image: mautic/mautic:v4
+    # Define o hotname do container
+    hostname: "{{.Service.Name}}.{{.Task.Slot}}"
+    # Define o entrypont que configurar o Mautic
+    entrypoint: /entrypoint.sh
+    # Define o comando que inicia o Servidor Web
+    command: apache2-foreground
+    # Define o volume que armazena os arquivos do Mautic
+    volumes:
+      - mautic_data:/var/www/html
+    # Define a rede que o container vai utilizar
+    networks:
+      - network_swarm_public
+    # Define as variáveis de Ambiente do Mautic
+    environment:
+      # Configura o Nome do Banco de Dados
+      - MAUTIC_DB_NAME=mautic
+      # Configura o Host do Banco de Dados
+      - MAUTIC_DB_HOST=mysql
+      # Configura a Porta do Banco de Dados
+      - MAUTIC_DB_PORT=3306
+      # Configura o Usuário do Banco de Dados
+      - MAUTIC_DB_USER=root
+      # Configura a Senha do Banco de Dados
+      - MAUTIC_DB_PASSWORD=CHANGE_MYSQL_ROOT_PASSWORD
+      # Configura o Email do Administrador
+      - MAUTIC_ADMIN_EMAIL=CHANGE_MAUTIC_ADMIN_EMAIL
+      # Configura a Senha do Administrador
+      - MAUTIC_ADMIN_PASSWORD=CHANGE_MAUTIC_ADMIN_PASSWORD
+      # Configura o Nome de Usuário do Administrador
+      - MAUTIC_ADMIN_USERNAME=mautic
+      # Configura a URL do Mautic
+      - MAUTIC_URL=https://CHANGE_URL_MAUTIC
+      # Configura o Mautic para aceitar proxy reverso
+      - MAUTIC_TRUSTED_PROXIES=["0.0.0.0/0"]
+    deploy:
+      # Define o modo de deploy do Mautic
+      mode: replicated
+      # Define o número de réplicas do Mautic
+      replicas: 1
+      # Define a estratégia de deploy do Mautic
+      placement:
+        constraints:
+          - node.role == manager
+          # - node.hostname == worker1
+      resources:
+        limits:
+          # Define a quantidade de CPU para o CodeChat para evitar travamento do Host
+          cpus: "1"
+          # Define a quantidade de RAM para o CodeChat para evitar travamento do Host
+          memory: 2048M
+      labels:
+        # Habilita o Traefik
+        - traefik.enable=true
+        # Configura o endereço do Mautic
+        - traefik.http.routers.mautic.rule=Host(`CHANGE_URL_MAUTIC`)
+        # Configura o SSL do Mautic
+        - traefik.http.routers.mautic.entrypoints=websecure
+        # Configura o Certificado SSL do Mautic
+        - traefik.http.routers.mautic.tls.certresolver=letsencryptresolver
+        # Configura o serviço do Mautic
+        - traefik.http.routers.mautic.service=mautic
+        # Configura a porta do Mautic
+        - traefik.http.services.mautic.loadbalancer.server.port=80
+        # Habilita o passHostHeader do Mautic
+        - traefik.http.services.mautic.loadbalancer.passHostHeader=true
+
+volumes:
+  mautic_data:
+    external: true
+    name: mautic_data
+
+networks:
+  network_swarm_public:
+    name: network_swarm_public
+    external: true

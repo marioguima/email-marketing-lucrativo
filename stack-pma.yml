@@ -1,0 +1,58 @@
+version: "3.7"
+
+services:
+  # Define o serviço do phpMyAdmin
+  pma:
+    # Define a imagem do phpMyAdmin
+    image: phpmyadmin/phpmyadmin:latest
+    # Define a rede que o container vai usar
+    networks:
+      - network_swarm_public
+    # Define o comando de inicialização do phpMyAdmin
+    command: ["apache2-foreground"]
+    # Define as variaveis de ambiente que o container vai usar
+    environment:
+      # Define o Hostname do MySQL
+      PMA_HOSTS: mysql_mautic
+      # Bloqueia o PHPMyAdmin de usar qualquer host
+      PMA_ARBITRARY: 0
+      # Define a porta do MySQL
+      PMA_PORT: 3306
+      # Define o endereço do PHPMyAdmin
+      PMA_ABSOLUTE_URI: "https://CHANGE_URL_PMA"
+      # modifica o limite de upload de arquivos
+      UPLOAD_LIMIT: 2M
+    deploy:
+      # Define o modo de deploy do container
+      mode: replicated
+      # Define o numero de replicas do container (sempre 1)
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+          # - node.hostname == worker1
+      labels:
+        # Define o nome do serviço
+        - traefik.enable=true
+        # Define o endereço do serviço
+        - traefik.http.routers.pma.rule=Host(`CHANGE_URL_PMA`)
+        # Define o tipo de entrada do serviço
+        - traefik.http.routers.pma.entrypoints=websecure
+        # Define o certificado do serviço
+        - traefik.http.routers.pma.tls.certresolver=letsencryptresolver
+        # Define a porta interna do phpMyAdmin
+        - traefik.http.services.pma.loadbalancer.server.port=80
+        # Define o nome do serviço
+        - traefik.http.routers.pma.service=pma
+      resources:
+        # Define os limites de recursos do container
+        limits:
+          # Define o limite de CPU do container
+          cpus: "1"
+          # Define o limite de memoria do container
+          memory: 2048M
+
+networks:
+  network_swarm_public:
+    external: true
+    name: network_swarm_public
