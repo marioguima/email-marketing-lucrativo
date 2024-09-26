@@ -94,14 +94,52 @@ validar_email() {
 #--------------------------
 validar_senha() {
   local senha="$1"
-  # Verifica se a senha tem menos de 8 caracteres, não contém letras, não contém números, ou não contém caracteres especiais
-  if [[ ${#senha} -lt 8 ]] || 
-     ! [[ "$senha" =~ [A-Za-z] ]] || 
-     ! [[ "$senha" =~ [0-9] ]] || 
-     ! [[ "$senha" =~ [[:punct:]] ]]; then
-    return 1  # Senha inválida
+  local valid=true  # Assume que a senha é válida inicialmente
+  local output=""   # Variável para armazenar as mensagens de requisitos
+
+  # Verifica cada requisito e adiciona o emoji de sucesso ou erro antes da mensagem
+  if [[ ${#senha} -ge 8 ]]; then
+    output+="✅ $msg_senha_requisito_min_caracteres\n"
+  else
+    output+="❌ $msg_senha_requisito_min_caracteres\n"
+    valid=false
   fi
-  return 0  # Senha válida
+
+  if [[ "$senha" =~ [A-Za-z] ]]; then
+    output+="✅ $msg_senha_requisito_letra\n"
+  else
+    output+="❌ $msg_senha_requisito_letra\n"
+    valid=false
+  fi
+
+  if [[ "$senha" =~ [0-9] ]]; then
+    output+="✅ $msg_senha_requisito_numero\n"
+  else
+    output+="❌ $msg_senha_requisito_numero\n"
+    valid=false
+  fi
+
+  if [[ "$senha" =~ [[:punct:]] ]]; then
+    output+="✅ $msg_senha_requisito_especial\n"
+  else
+    output+="❌ $msg_senha_requisito_especial\n"
+    valid=false
+  fi
+
+  # Se a senha não atender a algum requisito, exibe a mensagem de senha inválida
+  if [ "$valid" = false ]; then
+    echo -e "$msg_senha_invalida"
+  fi
+
+  # Exibe a lista de requisitos (com emojis de sucesso e erro)
+  echo -e "$output"
+
+  # Retorna 0 se a senha for válida, ou 1 se for inválida
+  if [ "$valid" = true ]; then
+    return 0
+  else
+    return 1
+  fi
 }
 
 #--------------------------------------
@@ -137,7 +175,12 @@ definir_mensagens() {
 
       msg_senha_solicitar="📧 Por favor, insira sua senha:"
       msg_senha_ok="✅ Senha válida."
-      msg_senha_erro="❌ Senha inválida. A senha deve ter pelo menos 8 caracteres, conter letras, números e pelo menos um caractere especial."
+
+      msg_senha_invalida="⚠️ Senha inválida. A senha precisa preencher todos os requisitos:"
+      msg_senha_requisito_min_caracteres="Ter no mínimo 8 caracteres"
+      msg_senha_requisito_letra="Conter ao menos uma letra"
+      msg_senha_requisito_numero="Conter ao menos 1 número"
+      msg_senha_requisito_especial="Conter ao menos 1 caracter especial ! @ # $ % & *"
 
       msg_traefik_obter_email="Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
       
@@ -232,7 +275,12 @@ definir_mensagens() {
 
       msg_senha_solicitar="📧 Please enter your password:"
       msg_senha_ok="✅ Valid password."
-      msg_senha_erro="❌ Invalid password. The password must be at least 8 characters long, contain letters, numbers, and at least one special character."
+      
+      msg_senha_invalida="⚠️ Invalid password. The password must meet all requirements:"
+      msg_senha_requisito_min_caracteres="Have at least 8 characters"
+      msg_senha_requisito_letra="Contain at least one letter"
+      msg_senha_requisito_numero="Contain at least 1 number"
+      msg_senha_requisito_especial="Contain at least 1 special character ! @ # $ % & *"
 
       msg_traefik_obter_email="Enter your email to configure Let's Encrypt (SSL certificate) in Traefik:"
 
@@ -327,7 +375,12 @@ definir_mensagens() {
 
       msg_senha_solicitar="📧 Por favor, introduzca su contraseña:"
       msg_senha_ok="✅ Contraseña válida."
-      msg_senha_erro="❌ Contraseña inválida. La contraseña debe tener al menos 8 caracteres, contener letras, números y al menos un carácter especial."
+
+      msg_senha_invalida="⚠️ Contraseña inválida. La contraseña debe cumplir todos los requisitos:"
+      msg_senha_requisito_min_caracteres="Tener al menos 8 caracteres"
+      msg_senha_requisito_letra="Contener al menos una letra"
+      msg_senha_requisito_numero="Contener al menos 1 número"
+      msg_senha_requisito_especial="Contener al menos 1 carácter especial ! @ # $ % & *"
 
       msg_traefik_obter_email="Introduzca su correo electrónico para configurar Let's Encrypt (certificado SSL) en Traefik:"
       
@@ -422,7 +475,12 @@ definir_mensagens() {
 
       msg_senha_solicitar="📧 Veuillez saisir votre mot de passe :"
       msg_senha_ok="✅ Mot de passe valide."
-      msg_senha_erro="❌ Mot de passe invalide. Le mot de passe doit comporter au moins 8 caractères, contenir des lettres, des chiffres et au moins un caractère spécial."
+
+      msg_senha_invalida="⚠️ Mot de passe invalide. Le mot de passe doit remplir toutes les conditions :"
+      msg_senha_requisito_min_caracteres="Avoir au moins 8 caractères"
+      msg_senha_requisito_letra="Contenir au moins une lettre"
+      msg_senha_requisito_numero="Contenir au moins 1 chiffre"
+      msg_senha_requisito_especial="Contenir au moins 1 caractère spécial ! @ # $ % & *"
 
       msg_traefik_obter_email="Veuillez saisir votre e-mail pour configurer Let's Encrypt (certificat SSL) sur Traefik :"
       
@@ -517,7 +575,12 @@ definir_mensagens() {
 
       msg_senha_solicitar="📧 Per favore, inserisci la tua password:"
       msg_senha_ok="✅ Password valida."
-      msg_senha_erro="❌ Password non valida. La password deve avere almeno 8 caratteri, contenere lettere, numeri e almeno un carattere speciale."
+
+      msg_senha_invalida="⚠️ Password non valida. La password deve soddisfare tutti i requisiti:"
+      msg_senha_requisito_min_caracteres="Avere almeno 8 caratteri"
+      msg_senha_requisito_letra="Contenere almeno una lettera"
+      msg_senha_requisito_numero="Contenere almeno 1 numero"
+      msg_senha_requisito_especial="Contenere almeno 1 carattere speciale ! @ # $ % & *"
 
       msg_traefik_obter_email="Inserisci la tua email per configurare Let's Encrypt (certificato SSL) su Traefik:"
       
@@ -685,9 +748,6 @@ while true; do
     print_with_line "$msg_senha_ok" "-"
     echo ""
     break
-  else
-    echo -e "$msg_senha_erro"
-    echo ""
   fi
 done
 
@@ -706,9 +766,6 @@ while true; do
     print_with_line "$msg_senha_ok" "-"
     echo ""
     break
-  else
-    echo -e "$msg_senha_erro"
-    echo ""
   fi
 done
 
@@ -793,9 +850,6 @@ while true; do
     print_with_line "$msg_senha_ok" "-"
     echo ""
     break
-  else
-    echo -e "$msg_senha_erro"
-    echo ""
   fi
 done
 
