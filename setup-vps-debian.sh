@@ -611,7 +611,7 @@ while true; do
     echo ""
     break
   else
-    echo -e "$msg_email_invalido"
+    echo "$msg_email_invalido"
     echo ""
   fi
 done
