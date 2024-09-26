@@ -699,7 +699,7 @@ print_with_line "$msg_mysql_obter_senha"
 while true; do
   echo -e "$msg_senha_solicitar"
   # Exibe a senha do portainer e permite edição
-  read -e -p "> " -i "$CHANGE_PORTAINER_ADMIN_PASSWORD" CHANGE_MYSQL_ROOT_PASSWORD
+  read -s -p "> " CHANGE_MYSQL_ROOT_PASSWORD
   echo # Para nova linha
   if validar_senha "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     echo ""
@@ -786,7 +786,7 @@ print_with_line "$msg_mautic_obter_senha"
 while true; do
   echo -e "$msg_senha_solicitar"
   # Exibe a senha do MySql e permite edição
-  read -e -p "> " -i "$CHANGE_MYSQL_ROOT_PASSWORD" CHANGE_MAUTIC_ADMIN_PASSWORD
+  read -s -p "> " CHANGE_MAUTIC_ADMIN_PASSWORD
   echo # Para nova linha
   if validar_senha "$CHANGE_MAUTIC_ADMIN_PASSWORD"; then
     echo ""
