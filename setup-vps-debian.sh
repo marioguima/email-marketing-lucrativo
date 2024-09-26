@@ -160,6 +160,10 @@ definir_mensagens() {
    msg_subdominio_portainer="⚙️  Configurar o subdomínio para acessar o Portainer"
    msg_subdominio_portainer_solicitar="🌐 Por favor, insira o subdomínio para acessar o Portainer:"
 
+   msg_portainer_obter_senha="⚙️  Insira a senha de administrador do Portainer:"
+
+   msg_mysql_obter_senha="⚙️  Insira a senha de administrador do MySql"
+
    msg_subdominio_pma="⚙️  Configurar o subdomínio para acessar o phpMyAdmin"
    msg_subdominio_pma_solicitar="🌐 Por favor, insira o subdomínio para acessar o phpMyAdmin:"
 
@@ -169,12 +173,8 @@ definir_mensagens() {
    msg_subdominio_valido="✅ Subdomínio válido:"
    msg_subdominio_invalido="❌ Subdomínio inválido. Por favor, tente novamente."
 
-   msg_mautic_obter_email="🏷️ Insira o e-mail do administrador do Mautic:"
-   msg_mautic_obter_senha="🔑 Insira a senha de administrador do Mautic:"
-
-   msg_portainer_obter_senha="🔑 Insira a senha de administrador do Portainer:"
-
-   msg_mysql_obter_senha="🔑 Insira a senha de administrador do MySql:"
+   msg_mautic_obter_email="⚙️  Insira o e-mail do administrador do Mautic"
+   msg_mautic_obter_senha="⚙️  Insira a senha de administrador do Mautic"
 
    msg_senha_solicitar="🔑 Por favor, insira sua senha:"
    msg_senha_ok="✅ Senha válida."
@@ -201,11 +201,11 @@ definir_mensagens() {
    msg_stack_traefik_ok="✅ Stack Traefik baixada e e-mail substituído com sucesso."
    msg_stack_traefik_erro="❌ Erro: Arquivo final da Stack Traefik está vazio ou não foi gerado corretamente."
 
-   msg_repository="🏷️ Atualizando Repositórios"
+   msg_repository="⚙️  Atualizando Repositórios"
    msg_repository_ok="✅ Repositórios atualizados com sucesso."
    msg_repository_erro="❌ Erro ao atualizar repositórios."
 
-   msg_docker_chave_gpg="🏷️ Verificando Chave GPG do Docker"
+   msg_docker_chave_gpg="⚙️  Verificando Chave GPG do Docker"
    msg_docker_chave_gpg_pular="⚠️ Chave GPG do Docker já existe. Pulando."
    msg_docker_chave_gpg_ok="✅ Chave GPG adicionada com sucesso."
    msg_docker_chave_gpg_erro="❌ Erro ao adicionar chave GPG."
@@ -255,8 +255,14 @@ definir_mensagens() {
    msg_dominio_valido="✅ Valid domain:"
    msg_dominio_invalido="❌ Invalid domain. Please try again."
 
+   msg_traefik_obter_email="⚙️  Enter your email to configure Let's Encrypt (SSL certificate) in Traefik:"
+
    msg_subdominio_portainer="⚙️  Set up the subdomain to access Portainer"
    msg_subdominio_portainer_solicitar="🌐 Please enter the subdomain to access Portainer:"
+
+   msg_portainer_obter_senha="⚙️  Enter the Portainer administrator password:"
+
+   msg_mysql_obter_senha="⚙️  Enter the MySQL administrator password"
 
    msg_subdominio_pma="⚙️  Set up the subdomain to access phpMyAdmin"
    msg_subdominio_pma_solicitar="🌐 Please enter the subdomain to access phpMyAdmin:"
@@ -267,12 +273,8 @@ definir_mensagens() {
    msg_subdominio_valido="✅ Valid subdomain:"
    msg_subdominio_invalido="❌ Invalid subdomain. Please try again."
 
-   msg_mautic_obter_email="🏷️ Enter the Mautic administrator's email:"
-   msg_mautic_obter_senha="🔑 Enter the Mautic administrator's password:"
-
-   msg_portainer_obter_senha="🔑 Enter the Portainer administrator password:"
-
-   msg_mysql_obter_senha="🔑 Enter the MySQL administrator password:"
+   msg_mautic_obter_email="⚙️  Enter the Mautic administrator's email"
+   msg_mautic_obter_senha="⚙️  Enter the Mautic administrator's password"
 
    msg_senha_solicitar="🔑 Please enter your password:"
    msg_senha_ok="✅ Valid password."
@@ -282,8 +284,6 @@ definir_mensagens() {
    msg_senha_requisito_letra="Contain at least one letter"
    msg_senha_requisito_numero="Contain at least 1 number"
    msg_senha_requisito_especial="Contain at least 1 special character ! @ # $ % & *"
-
-   msg_traefik_obter_email="⚙️  Enter your email to configure Let's Encrypt (SSL certificate) in Traefik:"
 
    msg_email_solicitar="📧 Please enter your email:"
    msg_email_valido="✅ Valid email:"
@@ -301,11 +301,11 @@ definir_mensagens() {
    msg_stack_traefik_ok="✅ Traefik stack downloaded and email successfully replaced."
    msg_stack_traefik_erro="❌ Error: Final Traefik Stack file is empty or was not generated correctly."
 
-   msg_repository="🏷️ Updating Repositories"
+   msg_repository="⚙️  Updating Repositories"
    msg_repository_ok="✅ Repositories successfully updated."
    msg_repository_erro="❌ Error updating repositories."
 
-   msg_docker_chave_gpg="🏷️ Verifying Docker GPG Key"
+   msg_docker_chave_gpg="⚙️  Verifying Docker GPG Key"
    msg_docker_chave_gpg_pular="⚠️ Docker GPG key already exists. Skipping."
    msg_docker_chave_gpg_ok="✅ GPG key added successfully."
    msg_docker_chave_gpg_erro="❌ Error adding GPG key."
@@ -355,8 +355,14 @@ definir_mensagens() {
    msg_dominio_valido="✅ Dominio válido:"
    msg_dominio_invalido="❌ Dominio inválido. Por favor, intente nuevamente."
 
+   msg_traefik_obter_email="⚙️  Introduzca su correo electrónico para configurar Let's Encrypt (certificado SSL) en Traefik:"
+   
    msg_subdominio_portainer="⚙️  Configurar el subdominio para acceder a Portainer"
    msg_subdominio_portainer_solicitar="🌐 Por favor, ingrese el subdominio para acceder a Portainer:"
+
+   msg_portainer_obter_senha="⚙️  Ingrese la contraseña de administrador de Portainer:"
+
+   msg_mysql_obter_senha="⚙️  Ingrese la contraseña de administrador de MySQL"
 
    msg_subdominio_pma="⚙️  Configurar el subdominio para acceder a phpMyAdmin"
    msg_subdominio_pma_solicitar="🌐 Por favor, ingrese el subdominio para acceder a phpMyAdmin:"
@@ -367,12 +373,8 @@ definir_mensagens() {
    msg_subdominio_valido="✅ Subdominio válido:"
    msg_subdominio_invalido="❌ Subdominio inválido. Por favor, intente de nuevo."
 
-   msg_mautic_obter_email="🏷️ Ingrese el correo electrónico del administrador de Mautic:"
-   msg_mautic_obter_senha="🔑 Ingrese la contraseña del administrador de Mautic:"
-
-   msg_portainer_obter_senha="🔑 Ingrese la contraseña de administrador de Portainer:"
-
-   msg_mysql_obter_senha="🔑 Ingrese la contraseña de administrador de MySQL:"
+   msg_mautic_obter_email="⚙️  Ingrese el correo electrónico del administrador de Mautic"
+   msg_mautic_obter_senha="⚙️  Ingrese la contraseña del administrador de Mautic"
 
    msg_senha_solicitar="🔑 Por favor, introduzca su contraseña:"
    msg_senha_ok="✅ Contraseña válida."
@@ -383,8 +385,6 @@ definir_mensagens() {
    msg_senha_requisito_numero="Contener al menos 1 número"
    msg_senha_requisito_especial="Contener al menos 1 carácter especial ! @ # $ % & *"
 
-   msg_traefik_obter_email="⚙️  Introduzca su correo electrónico para configurar Let's Encrypt (certificado SSL) en Traefik:"
-   
    msg_email_solicitar="📧 Por favor, introduzca su correo electrónico:"
    msg_email_valido="✅ Correo electrónico válido:"
    msg_email_invalido="❌ Correo electrónico inválido. Intente nuevamente."
@@ -401,11 +401,11 @@ definir_mensagens() {
    msg_stack_traefik_ok="✅ Stack de Traefik descargada y correo electrónico reemplazado con éxito."
    msg_stack_traefik_erro="❌ Error: El archivo final de la Stack de Traefik está vacío o no se generó correctamente."
 
-   msg_repository="🏷️ Actualizando Repositorios"
+   msg_repository="⚙️  Actualizando Repositorios"
    msg_repository_ok="✅ Repositorios actualizados con éxito."
    msg_repository_erro="❌ Error al actualizar los repositorios."
 
-   msg_docker_chave_gpg="🏷️ Verificando la Clave GPG de Docker"
+   msg_docker_chave_gpg="⚙️  Verificando la Clave GPG de Docker"
    msg_docker_chave_gpg_pular="⚠️ La clave GPG de Docker ya existe. Saltando."
    msg_docker_chave_gpg_ok="✅ Clave GPG añadida con éxito."
    msg_docker_chave_gpg_erro="❌ Error al añadir la clave GPG."
@@ -455,8 +455,14 @@ definir_mensagens() {
    msg_dominio_valido="✅ Domaine valide :"
    msg_dominio_invalido="❌ Domaine invalide. Veuillez réessayer."
 
+   msg_traefik_obter_email="⚙️  Veuillez saisir votre e-mail pour configurer Let's Encrypt (certificat SSL) sur Traefik :"
+   
    msg_subdominio_portainer="⚙️  Configurer le sous-domaine pour accéder à Portainer"
    msg_subdominio_portainer_solicitar="🌐 Veuillez entrer le sous-domaine pour accéder à Portainer :"
+
+   msg_portainer_obter_senha="⚙️  Entrez le mot de passe administrateur de Portainer :"
+
+   msg_mysql_obter_senha="⚙️  Entrez le mot de passe administrateur de MySQL"
 
    msg_subdominio_pma="⚙️  Configurer le sous-domaine pour accéder à phpMyAdmin"
    msg_subdominio_pma_solicitar="🌐 Veuillez entrer le sous-domaine pour accéder à phpMyAdmin :"
@@ -467,12 +473,8 @@ definir_mensagens() {
    msg_subdominio_valido="✅ Sous-domaine valide :"
    msg_subdominio_invalido="❌ Sous-domaine invalide. Veuillez réessayer."
 
-   msg_mautic_obter_email="🏷️ Entrez l'e-mail de l'administrateur de Mautic:"
-   msg_mautic_obter_senha="🔑 Entrez le mot de passe de l'administrateur de Mautic:"
-
-   msg_portainer_obter_senha="🔑 Entrez le mot de passe administrateur de Portainer :"
-
-   msg_mysql_obter_senha="🔑 Entrez le mot de passe administrateur de MySQL :"
+   msg_mautic_obter_email="⚙️  Entrez l'e-mail de l'administrateur de Mautic"
+   msg_mautic_obter_senha="⚙️  Entrez le mot de passe de l'administrateur de Mautic"
 
    msg_senha_solicitar="🔑 Veuillez saisir votre mot de passe :"
    msg_senha_ok="✅ Mot de passe valide."
@@ -483,8 +485,6 @@ definir_mensagens() {
    msg_senha_requisito_numero="Contenir au moins 1 chiffre"
    msg_senha_requisito_especial="Contenir au moins 1 caractère spécial ! @ # $ % & *"
 
-   msg_traefik_obter_email="⚙️  Veuillez saisir votre e-mail pour configurer Let's Encrypt (certificat SSL) sur Traefik :"
-   
    msg_email_solicitar="📧 Veuillez saisir votre e-mail :"
    msg_email_valido="✅ E-mail valide :"
    msg_email_invalido="❌ E-mail invalide. Veuillez réessayer."
@@ -501,11 +501,11 @@ definir_mensagens() {
    msg_stack_traefik_ok="✅ Stack Traefik téléchargée et e-mail remplacé avec succès."
    msg_stack_traefik_erro="❌ Erreur : Le fichier final de la Stack Traefik est vide ou n'a pas été généré correctement."
 
-   msg_repository="🏷️ Mise à jour des dépôts"
+   msg_repository="⚙️  Mise à jour des dépôts"
    msg_repository_ok="✅ Dépôts mis à jour avec succès."
    msg_repository_erro="❌ Erreur lors de la mise à jour des dépôts."
 
-   msg_docker_chave_gpg="🏷️ Vérification de la clé GPG de Docker"
+   msg_docker_chave_gpg="⚙️  Vérification de la clé GPG de Docker"
    msg_docker_chave_gpg_pular="⚠️ La clé GPG de Docker existe déjà. Ignorer."
    msg_docker_chave_gpg_ok="✅ Clé GPG ajoutée avec succès."
    msg_docker_chave_gpg_erro="❌ Erreur lors de l'ajout de la clé GPG."
@@ -555,8 +555,14 @@ definir_mensagens() {
    msg_dominio_valido="✅ Dominio valido:"
    msg_dominio_invalido="❌ Dominio non valido. Per favore, riprova."
 
+   msg_traefik_obter_email="⚙️  Inserisci la tua email per configurare Let's Encrypt (certificato SSL) su Traefik:"
+   
    msg_subdominio_portainer="⚙️  Configurare il sottodominio per accedere a Portainer"
    msg_subdominio_portainer_solicitar="🌐 Per favore, inserisci il sottodominio per accedere a Portainer:"
+
+   msg_portainer_obter_senha="⚙️  Inserisci la password di amministratore di Portainer:"
+
+   msg_mysql_obter_senha="⚙️  Inserisci la password di amministratore di MySQL"
 
    msg_subdominio_pma="⚙️  Configurare il sottodominio per accedere a phpMyAdmin"
    msg_subdominio_pma_solicitar="🌐 Per favore, inserisci il sottodominio per accedere a phpMyAdmin:"
@@ -567,12 +573,8 @@ definir_mensagens() {
    msg_subdominio_valido="✅ Sottodominio valido:"
    msg_subdominio_invalido="❌ Sottodominio non valido. Per favore, riprova."
 
-   msg_mautic_obter_email="🏷️ Inserisci l'e-mail dell'amministratore di Mautic:"
-   msg_mautic_obter_senha="🔑 Inserisci la password dell'amministratore di Mautic:"
-
-   msg_portainer_obter_senha="🔑 Inserisci la password di amministratore di Portainer:"
-
-   msg_mysql_obter_senha="🔑 Inserisci la password di amministratore di MySQL:"
+   msg_mautic_obter_email="⚙️  Inserisci l'e-mail dell'amministratore di Mautic"
+   msg_mautic_obter_senha="⚙️  Inserisci la password dell'amministratore di Mautic"
 
    msg_senha_solicitar="🔑 Per favore, inserisci la tua password:"
    msg_senha_ok="✅ Password valida."
@@ -583,8 +585,6 @@ definir_mensagens() {
    msg_senha_requisito_numero="Contenere almeno 1 numero"
    msg_senha_requisito_especial="Contenere almeno 1 carattere speciale ! @ # $ % & *"
 
-   msg_traefik_obter_email="⚙️  Inserisci la tua email per configurare Let's Encrypt (certificato SSL) su Traefik:"
-   
    msg_email_solicitar="📧 Per favore, inserisci la tua email:"
    msg_email_valido="✅ Email valida:"
    msg_email_invalido="❌ Email non valida. Riprova."
@@ -601,11 +601,11 @@ definir_mensagens() {
    msg_stack_traefik_ok="✅ Stack Traefik scaricata e email sostituita con successo."
    msg_stack_traefik_erro="❌ Errore: Il file finale della Stack Traefik è vuoto o non è stato generato correttamente."
 
-   msg_repository="🏷️ Aggiornamento dei repository"
+   msg_repository="⚙️  Aggiornamento dei repository"
    msg_repository_ok="✅ Repository aggiornati con successo."
    msg_repository_erro="❌ Errore durante l'aggiornamento dei repository."
 
-   msg_docker_chave_gpg="🏷️ Verifica della chiave GPG di Docker"
+   msg_docker_chave_gpg="⚙️  Verifica della chiave GPG di Docker"
    msg_docker_chave_gpg_pular="⚠️ La chiave GPG di Docker esiste già. Saltando."
    msg_docker_chave_gpg_ok="✅ Chiave GPG aggiunta con successo."
    msg_docker_chave_gpg_erro="❌ Errore nell'aggiunta della chiave GPG."
@@ -820,7 +820,7 @@ done
 print_with_line "$msg_mautic_obter_email"
 
 while true; do
- echo -e "\n$msg_email_solicitar"
+ echo -e "$msg_email_solicitar"
  # Exibe o e-mail escolhido para o traefik e permite edição
  read -e -p "> " -i "$CHANGE_EMAIL_TRAEFIK" CHANGE_MAUTIC_ADMIN_EMAIL
  if validar_email "$CHANGE_MAUTIC_ADMIN_EMAIL"; then
