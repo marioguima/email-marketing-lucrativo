@@ -110,7 +110,7 @@ definir_mensagens() {
   case $idioma in
     1)
       # Português
-      msg_dominio="🏷️ Configurar o domínio:"
+      msg_dominio="🏷️  Configurar o domínio:"
       msg_dominio_solicitar="📧 Por favor, insira um domínio:"
       msg_dominio_valido="✅ Domínio válido:"
       msg_dominio_invalido="❌ Domínio inválido. Por favor, tente novamente."
@@ -201,7 +201,7 @@ definir_mensagens() {
       ;;
     2)
       # English
-      msg_dominio="🏷️ Set up the domain:"
+      msg_dominio="🏷️  Set up the domain:"
       msg_dominio_solicitar="📧 Please enter a domain:"
       msg_dominio_valido="✅ Valid domain:"
       msg_dominio_invalido="❌ Invalid domain. Please try again."
@@ -292,7 +292,7 @@ definir_mensagens() {
       ;;
     3)
       # Español
-      msg_dominio="🏷️ Configurar el dominio:"
+      msg_dominio="🏷️  Configurar el dominio:"
       msg_dominio_solicitar="📧 Por favor, introduzca un dominio:"
       msg_dominio_valido="✅ Dominio válido:"
       msg_dominio_invalido="❌ Dominio inválido. Por favor, intente nuevamente."
@@ -383,7 +383,7 @@ definir_mensagens() {
       ;;
     4)
       # Français
-      msg_dominio="🏷️ Configurer le domaine :"
+      msg_dominio="🏷️  Configurer le domaine :"
       msg_dominio_solicitar="📧 Veuillez saisir un domaine :"
       msg_dominio_valido="✅ Domaine valide :"
       msg_dominio_invalido="❌ Domaine invalide. Veuillez réessayer."
@@ -474,7 +474,7 @@ definir_mensagens() {
       ;;
     5)
       # Italiano
-      msg_dominio="🏷️ Configurare il dominio:"
+      msg_dominio="🏷️  Configurare il dominio:"
       msg_dominio_solicitar="📧 Per favore, inserisci un dominio:"
       msg_dominio_valido="✅ Dominio valido:"
       msg_dominio_invalido="❌ Dominio non valido. Per favore, riprova."
@@ -625,7 +625,6 @@ while true; do
     echo ""
   fi
 done
-
 
 #######################################
 # Solicitar o subdominio do Portainer #
