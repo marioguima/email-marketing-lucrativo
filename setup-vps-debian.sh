@@ -110,12 +110,14 @@ definir_mensagens() {
   case $idioma in
     1)
       # Português
-      msg_dominio="Informe o domínio:"
+      msg_dominio="🏷️ Configurar o domínio:"
       msg_dominio_solicitar="📧 Por favor, insira um domínio:"
       msg_dominio_valido="✅ Domínio válido:"
       msg_dominio_invalido="❌ Domínio inválido. Por favor, tente novamente."
 
-      msg_subdominio_portainer="📧 Por favor, insira o subdomínio para acessar o Portainer:"
+      msg_subdominio_portainer="🏷️ Configurar o subdomínio para acessar o Portainer:"
+      msg_subdominio_portainer_solicitar="📧 Por favor, insira o subdomínio para acessar o Portainer:"
+
       msg_subdominio_pma="📧 Por favor, insira o subdomínio para acessar o phpMyAdmin:"
       msg_subdominio_mautic="📧 Por favor, insira o subdomínio para acessar o Mautic:"
 
@@ -199,12 +201,14 @@ definir_mensagens() {
       ;;
     2)
       # English
-      msg_dominio="Enter the domain:"
+      msg_dominio="🏷️ Set up the domain:"
       msg_dominio_solicitar="📧 Please enter a domain:"
       msg_dominio_valido="✅ Valid domain:"
       msg_dominio_invalido="❌ Invalid domain. Please try again."
 
-      msg_subdominio_portainer="📧 Please enter the subdomain to access Portainer:"
+      msg_subdominio_portainer="🏷️ Set up the subdomain to access Portainer:"
+      msg_subdominio_portainer_solicitar="📧 Please enter the subdomain to access Portainer:"
+
       msg_subdominio_pma="📧 Please enter the subdomain to access phpMyAdmin:"
       msg_subdominio_mautic="📧 Please enter the subdomain to access Mautic:"
 
@@ -288,12 +292,14 @@ definir_mensagens() {
       ;;
     3)
       # Español
-      msg_dominio="Introduzca el dominio:"
+      msg_dominio="🏷️ Configurar el dominio:"
       msg_dominio_solicitar="📧 Por favor, introduzca un dominio:"
       msg_dominio_valido="✅ Dominio válido:"
       msg_dominio_invalido="❌ Dominio inválido. Por favor, intente nuevamente."
 
-      msg_subdominio_portainer="📧 Por favor, ingrese el subdominio para acceder a Portainer:"
+      msg_subdominio_portainer="🏷️ Configurar el subdominio para acceder a Portainer:"
+      msg_subdominio_portainer_solicitar="📧 Por favor, ingrese el subdominio para acceder a Portainer:"
+
       msg_subdominio_pma="📧 Por favor, ingrese el subdominio para acceder a phpMyAdmin:"
       msg_subdominio_mautic="📧 Por favor, ingrese el subdominio para acceder a Mautic:"
 
@@ -377,12 +383,14 @@ definir_mensagens() {
       ;;
     4)
       # Français
-      msg_dominio="Veuillez saisir le domaine :"
+      msg_dominio="🏷️ Configurer le domaine :"
       msg_dominio_solicitar="📧 Veuillez saisir un domaine :"
       msg_dominio_valido="✅ Domaine valide :"
       msg_dominio_invalido="❌ Domaine invalide. Veuillez réessayer."
 
-      msg_subdominio_portainer="📧 Veuillez entrer le sous-domaine pour accéder à Portainer :"
+      msg_subdominio_portainer="🏷️ Configurer le sous-domaine pour accéder à Portainer :"
+      msg_subdominio_portainer_solicitar="📧 Veuillez entrer le sous-domaine pour accéder à Portainer :"
+
       msg_subdominio_pma="📧 Veuillez entrer le sous-domaine pour accéder à phpMyAdmin :"
       msg_subdominio_mautic="📧 Veuillez entrer le sous-domaine pour accéder à Mautic :"
 
@@ -466,12 +474,14 @@ definir_mensagens() {
       ;;
     5)
       # Italiano
-      msg_dominio="Inserisci il dominio:"
+      msg_dominio="🏷️ Configurare il dominio:"
       msg_dominio_solicitar="📧 Per favore, inserisci un dominio:"
       msg_dominio_valido="✅ Dominio valido:"
       msg_dominio_invalido="❌ Dominio non valido. Per favore, riprova."
 
-      msg_subdominio_portainer="📧 Per favore, inserisci il sottodominio per accedere a Portainer:"
+      msg_subdominio_portainer="🏷️ Configurare il sottodominio per accedere a Portainer:"
+      msg_subdominio_portainer_solicitar="📧 Per favore, inserisci il sottodominio per accedere a Portainer:"
+
       msg_subdominio_pma="📧 Per favore, inserisci il sottodominio per accedere a phpMyAdmin:"
       msg_subdominio_mautic="📧 Per favore, inserisci il sottodominio per accedere a Mautic:"
 
@@ -616,11 +626,17 @@ while true; do
   fi
 done
 
+
+#######################################
+# Solicitar o subdominio do Portainer #
+#######################################
+print_with_line "$msg_subdominio_portainer"
+
 #----------------------------------------------------------
 # Loop para garantir a definição do subdominio do Portainer
 #----------------------------------------------------------
 while true; do
-  echo -e "$msg_subdominio_portainer\n"
+  echo -e "$msg_subdominio_portainer_solicitar"
   # Exibe o valor padrão e permite edição
   read -e -p "> " -i "$SUBDOMINIO_PORTAINER_DEFAULT" SUBDOMINIO_PORTAINER
   if validar_subdominio "$SUBDOMINIO_PORTAINER"; then
