@@ -119,7 +119,8 @@ validar_senha() {
     valid=false
   fi
 
-  if [[ "$senha" =~ [[:punct:]] ]]; then
+  # Verifica se contém ao menos um caractere especial permitido: ! @ # $ % & *
+  if [[ "$senha" =~ [\!\@\#\$\%\&\*] ]]; then
     output+="✅ $msg_senha_requisito_especial\n"
   else
     output+="❌ $msg_senha_requisito_especial\n"
