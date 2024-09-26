@@ -110,16 +110,19 @@ definir_mensagens() {
   case $idioma in
     1)
       # Português
-      msg_dominio="🏷️  Configurar o domínio:"
+      msg_dominio="🏷️  Configurar o domínio"
       msg_dominio_solicitar="📧 Por favor, insira um domínio:"
       msg_dominio_valido="✅ Domínio válido:"
       msg_dominio_invalido="❌ Domínio inválido. Por favor, tente novamente."
 
-      msg_subdominio_portainer="🏷️ Configurar o subdomínio para acessar o Portainer:"
+      msg_subdominio_portainer="🏷️  Configurar o subdomínio para acessar o Portainer"
       msg_subdominio_portainer_solicitar="📧 Por favor, insira o subdomínio para acessar o Portainer:"
 
-      msg_subdominio_pma="📧 Por favor, insira o subdomínio para acessar o phpMyAdmin:"
-      msg_subdominio_mautic="📧 Por favor, insira o subdomínio para acessar o Mautic:"
+      msg_subdominio_pma="🏷️  Configurar o subdomínio para acessar o phpMyAdmin"
+      msg_subdominio_pma_solicitar="📧 Por favor, insira o subdomínio para acessar o phpMyAdmin:"
+
+      msg_subdominio_mautic="🏷️  Configurar o subdomínio para acessar o Mautic"
+      msg_subdominio_mautic_solicitar="📧 Por favor, insira o subdomínio para acessar o Mautic:"
 
       msg_subdominio_valido="✅ Subdomínio válido:"
       msg_subdominio_invalido="❌ Subdomínio inválido. Por favor, tente novamente."
@@ -131,8 +134,8 @@ definir_mensagens() {
 
       msg_mysql_obter_senha="Insira a senha de administrador do MySql:"
 
-      msg_senha_invalida="Senha válida."
-      msg_senha_requisitos="Senha inválida. A senha deve ter pelo menos 8 caracteres, conter letras, números e pelo menos um caractere especial."
+      msg_senha_ok="✅ Senha válida."
+      msg_senha_erro="❌ Senha inválida. A senha deve ter pelo menos 8 caracteres, conter letras, números e pelo menos um caractere especial."
 
       msg_traefik_obter_email="Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
       
@@ -201,16 +204,19 @@ definir_mensagens() {
       ;;
     2)
       # English
-      msg_dominio="🏷️  Set up the domain:"
+      msg_dominio="🏷️  Set up the domain"
       msg_dominio_solicitar="📧 Please enter a domain:"
       msg_dominio_valido="✅ Valid domain:"
       msg_dominio_invalido="❌ Invalid domain. Please try again."
 
-      msg_subdominio_portainer="🏷️ Set up the subdomain to access Portainer:"
+      msg_subdominio_portainer="🏷️  Set up the subdomain to access Portainer"
       msg_subdominio_portainer_solicitar="📧 Please enter the subdomain to access Portainer:"
 
-      msg_subdominio_pma="📧 Please enter the subdomain to access phpMyAdmin:"
-      msg_subdominio_mautic="📧 Please enter the subdomain to access Mautic:"
+      msg_subdominio_pma="🏷️  Set up the subdomain to access phpMyAdmin"
+      msg_subdominio_pma_solicitar="📧 Please enter the subdomain to access phpMyAdmin:"
+
+      msg_subdominio_mautic="🏷️  Set up the subdomain to access Mautic"
+      msg_subdominio_mautic_solicitar="📧 Please enter the subdomain to access Mautic:"
 
       msg_subdominio_valido="✅ Valid subdomain:"
       msg_subdominio_invalido="❌ Invalid subdomain. Please try again."
@@ -222,8 +228,8 @@ definir_mensagens() {
 
       msg_mysql_obter_senha="Enter the MySQL administrator password:"
 
-      msg_senha_invalida="Valid password."
-      msg_senha_requisitos="Invalid password. The password must be at least 8 characters long, contain letters, numbers, and at least one special character."
+      msg_senha_ok="✅ Valid password."
+      msg_senha_erro="❌ Invalid password. The password must be at least 8 characters long, contain letters, numbers, and at least one special character."
 
       msg_traefik_obter_email="Enter your email to configure Let's Encrypt (SSL certificate) in Traefik:"
 
@@ -292,16 +298,19 @@ definir_mensagens() {
       ;;
     3)
       # Español
-      msg_dominio="🏷️  Configurar el dominio:"
+      msg_dominio="🏷️  Configurar el dominio"
       msg_dominio_solicitar="📧 Por favor, introduzca un dominio:"
       msg_dominio_valido="✅ Dominio válido:"
       msg_dominio_invalido="❌ Dominio inválido. Por favor, intente nuevamente."
 
-      msg_subdominio_portainer="🏷️ Configurar el subdominio para acceder a Portainer:"
+      msg_subdominio_portainer="🏷️  Configurar el subdominio para acceder a Portainer"
       msg_subdominio_portainer_solicitar="📧 Por favor, ingrese el subdominio para acceder a Portainer:"
 
-      msg_subdominio_pma="📧 Por favor, ingrese el subdominio para acceder a phpMyAdmin:"
-      msg_subdominio_mautic="📧 Por favor, ingrese el subdominio para acceder a Mautic:"
+      msg_subdominio_pma="🏷️  Configurar el subdominio para acceder a phpMyAdmin"
+      msg_subdominio_pma_solicitar="📧 Por favor, ingrese el subdominio para acceder a phpMyAdmin:"
+
+      msg_subdominio_mautic="🏷️  Configurar el subdominio para acceder a Mautic"
+      msg_subdominio_mautic_solicitar="📧 Por favor, ingrese el subdominio para acceder a Mautic:"
 
       msg_subdominio_valido="✅ Subdominio válido:"
       msg_subdominio_invalido="❌ Subdominio inválido. Por favor, intente de nuevo."
@@ -313,8 +322,8 @@ definir_mensagens() {
 
       msg_mysql_obter_senha="Ingrese la contraseña de administrador de MySQL:"
 
-      msg_senha_invalida="Contraseña válida."
-      msg_senha_requisitos="Contraseña inválida. La contraseña debe tener al menos 8 caracteres, contener letras, números y al menos un carácter especial."
+      msg_senha_ok="✅ Contraseña válida."
+      msg_senha_erro="❌ Contraseña inválida. La contraseña debe tener al menos 8 caracteres, contener letras, números y al menos un carácter especial."
 
       msg_traefik_obter_email="Introduzca su correo electrónico para configurar Let's Encrypt (certificado SSL) en Traefik:"
       
@@ -383,16 +392,19 @@ definir_mensagens() {
       ;;
     4)
       # Français
-      msg_dominio="🏷️  Configurer le domaine :"
+      msg_dominio="🏷️  Configurer le domaine"
       msg_dominio_solicitar="📧 Veuillez saisir un domaine :"
       msg_dominio_valido="✅ Domaine valide :"
       msg_dominio_invalido="❌ Domaine invalide. Veuillez réessayer."
 
-      msg_subdominio_portainer="🏷️ Configurer le sous-domaine pour accéder à Portainer :"
+      msg_subdominio_portainer="🏷️  Configurer le sous-domaine pour accéder à Portainer"
       msg_subdominio_portainer_solicitar="📧 Veuillez entrer le sous-domaine pour accéder à Portainer :"
 
-      msg_subdominio_pma="📧 Veuillez entrer le sous-domaine pour accéder à phpMyAdmin :"
-      msg_subdominio_mautic="📧 Veuillez entrer le sous-domaine pour accéder à Mautic :"
+      msg_subdominio_pma="🏷️  Configurer le sous-domaine pour accéder à phpMyAdmin"
+      msg_subdominio_pma_solicitar="📧 Veuillez entrer le sous-domaine pour accéder à phpMyAdmin :"
+
+      msg_subdominio_mautic="🏷️  Configurer le sous-domaine pour accéder à Mautic"
+      msg_subdominio_mautic_solicitar="📧 Veuillez entrer le sous-domaine pour accéder à Mautic :"
 
       msg_subdominio_valido="✅ Sous-domaine valide :"
       msg_subdominio_invalido="❌ Sous-domaine invalide. Veuillez réessayer."
@@ -404,8 +416,8 @@ definir_mensagens() {
 
       msg_mysql_obter_senha="Entrez le mot de passe administrateur de MySQL :"
 
-      msg_senha_invalida="Mot de passe valide."
-      msg_senha_requisitos="Mot de passe invalide. Le mot de passe doit comporter au moins 8 caractères, contenir des lettres, des chiffres et au moins un caractère spécial."
+      msg_senha_ok="✅ Mot de passe valide."
+      msg_senha_erro="❌ Mot de passe invalide. Le mot de passe doit comporter au moins 8 caractères, contenir des lettres, des chiffres et au moins un caractère spécial."
 
       msg_traefik_obter_email="Veuillez saisir votre e-mail pour configurer Let's Encrypt (certificat SSL) sur Traefik :"
       
@@ -474,16 +486,19 @@ definir_mensagens() {
       ;;
     5)
       # Italiano
-      msg_dominio="🏷️  Configurare il dominio:"
+      msg_dominio="🏷️  Configurare il dominio"
       msg_dominio_solicitar="📧 Per favore, inserisci un dominio:"
       msg_dominio_valido="✅ Dominio valido:"
       msg_dominio_invalido="❌ Dominio non valido. Per favore, riprova."
 
-      msg_subdominio_portainer="🏷️ Configurare il sottodominio per accedere a Portainer:"
+      msg_subdominio_portainer="🏷️  Configurare il sottodominio per accedere a Portainer"
       msg_subdominio_portainer_solicitar="📧 Per favore, inserisci il sottodominio per accedere a Portainer:"
 
-      msg_subdominio_pma="📧 Per favore, inserisci il sottodominio per accedere a phpMyAdmin:"
-      msg_subdominio_mautic="📧 Per favore, inserisci il sottodominio per accedere a Mautic:"
+      msg_subdominio_pma="🏷️  Configurare il sottodominio per accedere a phpMyAdmin"
+      msg_subdominio_pma_solicitar="📧 Per favore, inserisci il sottodominio per accedere a phpMyAdmin:"
+
+      msg_subdominio_mautic="🏷️  Configurare il sottodominio per accedere a Mautic"
+      msg_subdominio_mautic_solicitar="📧 Per favore, inserisci il sottodominio per accedere a Mautic:"
 
       msg_subdominio_valido="✅ Sottodominio valido:"
       msg_subdominio_invalido="❌ Sottodominio non valido. Per favore, riprova."
@@ -495,8 +510,8 @@ definir_mensagens() {
 
       msg_mysql_obter_senha="Inserisci la password di amministratore di MySQL:"
 
-      msg_senha_invalida="Password valida."
-      msg_senha_requisitos="Password non valida. La password deve avere almeno 8 caratteri, contenere lettere, numeri e almeno un carattere speciale."
+      msg_senha_ok="✅ Password valida."
+      msg_senha_erro="❌ Password non valida. La password deve avere almeno 8 caratteri, contenere lettere, numeri e almeno un carattere speciale."
 
       msg_traefik_obter_email="Inserisci la tua email per configurare Let's Encrypt (certificato SSL) su Traefik:"
       
@@ -617,6 +632,7 @@ while true; do
   echo -e "$msg_email_solicitar"
   read -p "> " CHANGE_EMAIL_TRAEFIK
   if validar_email "$CHANGE_EMAIL_TRAEFIK"; then
+    echo ""
     print_with_line "$msg_email_valido $CHANGE_EMAIL_TRAEFIK" "-"
     echo ""
     break
@@ -641,6 +657,7 @@ while true; do
   if validar_subdominio "$SUBDOMINIO_PORTAINER"; then
     echo ""
     print_with_line "$msg_subdominio_valido $SUBDOMINIO_PORTAINER" "-"
+    echo ""
     break
   else
     echo -e "$msg_subdominio_invalido"
@@ -658,11 +675,13 @@ while true; do
   read -s -p "> " CHANGE_PORTAINER_ADMIN_PASSWORD
   echo # Para nova linha
   if validar_senha "$CHANGE_PORTAINER_ADMIN_PASSWORD"; then
-    echo -e "\n$msg_senha_invalida"
-    echo "----------------"
+    echo ""
+    print_with_line "$msg_senha_ok" "-"
+    echo ""
     break
   else
-    echo -e "$msg_senha_requisitos"
+    echo -e "$msg_senha_erro"
+    echo ""
   fi
 done
 
@@ -677,24 +696,32 @@ while true; do
   read -e -p "> " -i "$CHANGE_PORTAINER_ADMIN_PASSWORD" CHANGE_MYSQL_ROOT_PASSWORD
   echo # Para nova linha
   if validar_senha "$CHANGE_MYSQL_ROOT_PASSWORD"; then
-    echo -e "\n$msg_senha_invalida"
-    echo "----------------"
+    echo ""
+    print_with_line "$msg_senha_ok" "-"
+    echo ""
     break
   else
-    echo -e "$msg_senha_requisitos"
+    echo -e "$msg_senha_erro"
+    echo ""
   fi
 done
+
+############################################
+# Solicitar o subdomínio para o phpMyAdmin #
+############################################
+print_with_line "$msg_subdominio_pma"
 
 #-----------------------------------------------------------
 # Loop para garantir a definição do subdominio do phpMyAdmin
 #-----------------------------------------------------------
 while true; do
-  echo -e "$msg_subdominio_pma\n"
+  echo -e "$msg_subdominio_pma_solicitar\n"
   # Exibe o valor padrão e permite edição
   read -e -p "> " -i "$SUBDOMINIO_PMA_DEFAULT" SUBDOMINIO_PMA
   if validar_subdominio "$SUBDOMINIO_PMA"; then
     echo ""
     print_with_line "$msg_subdominio_valido $SUBDOMINIO_PMA" "-"
+    echo ""
     break
   else
     echo -e "$msg_subdominio_invalido"
@@ -702,16 +729,22 @@ while true; do
   fi
 done
 
+########################################
+# Solicitar o subdomínio para o Mautic #
+########################################
+print_with_line "$msg_subdominio_mautic"
+
 #-------------------------------------------------------
 # Loop para garantir a definição do subdominio do Mautic
 #-------------------------------------------------------
 while true; do
-  echo -e "$msg_subdominio_mautic\n"
+  echo -e "$msg_subdominio_mautic_solicitar\n"
   # Exibe o valor padrão e permite edição
   read -e -p "> " -i "$SUBDOMINIO_MAUTIC_DEFAULT" SUBDOMINIO_MAUTIC
   if validar_subdominio "$SUBDOMINIO_MAUTIC"; then
     echo ""
     print_with_line "$msg_subdominio_valido $SUBDOMINIO_MAUTIC" "-"
+    echo ""
     break
   else
     echo -e "$msg_subdominio_invalido"
@@ -729,11 +762,13 @@ while true; do
   # Exibe o e-mail escolhido para o traefik e permite edição
   read -e -p "> " -i "$CHANGE_EMAIL_TRAEFIK" CHANGE_MAUTIC_ADMIN_EMAIL
   if validar_email "$CHANGE_MAUTIC_ADMIN_EMAIL"; then
-    echo -e "\n$msg_email_valido $CHANGE_MAUTIC_ADMIN_EMAIL"
-    echo "----------------"
+    echo ""
+    print_with_line "$msg_email_valido $CHANGE_MAUTIC_ADMIN_EMAIL" "--"
+    echo ""
     break
   else
     echo -e "$msg_email_invalido"
+    echo ""
   fi
 done
 
@@ -748,11 +783,13 @@ while true; do
   read -e -p "> " -i "$CHANGE_MYSQL_ROOT_PASSWORD" CHANGE_MAUTIC_ADMIN_PASSWORD
   echo # Para nova linha
   if validar_senha "$CHANGE_MAUTIC_ADMIN_PASSWORD"; then
-    echo -e "\n$msg_senha_invalida"
-    echo "----------------"
+    echo ""
+    print_with_line "$msg_senha_ok" "-"
+    echo ""
     break
   else
-    echo -e "$msg_senha_requisitos"
+    echo -e "$msg_senha_erro"
+    echo ""
   fi
 done
 
@@ -765,6 +802,7 @@ curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/m
 
 if [[ -s stack-traefik-v2.yml ]]; then
   echo -e "$msg_stack_traefik_ok"
+  echo ""
 else
   echo -e "$msg_stack_traefik_erro"
   exit 1
