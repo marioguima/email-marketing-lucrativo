@@ -140,7 +140,7 @@ definir_mensagens() {
       msg_traefik_obter_email="Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
       
       msg_email_solicitar="📧 Por favor, insira seu e-mail:"
-      msg_email_valido="✅ Email válido: "
+      msg_email_valido="✅ Email válido:"
       msg_email_invalido="❌ Email inválido. Tente novamente."
 
       msg_obter_stack_portainer="Baixando Stack Portainer:"
@@ -234,7 +234,7 @@ definir_mensagens() {
       msg_traefik_obter_email="Enter your email to configure Let's Encrypt (SSL certificate) in Traefik:"
 
       msg_email_solicitar="📧 Please enter your email:"
-      msg_email_valido="✅ Valid email: "
+      msg_email_valido="✅ Valid email:"
       msg_email_invalido="❌ Invalid email. Please try again."
 
       msg_obter_stack_portainer="Downloading Portainer Stack:"
@@ -328,7 +328,7 @@ definir_mensagens() {
       msg_traefik_obter_email="Introduzca su correo electrónico para configurar Let's Encrypt (certificado SSL) en Traefik:"
       
       msg_email_solicitar="📧 Por favor, introduzca su correo electrónico:"
-      msg_email_valido="✅ Correo electrónico válido: "
+      msg_email_valido="✅ Correo electrónico válido:"
       msg_email_invalido="❌ Correo electrónico inválido. Intente nuevamente."
 
       msg_obter_stack_portainer="Descargando la Stack de Portainer:"
@@ -422,7 +422,7 @@ definir_mensagens() {
       msg_traefik_obter_email="Veuillez saisir votre e-mail pour configurer Let's Encrypt (certificat SSL) sur Traefik :"
       
       msg_email_solicitar="📧 Veuillez saisir votre e-mail :"
-      msg_email_valido="✅ E-mail valide : "
+      msg_email_valido="✅ E-mail valide :"
       msg_email_invalido="❌ E-mail invalide. Veuillez réessayer."
 
       msg_obter_stack_portainer="Téléchargement de la Stack Portainer :"
@@ -516,7 +516,7 @@ definir_mensagens() {
       msg_traefik_obter_email="Inserisci la tua email per configurare Let's Encrypt (certificato SSL) su Traefik:"
       
       msg_email_solicitar="📧 Per favore, inserisci la tua email:"
-      msg_email_valido="✅ Email valida: "
+      msg_email_valido="✅ Email valida:"
       msg_email_invalido="❌ Email non valida. Riprova."
 
       msg_obter_stack_portainer="Scaricamento della Stack Portainer:"
