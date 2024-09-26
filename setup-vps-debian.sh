@@ -606,7 +606,6 @@ print_with_line "$msg_traefik_obter_email"
 while true; do
   echo -e "$msg_email_solicitar"
   read -p "> " CHANGE_EMAIL_TRAEFIK
-  echo # Para nova linha
   if validar_email "$CHANGE_EMAIL_TRAEFIK"; then
     print_with_line "$msg_email_valido $CHANGE_EMAIL_TRAEFIK" "-"
     echo ""
