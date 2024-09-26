@@ -696,6 +696,7 @@ echo ""
 #################################
 # Solicitar o e-mail do traefik #
 #################################
+echo ""
 print_with_line "$msg_traefik_obter_email"
 echo ""
 
@@ -715,6 +716,7 @@ echo ""
 #######################################
 # Solicitar o subdominio do Portainer #
 #######################################
+echo ""
 print_with_line "$msg_subdominio_portainer"
 echo ""
 
@@ -738,6 +740,7 @@ echo ""
 ############################################
 # Solicitar a senha do Admin do Portainer #
 ############################################
+echo ""
 print_with_line "$msg_portainer_obter_senha"
 echo ""
 
@@ -754,6 +757,7 @@ echo ""
 #######################################
 # Solicitar a senha do Admin do MySql #
 #######################################
+echo ""
 print_with_line "$msg_mysql_obter_senha"
 echo ""
 
@@ -771,6 +775,7 @@ echo ""
 ############################################
 # Solicitar o subdomínio para o phpMyAdmin #
 ############################################
+echo ""
 print_with_line "$msg_subdominio_pma"
 echo ""
 
@@ -794,6 +799,7 @@ echo ""
 ########################################
 # Solicitar o subdomínio para o Mautic #
 ########################################
+echo ""
 print_with_line "$msg_subdominio_mautic"
 echo ""
 
@@ -817,6 +823,7 @@ echo ""
 #########################################
 # Solicitar o e-mail do Admin do Mautic #
 #########################################
+echo ""
 print_with_line "$msg_mautic_obter_email"
 echo ""
 
@@ -837,6 +844,7 @@ echo ""
 #########################################
 # Solicitar a senha do Admin do Mautic #
 #########################################
+echo ""
 print_with_line "$msg_mautic_obter_senha"
 echo ""
 
@@ -854,6 +862,7 @@ echo ""
 ########################
 # Baixar stack Traefik #
 ########################
+echo ""
 print_with_line "$msg_obter_stack_traefik"
 echo ""
 
@@ -870,6 +879,7 @@ echo ""
 ##########################
 # Baixar stack Portainer #
 ##########################
+echo ""
 print_with_line "$msg_obter_stack_portainer"
 echo ""
 
@@ -886,6 +896,7 @@ echo ""
 ######################
 # Baixar stack MySql #
 ######################
+echo ""
 print_with_line "$msg_obter_stack_mysql"
 echo ""
 
@@ -902,6 +913,7 @@ echo ""
 ###########################
 # Baixar stack phpMyAdmin #
 ###########################
+echo ""
 print_with_line "$msg_obter_stack_pma"
 echo ""
 
@@ -918,6 +930,7 @@ echo ""
 #######################
 # Baixar stack Mautic #
 #######################
+echo ""
 print_with_line "$msg_obter_stack_mautic"
 echo ""
 
@@ -938,6 +951,7 @@ echo ""
 #######################
 # Update repositórios #
 #######################
+echo ""
 print_with_line "$msg_repository"
 echo ""
 
@@ -954,6 +968,7 @@ echo ""
 #################################
 # Verificar chave GPG do Docker #
 #################################
+echo ""
 print_with_line "$msg_docker_chave_gpg"
 echo ""
 
@@ -976,6 +991,7 @@ echo ""
 #######################################
 # Configurando Repositórios do Docker #
 #######################################
+echo ""
 print_with_line "$msg_repositorio_docker"
 echo ""
 
@@ -998,6 +1014,7 @@ echo ""
 ###################
 # Instalar Docker #
 ###################
+echo ""
 print_with_line "$msg_instalar_docker"
 echo ""
 
@@ -1017,6 +1034,7 @@ echo ""
 ##################################################
 # Configurar Docker para iniciar automaticamente #
 ##################################################
+echo ""
 print_with_line "$msg_docker_init_auto"
 echo ""
 
@@ -1032,6 +1050,7 @@ echo ""
 #########################
 # Obter o IP da máquina #
 #########################
+echo ""
 print_with_line "$msg_obter_ip"
 echo ""
 
@@ -1048,6 +1067,7 @@ echo ""
 ##################################################
 # Verificar se Docker Swarm já está inicializado #
 ##################################################
+echo ""
 print_with_line "$msg_docker_swarm"
 echo ""
 
@@ -1067,6 +1087,7 @@ echo ""
 ##########################
 # Verificar/criar a rede #
 ##########################
+echo ""
 print_with_line "$msg_docker_network_swarm"
 echo ""
 
@@ -1086,6 +1107,7 @@ echo ""
 ##########################
 # Subir stack do Traefik #
 ##########################
+echo ""
 print_with_line "$msg_stack_traefik_deploy"
 echo ""
 
@@ -1102,6 +1124,7 @@ echo ""
 ############################
 # Subir stack do Portainer #
 ############################
+echo ""
 print_with_line "$msg_stack_portainer_deploy"
 echo ""
 
