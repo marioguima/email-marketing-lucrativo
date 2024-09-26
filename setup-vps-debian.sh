@@ -155,6 +155,8 @@ definir_mensagens() {
    msg_dominio_valido="✅ Domínio válido:"
    msg_dominio_invalido="❌ Domínio inválido. Por favor, tente novamente."
 
+   msg_traefik_obter_email="⚙️ Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
+
    msg_subdominio_portainer="⚙️ Configurar o subdomínio para acessar o Portainer"
    msg_subdominio_portainer_solicitar="🌐 Por favor, insira o subdomínio para acessar o Portainer:"
 
@@ -168,13 +170,13 @@ definir_mensagens() {
    msg_subdominio_invalido="❌ Subdomínio inválido. Por favor, tente novamente."
 
    msg_mautic_obter_email="🏷️ Insira o e-mail do administrador do Mautic:"
-   msg_mautic_obter_senha="🔒 Insira a senha de administrador do Mautic:"
+   msg_mautic_obter_senha="🔑 Insira a senha de administrador do Mautic:"
 
-   msg_portainer_obter_senha="🔒 Insira a senha de administrador do Portainer:"
+   msg_portainer_obter_senha="🔑 Insira a senha de administrador do Portainer:"
 
-   msg_mysql_obter_senha="🔒 Insira a senha de administrador do MySql:"
+   msg_mysql_obter_senha="🔑 Insira a senha de administrador do MySql:"
 
-   msg_senha_solicitar="🔒 Por favor, insira sua senha:"
+   msg_senha_solicitar="🔑 Por favor, insira sua senha:"
    msg_senha_ok="✅ Senha válida."
 
    msg_senha_invalida="⚠️ Senha inválida. A senha precisa preencher todos os requisitos:"
@@ -183,8 +185,6 @@ definir_mensagens() {
    msg_senha_requisito_numero="Conter ao menos 1 número"
    msg_senha_requisito_especial="Conter ao menos 1 caracter especial ! @ # $ % & *"
 
-   msg_traefik_obter_email="⚙️ Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
-   
    msg_email_solicitar="📧 Por favor, insira seu e-mail:"
    msg_email_valido="✅ Email válido:"
    msg_email_invalido="❌ Email inválido. Tente novamente."
@@ -268,13 +268,13 @@ definir_mensagens() {
    msg_subdominio_invalido="❌ Invalid subdomain. Please try again."
 
    msg_mautic_obter_email="🏷️ Enter the Mautic administrator's email:"
-   msg_mautic_obter_senha="🔒 Enter the Mautic administrator's password:"
+   msg_mautic_obter_senha="🔑 Enter the Mautic administrator's password:"
 
-   msg_portainer_obter_senha="🔒 Enter the Portainer administrator password:"
+   msg_portainer_obter_senha="🔑 Enter the Portainer administrator password:"
 
-   msg_mysql_obter_senha="🔒 Enter the MySQL administrator password:"
+   msg_mysql_obter_senha="🔑 Enter the MySQL administrator password:"
 
-   msg_senha_solicitar="🔒 Please enter your password:"
+   msg_senha_solicitar="🔑 Please enter your password:"
    msg_senha_ok="✅ Valid password."
    
    msg_senha_invalida="⚠️ Invalid password. The password must meet all requirements:"
@@ -368,13 +368,13 @@ definir_mensagens() {
    msg_subdominio_invalido="❌ Subdominio inválido. Por favor, intente de nuevo."
 
    msg_mautic_obter_email="🏷️ Ingrese el correo electrónico del administrador de Mautic:"
-   msg_mautic_obter_senha="🔒 Ingrese la contraseña del administrador de Mautic:"
+   msg_mautic_obter_senha="🔑 Ingrese la contraseña del administrador de Mautic:"
 
-   msg_portainer_obter_senha="🔒 Ingrese la contraseña de administrador de Portainer:"
+   msg_portainer_obter_senha="🔑 Ingrese la contraseña de administrador de Portainer:"
 
-   msg_mysql_obter_senha="🔒 Ingrese la contraseña de administrador de MySQL:"
+   msg_mysql_obter_senha="🔑 Ingrese la contraseña de administrador de MySQL:"
 
-   msg_senha_solicitar="🔒 Por favor, introduzca su contraseña:"
+   msg_senha_solicitar="🔑 Por favor, introduzca su contraseña:"
    msg_senha_ok="✅ Contraseña válida."
 
    msg_senha_invalida="⚠️ Contraseña inválida. La contraseña debe cumplir todos los requisitos:"
@@ -468,13 +468,13 @@ definir_mensagens() {
    msg_subdominio_invalido="❌ Sous-domaine invalide. Veuillez réessayer."
 
    msg_mautic_obter_email="🏷️ Entrez l'e-mail de l'administrateur de Mautic:"
-   msg_mautic_obter_senha="🔒 Entrez le mot de passe de l'administrateur de Mautic:"
+   msg_mautic_obter_senha="🔑 Entrez le mot de passe de l'administrateur de Mautic:"
 
-   msg_portainer_obter_senha="🔒 Entrez le mot de passe administrateur de Portainer :"
+   msg_portainer_obter_senha="🔑 Entrez le mot de passe administrateur de Portainer :"
 
-   msg_mysql_obter_senha="🔒 Entrez le mot de passe administrateur de MySQL :"
+   msg_mysql_obter_senha="🔑 Entrez le mot de passe administrateur de MySQL :"
 
-   msg_senha_solicitar="🔒 Veuillez saisir votre mot de passe :"
+   msg_senha_solicitar="🔑 Veuillez saisir votre mot de passe :"
    msg_senha_ok="✅ Mot de passe valide."
 
    msg_senha_invalida="⚠️ Mot de passe invalide. Le mot de passe doit remplir toutes les conditions :"
@@ -568,13 +568,13 @@ definir_mensagens() {
    msg_subdominio_invalido="❌ Sottodominio non valido. Per favore, riprova."
 
    msg_mautic_obter_email="🏷️ Inserisci l'e-mail dell'amministratore di Mautic:"
-   msg_mautic_obter_senha="🔒 Inserisci la password dell'amministratore di Mautic:"
+   msg_mautic_obter_senha="🔑 Inserisci la password dell'amministratore di Mautic:"
 
-   msg_portainer_obter_senha="🔒 Inserisci la password di amministratore di Portainer:"
+   msg_portainer_obter_senha="🔑 Inserisci la password di amministratore di Portainer:"
 
-   msg_mysql_obter_senha="🔒 Inserisci la password di amministratore di MySQL:"
+   msg_mysql_obter_senha="🔑 Inserisci la password di amministratore di MySQL:"
 
-   msg_senha_solicitar="🔒 Per favore, inserisci la tua password:"
+   msg_senha_solicitar="🔑 Per favore, inserisci la tua password:"
    msg_senha_ok="✅ Password valida."
 
    msg_senha_invalida="⚠️ Password non valida. La password deve soddisfare tutti i requisiti:"
