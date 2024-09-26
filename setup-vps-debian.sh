@@ -150,7 +150,7 @@ definir_mensagens() {
  case $idioma in
   1)
    # Português
-   msg_dominio="⚙️ Configurar o domínio"
+   msg_dominio="⚙️ Configurar o domínio 2"
    msg_dominio_solicitar="🌐 Por favor, insira um domínio:"
    msg_dominio_valido="✅ Domínio válido:"
    msg_dominio_invalido="❌ Domínio inválido. Por favor, tente novamente."
