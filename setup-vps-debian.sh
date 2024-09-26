@@ -675,6 +675,7 @@ done
 # Solicitar o domínio ao usuário #
 ##################################
 print_with_line "$msg_dominio"
+echo ""
 
 #------------------------------------------
 # Loop para garantir a definição do domínio
@@ -684,38 +685,38 @@ while true; do
  read -p "> " DOMINIO
  if validar_dominio "$DOMINIO"; then
   echo ""
-  print_with_line "$msg_dominio_valido $DOMINIO" "-"
-  echo ""
+  echo "$msg_dominio_valido $DOMINIO"
   break
  else
   echo -e "$msg_dominio_invalido"
-  echo ""
  fi
 done
+echo ""
 
 #################################
 # Solicitar o e-mail do traefik #
 #################################
 print_with_line "$msg_traefik_obter_email"
+echo ""
 
 while true; do
  echo -e "$msg_email_solicitar"
  read -p "> " CHANGE_EMAIL_TRAEFIK
  if validar_email "$CHANGE_EMAIL_TRAEFIK"; then
   echo ""
-  print_with_line "$msg_email_valido $CHANGE_EMAIL_TRAEFIK" "-"
-  echo ""
+  echo "$msg_email_valido $CHANGE_EMAIL_TRAEFIK"
   break
  else
   echo "$msg_email_invalido"
-  echo ""
  fi
 done
+echo ""
 
 #######################################
 # Solicitar o subdominio do Portainer #
 #######################################
 print_with_line "$msg_subdominio_portainer"
+echo ""
 
 #----------------------------------------------------------
 # Loop para garantir a definição do subdominio do Portainer
@@ -726,52 +727,52 @@ while true; do
  read -e -p "> " -i "$SUBDOMINIO_PORTAINER_DEFAULT" SUBDOMINIO_PORTAINER
  if validar_subdominio "$SUBDOMINIO_PORTAINER"; then
   echo ""
-  print_with_line "$msg_subdominio_valido $SUBDOMINIO_PORTAINER" "-"
-  echo ""
+  echo "$msg_subdominio_valido $SUBDOMINIO_PORTAINER"
   break
  else
   echo -e "$msg_subdominio_invalido"
-  echo ""
  fi
 done
+echo ""
 
 ############################################
 # Solicitar a senha do Admin do Portainer #
 ############################################
 print_with_line "$msg_portainer_obter_senha"
+echo ""
 
 while true; do
  echo -e "$msg_senha_solicitar"
  read -s -p "> " CHANGE_PORTAINER_ADMIN_PASSWORD
- echo # Para nova linha
  if validar_senha "$CHANGE_PORTAINER_ADMIN_PASSWORD"; then
-  print_with_line "$msg_senha_ok" "-"
-  echo ""
+  echo "$msg_senha_ok"
   break
  fi
 done
+echo ""
 
 #######################################
 # Solicitar a senha do Admin do MySql #
 #######################################
 print_with_line "$msg_mysql_obter_senha"
+echo ""
 
 while true; do
  echo -e "$msg_senha_solicitar"
  # Exibe a senha do portainer e permite edição
  read -s -p "> " CHANGE_MYSQL_ROOT_PASSWORD
- echo # Para nova linha
  if validar_senha "$CHANGE_MYSQL_ROOT_PASSWORD"; then
-  print_with_line "$msg_senha_ok" "-"
-  echo ""
+  echo "$msg_senha_ok"
   break
  fi
 done
+echo ""
 
 ############################################
 # Solicitar o subdomínio para o phpMyAdmin #
 ############################################
 print_with_line "$msg_subdominio_pma"
+echo ""
 
 #-----------------------------------------------------------
 # Loop para garantir a definição do subdominio do phpMyAdmin
@@ -782,19 +783,19 @@ while true; do
  read -e -p "> " -i "$SUBDOMINIO_PMA_DEFAULT" SUBDOMINIO_PMA
  if validar_subdominio "$SUBDOMINIO_PMA"; then
   echo ""
-  print_with_line "$msg_subdominio_valido $SUBDOMINIO_PMA" "-"
-  echo ""
+  echo "$msg_subdominio_valido $SUBDOMINIO_PMA"
   break
  else
   echo -e "$msg_subdominio_invalido"
-  echo ""
  fi
 done
+echo ""
 
 ########################################
 # Solicitar o subdomínio para o Mautic #
 ########################################
 print_with_line "$msg_subdominio_mautic"
+echo ""
 
 #-------------------------------------------------------
 # Loop para garantir a definição do subdominio do Mautic
@@ -805,19 +806,19 @@ while true; do
  read -e -p "> " -i "$SUBDOMINIO_MAUTIC_DEFAULT" SUBDOMINIO_MAUTIC
  if validar_subdominio "$SUBDOMINIO_MAUTIC"; then
   echo ""
-  print_with_line "$msg_subdominio_valido $SUBDOMINIO_MAUTIC" "-"
-  echo ""
+  echo "$msg_subdominio_valido $SUBDOMINIO_MAUTIC"
   break
  else
   echo -e "$msg_subdominio_invalido"
-  echo ""
  fi
 done
+echo ""
 
 #########################################
 # Solicitar o e-mail do Admin do Mautic #
 #########################################
 print_with_line "$msg_mautic_obter_email"
+echo ""
 
 while true; do
  echo -e "$msg_email_solicitar"
@@ -825,36 +826,36 @@ while true; do
  read -e -p "> " -i "$CHANGE_EMAIL_TRAEFIK" CHANGE_MAUTIC_ADMIN_EMAIL
  if validar_email "$CHANGE_MAUTIC_ADMIN_EMAIL"; then
   echo ""
-  print_with_line "$msg_email_valido $CHANGE_MAUTIC_ADMIN_EMAIL" "--"
-  echo ""
+  echo "$msg_email_valido $CHANGE_MAUTIC_ADMIN_EMAIL"
   break
  else
   echo -e "$msg_email_invalido"
-  echo ""
  fi
 done
+echo ""
 
 #########################################
 # Solicitar a senha do Admin do Mautic #
 #########################################
 print_with_line "$msg_mautic_obter_senha"
+echo ""
 
 while true; do
  echo -e "$msg_senha_solicitar"
  # Exibe a senha do MySql e permite edição
  read -s -p "> " CHANGE_MAUTIC_ADMIN_PASSWORD
- echo # Para nova linha
  if validar_senha "$CHANGE_MAUTIC_ADMIN_PASSWORD"; then
-  print_with_line "$msg_senha_ok" "-"
-  echo ""
+  echo "$msg_senha_ok"
   break
  fi
 done
+echo ""
 
 ########################
 # Baixar stack Traefik #
 ########################
 print_with_line "$msg_obter_stack_traefik"
+echo ""
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-traefik-v2.yml | sed "s/CHANGE_EMAIL_TRAEFIK/${CHANGE_EMAIL_TRAEFIK}/g" > stack-traefik-v2.yml
 
@@ -870,6 +871,7 @@ echo ""
 # Baixar stack Portainer #
 ##########################
 print_with_line "$msg_obter_stack_portainer"
+echo ""
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-portainer.yml | sed "s/CHANGE_URL_PORTAINER/${SUBDOMINIO_PORTAINER}.${DOMINIO}/g" > stack-portainer.yml
 
@@ -885,6 +887,7 @@ echo ""
 # Baixar stack MySql #
 ######################
 print_with_line "$msg_obter_stack_mysql"
+echo ""
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-mysql-mautic.yml | sed "s/CHANGE_MYSQL_ROOT_PASSWORD/${CHANGE_MYSQL_ROOT_PASSWORD}/g" > stack-mysql-mautic.yml
 
@@ -900,6 +903,7 @@ echo ""
 # Baixar stack phpMyAdmin #
 ###########################
 print_with_line "$msg_obter_stack_pma"
+echo ""
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-pma.yml | sed "s/CHANGE_URL_PMA/${SUBDOMINIO_PMA}.${DOMINIO}/g" > stack-pma.yml
 
@@ -915,6 +919,7 @@ echo ""
 # Baixar stack Mautic #
 #######################
 print_with_line "$msg_obter_stack_mautic"
+echo ""
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-mautic.yml \
 | sed -e "s/CHANGE_URL_MAUTIC/${SUBDOMINIO_MAUTIC}.${DOMINIO}/g" \
@@ -934,6 +939,7 @@ echo ""
 # Update repositórios #
 #######################
 print_with_line "$msg_repository"
+echo ""
 
 apt-get update && apt install -y sudo gnupg2 wget ca-certificates apt-transport-https curl gnupg nano htop
 
@@ -949,6 +955,7 @@ echo ""
 # Verificar chave GPG do Docker #
 #################################
 print_with_line "$msg_docker_chave_gpg"
+echo ""
 
 if [ ! -f /etc/apt/keyrings/docker.gpg ]; then
   sudo install -m 0755 -d /etc/apt/keyrings
@@ -970,6 +977,7 @@ echo ""
 # Configurando Repositórios do Docker #
 #######################################
 print_with_line "$msg_repositorio_docker"
+echo ""
 
 if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
   echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
@@ -991,6 +999,7 @@ echo ""
 # Instalar Docker #
 ###################
 print_with_line "$msg_instalar_docker"
+echo ""
 
 if ! command -v docker &> /dev/null; then
   sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
@@ -1009,6 +1018,7 @@ echo ""
 # Configurar Docker para iniciar automaticamente #
 ##################################################
 print_with_line "$msg_docker_init_auto"
+echo ""
 
 if systemctl is-enabled docker.service | grep -q "enabled"; then
   echo "$msg_docker_init_auto_pular"
@@ -1023,6 +1033,7 @@ echo ""
 # Obter o IP da máquina #
 #########################
 print_with_line "$msg_obter_ip"
+echo ""
 
 IP_ADDR=$(hostname -I | awk '{print $1}')
 
@@ -1038,6 +1049,7 @@ echo ""
 # Verificar se Docker Swarm já está inicializado #
 ##################################################
 print_with_line "$msg_docker_swarm"
+echo ""
 
 if docker info | grep -q "Swarm: active"; then
   echo "$msg_docker_swarm_pular"
@@ -1056,6 +1068,7 @@ echo ""
 # Verificar/criar a rede #
 ##########################
 print_with_line "$msg_docker_network_swarm"
+echo ""
 
 if docker network ls | grep -q "network_swarm_public"; then
   echo "$msg_docker_network_swarm_pular"
@@ -1074,6 +1087,7 @@ echo ""
 # Subir stack do Traefik #
 ##########################
 print_with_line "$msg_stack_traefik_deploy"
+echo ""
 
 docker stack deploy --prune --detach=false --resolve-image always -c stack-traefik-v2.yml traefik
 
@@ -1089,6 +1103,7 @@ echo ""
 # Subir stack do Portainer #
 ############################
 print_with_line "$msg_stack_portainer_deploy"
+echo ""
 
 docker stack deploy --prune --detach=false --resolve-image always -c stack-portainer.yml portainer
 
