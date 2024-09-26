@@ -93,54 +93,53 @@ validar_email() {
 # Função para validar senha
 #--------------------------
 validar_senha() {
- local senha="$1"
- local valid=true # Assume que a senha é válida inicialmente
- local output=""  # Variável para armazenar as mensagens de requisitos
+  local senha="$1"
+  local valid=true # Assume que a senha é válida inicialmente
+  local output=""  # Variável para armazenar as mensagens de requisitos
 
- # Verifica cada requisito e adiciona o emoji de sucesso ou erro antes da mensagem
- if [[ ${#senha} -ge 8 ]]; then
-  output+="✅ $msg_senha_requisito_min_caracteres\n"
- else
-  output+="❌ $msg_senha_requisito_min_caracteres\n"
-  valid=false
- fi
+  # Verifica cada requisito e adiciona o emoji de sucesso ou erro antes da mensagem
+  if [[ ${#senha} -ge 8 ]]; then
+    output+="✅ $msg_senha_requisito_min_caracteres\n"
+  else
+    output+="❌ $msg_senha_requisito_min_caracteres\n"
+    valid=false
+  fi
 
- if [[ "$senha" =~ [A-Za-z] ]]; then
-  output+="✅ $msg_senha_requisito_letra\n"
- else
-  output+="❌ $msg_senha_requisito_letra\n"
-  valid=false
- fi
+  if [[ "$senha" =~ [A-Za-z] ]]; then
+    output+="✅ $msg_senha_requisito_letra\n"
+  else
+    output+="❌ $msg_senha_requisito_letra\n"
+    valid=false
+  fi
 
- if [[ "$senha" =~ [0-9] ]]; then
-  output+="✅ $msg_senha_requisito_numero\n"
- else
-  output+="❌ $msg_senha_requisito_numero\n"
-  valid=false
- fi
+  if [[ "$senha" =~ [0-9] ]]; then
+    output+="✅ $msg_senha_requisito_numero\n"
+  else
+    output+="❌ $msg_senha_requisito_numero\n"
+    valid=false
+  fi
 
- # Verifica se contém ao menos um caractere especial permitido: ! @ # $ % & *
- if [[ "$senha" =~ [\!\@\#\$\%\&\*] ]]; then
-  output+="✅ $msg_senha_requisito_especial\n"
- else
-  output+="❌ $msg_senha_requisito_especial\n"
-  valid=false
- fi
+  # Verifica se contém ao menos um caractere especial permitido: ! @ # $ % & *
+  if [[ "$senha" =~ [\!\@\#\$\%\&\*] ]]; then
+    output+="✅ $msg_senha_requisito_especial\n"
+  else
+    output+="❌ $msg_senha_requisito_especial\n"
+    valid=false
+  fi
 
- # Se a senha não atender a algum requisito, exibe a mensagem de senha inválida
- if [ "$valid" = false ]; then
-  echo -e "$msg_senha_invalida"
- fi
+  # Se a senha não atender a algum requisito, exibe a mensagem de senha inválida
+  if [ "$valid" = false ]; then
+    echo -e "$msg_senha_invalida"
+    # Exibe a lista de requisitos (com emojis de sucesso e erro)
+    echo -e "$output"
+  fi
 
- # Exibe a lista de requisitos (com emojis de sucesso e erro)
- echo -e "$output"
-
- # Retorna 0 se a senha for válida, ou 1 se for inválida
- if [ "$valid" = true ]; then
-  return 0
- else
-  return 1
- fi
+  # Retorna 0 se a senha for válida, ou 1 se for inválida
+  if [ "$valid" = true ]; then
+    return 0
+  else
+    return 1
+  fi
 }
 
 #--------------------------------------
@@ -160,7 +159,7 @@ definir_mensagens() {
    msg_subdominio_portainer="⚙️  Configurar o subdomínio para acessar o Portainer"
    msg_subdominio_portainer_solicitar="🌐 Por favor, insira o subdomínio para acessar o Portainer:"
 
-   msg_portainer_obter_senha="⚙️  Insira a senha de administrador do Portainer:"
+   msg_portainer_obter_senha="⚙️  Insira a senha de administrador do Portainer"
 
    msg_mysql_obter_senha="⚙️  Insira a senha de administrador do MySql"
 
@@ -260,7 +259,7 @@ definir_mensagens() {
    msg_subdominio_portainer="⚙️  Set up the subdomain to access Portainer"
    msg_subdominio_portainer_solicitar="🌐 Please enter the subdomain to access Portainer:"
 
-   msg_portainer_obter_senha="⚙️  Enter the Portainer administrator password:"
+   msg_portainer_obter_senha="⚙️  Enter the Portainer administrator password"
 
    msg_mysql_obter_senha="⚙️  Enter the MySQL administrator password"
 
@@ -360,7 +359,7 @@ definir_mensagens() {
    msg_subdominio_portainer="⚙️  Configurar el subdominio para acceder a Portainer"
    msg_subdominio_portainer_solicitar="🌐 Por favor, ingrese el subdominio para acceder a Portainer:"
 
-   msg_portainer_obter_senha="⚙️  Ingrese la contraseña de administrador de Portainer:"
+   msg_portainer_obter_senha="⚙️  Ingrese la contraseña de administrador de Portainer"
 
    msg_mysql_obter_senha="⚙️  Ingrese la contraseña de administrador de MySQL"
 
@@ -460,7 +459,7 @@ definir_mensagens() {
    msg_subdominio_portainer="⚙️  Configurer le sous-domaine pour accéder à Portainer"
    msg_subdominio_portainer_solicitar="🌐 Veuillez entrer le sous-domaine pour accéder à Portainer :"
 
-   msg_portainer_obter_senha="⚙️  Entrez le mot de passe administrateur de Portainer :"
+   msg_portainer_obter_senha="⚙️  Entrez le mot de passe administrateur de Portainer"
 
    msg_mysql_obter_senha="⚙️  Entrez le mot de passe administrateur de MySQL"
 
@@ -560,7 +559,7 @@ definir_mensagens() {
    msg_subdominio_portainer="⚙️  Configurare il sottodominio per accedere a Portainer"
    msg_subdominio_portainer_solicitar="🌐 Per favore, inserisci il sottodominio per accedere a Portainer:"
 
-   msg_portainer_obter_senha="⚙️  Inserisci la password di amministratore di Portainer:"
+   msg_portainer_obter_senha="⚙️  Inserisci la password di amministratore di Portainer"
 
    msg_mysql_obter_senha="⚙️  Inserisci la password di amministratore di MySQL"
 
@@ -747,6 +746,7 @@ echo ""
 while true; do
  echo -e "$msg_senha_solicitar"
  read -s -p "> " CHANGE_PORTAINER_ADMIN_PASSWORD
+ echo ""
  if validar_senha "$CHANGE_PORTAINER_ADMIN_PASSWORD"; then
   echo "$msg_senha_ok"
   break
@@ -765,6 +765,7 @@ while true; do
  echo -e "$msg_senha_solicitar"
  # Exibe a senha do portainer e permite edição
  read -s -p "> " CHANGE_MYSQL_ROOT_PASSWORD
+ echo ""
  if validar_senha "$CHANGE_MYSQL_ROOT_PASSWORD"; then
   echo "$msg_senha_ok"
   break
@@ -852,6 +853,7 @@ while true; do
  echo -e "$msg_senha_solicitar"
  # Exibe a senha do MySql e permite edição
  read -s -p "> " CHANGE_MAUTIC_ADMIN_PASSWORD
+ echo ""
  if validar_senha "$CHANGE_MAUTIC_ADMIN_PASSWORD"; then
   echo "$msg_senha_ok"
   break
