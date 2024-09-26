@@ -189,17 +189,17 @@ definir_mensagens() {
    msg_email_valido="✅ Email válido:"
    msg_email_invalido="❌ Email inválido. Tente novamente."
 
-   msg_obter_stack_portainer="⬇️ Baixando Stack Portainer:"
-   msg_obter_stack_mysql="⬇️ Baixando Stack MySql:"
-   msg_obter_stack_pma="⬇️ Baixando Stack phpMyAdmin:"
-   msg_obter_stack_mautic="⬇️ Baixando Stack Mautic:"
+   msg_obter_stack_traefik="⬇️  Baixando Stack Traefik:"
+   msg_stack_traefik_ok="✅ Stack Traefik baixada e e-mail substituído com sucesso."
+   msg_stack_traefik_erro="❌ Erro: Arquivo final da Stack Traefik está vazio ou não foi gerado corretamente."
+
+   msg_obter_stack_portainer="⬇️  Baixando Stack Portainer:"
+   msg_obter_stack_mysql="⬇️  Baixando Stack MySql:"
+   msg_obter_stack_pma="⬇️  Baixando Stack phpMyAdmin:"
+   msg_obter_stack_mautic="⬇️  Baixando Stack Mautic:"
 
    msg_stack_ok="✅ Stack baixada e url substituída com sucesso."
    msg_stack_erro="❌ Erro: Arquivo final da Stack está vazio ou não foi gerado corretamente."
-
-   msg_obter_stack_traefik="⬇️ Baixando Stack Traefik:"
-   msg_stack_traefik_ok="✅ Stack Traefik baixada e e-mail substituído com sucesso."
-   msg_stack_traefik_erro="❌ Erro: Arquivo final da Stack Traefik está vazio ou não foi gerado corretamente."
 
    msg_repository="⚙️  Atualizando Repositórios"
    msg_repository_ok="✅ Repositórios atualizados com sucesso."
@@ -289,17 +289,17 @@ definir_mensagens() {
    msg_email_valido="✅ Valid email:"
    msg_email_invalido="❌ Invalid email. Please try again."
 
-   msg_obter_stack_portainer="⬇️ Downloading Portainer Stack:"
-   msg_obter_stack_mysql="⬇️ Downloading MySQL Stack:"
-   msg_obter_stack_pma="⬇️ Downloading phpMyAdmin Stack:"
-   msg_obter_stack_mautic="⬇️ Downloading Mautic Stack:"
+   msg_obter_stack_traefik="⬇️  Downloading Traefik Stack:"
+   msg_stack_traefik_ok="✅ Traefik stack downloaded and email successfully replaced."
+   msg_stack_traefik_erro="❌ Error: Final Traefik Stack file is empty or was not generated correctly."
+
+   msg_obter_stack_portainer="⬇️  Downloading Portainer Stack:"
+   msg_obter_stack_mysql="⬇️  Downloading MySQL Stack:"
+   msg_obter_stack_pma="⬇️  Downloading phpMyAdmin Stack:"
+   msg_obter_stack_mautic="⬇️  Downloading Mautic Stack:"
 
    msg_stack_ok="✅ Portainer stack downloaded and url successfully replaced."
    msg_stack_erro="❌ Error: Final Portainer Stack file is empty or was not generated correctly."
-
-   msg_obter_stack_traefik="⬇️ Downloading Traefik Stack:"
-   msg_stack_traefik_ok="✅ Traefik stack downloaded and email successfully replaced."
-   msg_stack_traefik_erro="❌ Error: Final Traefik Stack file is empty or was not generated correctly."
 
    msg_repository="⚙️  Updating Repositories"
    msg_repository_ok="✅ Repositories successfully updated."
@@ -389,17 +389,17 @@ definir_mensagens() {
    msg_email_valido="✅ Correo electrónico válido:"
    msg_email_invalido="❌ Correo electrónico inválido. Intente nuevamente."
 
-   msg_obter_stack_portainer="⬇️ Descargando la Stack de Portainer:"
-   msg_obter_stack_mysql="⬇️ Descargando Stack de MySQL:"
-   msg_obter_stack_pma="⬇️ Descargando Stack de phpMyAdmin:"
-   msg_obter_stack_mautic="⬇️ Descargando Stack de Mautic:"
+   msg_obter_stack_traefik="⬇️  Descargando la Stack de Traefik:"
+   msg_stack_traefik_ok="✅ Stack de Traefik descargada y correo electrónico reemplazado con éxito."
+   msg_stack_traefik_erro="❌ Error: El archivo final de la Stack de Traefik está vacío o no se generó correctamente."
+
+   msg_obter_stack_portainer="⬇️  Descargando la Stack de Portainer:"
+   msg_obter_stack_mysql="⬇️  Descargando Stack de MySQL:"
+   msg_obter_stack_pma="⬇️  Descargando Stack de phpMyAdmin:"
+   msg_obter_stack_mautic="⬇️  Descargando Stack de Mautic:"
    
    msg_stack_ok="✅ Stack de Portainer descargada y url reemplazado con éxito."
    msg_stack_erro="❌ Error: El archivo final de la Stack de Portainer está vacío o no se generó correctamente."
-
-   msg_obter_stack_traefik="⬇️ Descargando la Stack de Traefik:"
-   msg_stack_traefik_ok="✅ Stack de Traefik descargada y correo electrónico reemplazado con éxito."
-   msg_stack_traefik_erro="❌ Error: El archivo final de la Stack de Traefik está vacío o no se generó correctamente."
 
    msg_repository="⚙️  Actualizando Repositorios"
    msg_repository_ok="✅ Repositorios actualizados con éxito."
@@ -489,17 +489,17 @@ definir_mensagens() {
    msg_email_valido="✅ E-mail valide :"
    msg_email_invalido="❌ E-mail invalide. Veuillez réessayer."
 
-   msg_obter_stack_portainer="⬇️ Téléchargement de la Stack Portainer :"
-   msg_obter_stack_mysql="⬇️ Téléchargement de la Stack MySQL :"
-   msg_obter_stack_pma="⬇️ Téléchargement de la Stack phpMyAdmin :"
-   msg_obter_stack_mautic="⬇️ Téléchargement de la Stack Mautic :"
+   msg_obter_stack_traefik="⬇️  Téléchargement de la Stack Traefik :"
+   msg_stack_traefik_ok="✅ Stack Traefik téléchargée et e-mail remplacé avec succès."
+   msg_stack_traefik_erro="❌ Erreur : Le fichier final de la Stack Traefik est vide ou n'a pas été généré correctement."
+
+   msg_obter_stack_portainer="⬇️  Téléchargement de la Stack Portainer :"
+   msg_obter_stack_mysql="⬇️  Téléchargement de la Stack MySQL :"
+   msg_obter_stack_pma="⬇️  Téléchargement de la Stack phpMyAdmin :"
+   msg_obter_stack_mautic="⬇️  Téléchargement de la Stack Mautic :"
    
    msg_stack_ok="✅ Stack Portainer téléchargée et url remplacé avec succès."
    msg_stack_erro="❌ Erreur : Le fichier final de la Stack Portainer est vide ou n'a pas été généré correctement."
-
-   msg_obter_stack_traefik="⬇️ Téléchargement de la Stack Traefik :"
-   msg_stack_traefik_ok="✅ Stack Traefik téléchargée et e-mail remplacé avec succès."
-   msg_stack_traefik_erro="❌ Erreur : Le fichier final de la Stack Traefik est vide ou n'a pas été généré correctement."
 
    msg_repository="⚙️  Mise à jour des dépôts"
    msg_repository_ok="✅ Dépôts mis à jour avec succès."
@@ -589,17 +589,17 @@ definir_mensagens() {
    msg_email_valido="✅ Email valida:"
    msg_email_invalido="❌ Email non valida. Riprova."
 
-   msg_obter_stack_portainer="⬇️ Scaricamento della Stack Portainer:"
-   msg_obter_stack_mysql="⬇️ Scaricamento Stack MySQL:"
-   msg_obter_stack_pma="⬇️ Scaricamento Stack phpMyAdmin:"
-   msg_obter_stack_mautic="⬇️ Scaricamento Stack Mautic:"
+   msg_obter_stack_traefik="⬇️  Scaricamento della Stack Traefik:"
+   msg_stack_traefik_ok="✅ Stack Traefik scaricata e email sostituita con successo."
+   msg_stack_traefik_erro="❌ Errore: Il file finale della Stack Traefik è vuoto o non è stato generato correttamente."
+
+   msg_obter_stack_portainer="⬇️  Scaricamento della Stack Portainer:"
+   msg_obter_stack_mysql="⬇️  Scaricamento Stack MySQL:"
+   msg_obter_stack_pma="⬇️  Scaricamento Stack phpMyAdmin:"
+   msg_obter_stack_mautic="⬇️  Scaricamento Stack Mautic:"
    
    msg_stack_ok="✅ Stack Portainer scaricata e url sostituita con successo."
    msg_stack_erro="❌ Errore: Il file finale della Stack Portainer è vuoto o non è stato generato correttamente."
-
-   msg_obter_stack_traefik="⬇️ Scaricamento della Stack Traefik:"
-   msg_stack_traefik_ok="✅ Stack Traefik scaricata e email sostituita con successo."
-   msg_stack_traefik_erro="❌ Errore: Il file finale della Stack Traefik è vuoto o non è stato generato correttamente."
 
    msg_repository="⚙️  Aggiornamento dei repository"
    msg_repository_ok="✅ Repository aggiornati con successo."
@@ -860,11 +860,11 @@ curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/m
 
 if [[ -s stack-traefik-v2.yml ]]; then
  echo -e "$msg_stack_traefik_ok"
- echo ""
 else
  echo -e "$msg_stack_traefik_erro"
  exit 1
 fi
+echo ""
 
 ##########################
 # Baixar stack Portainer #
@@ -879,6 +879,7 @@ else
  echo -e "$msg_stack_erro"
  exit 1
 fi
+echo ""
 
 ######################
 # Baixar stack MySql #
@@ -893,6 +894,7 @@ else
  echo -e "$msg_stack_erro"
  exit 1
 fi
+echo ""
 
 ###########################
 # Baixar stack phpMyAdmin #
@@ -907,6 +909,7 @@ else
  echo -e "$msg_stack_erro"
  exit 1
 fi
+echo ""
 
 #######################
 # Baixar stack Mautic #
@@ -925,6 +928,7 @@ else
  echo -e "$msg_stack_erro"
  exit 1
 fi
+echo ""
 
 #######################
 # Update repositórios #
@@ -939,6 +943,7 @@ else
   echo -e "$msg_repository_erro"
   exit 1
 fi
+echo ""
 
 #################################
 # Verificar chave GPG do Docker #
@@ -959,6 +964,7 @@ else
   echo -e "$msg_docker_chave_gpg_erro"
   exit 1
 fi
+echo ""
 
 #######################################
 # Configurando Repositórios do Docker #
@@ -979,6 +985,7 @@ else
   echo -e "$msg_repositorio_docker_erro"
   exit 1
 fi
+echo ""
 
 ###################
 # Instalar Docker #
@@ -996,6 +1003,7 @@ if ! command -v docker &> /dev/null; then
 else
   echo "$msg_instalar_docker_pular"
 fi
+echo ""
 
 ##################################################
 # Configurar Docker para iniciar automaticamente #
@@ -1009,6 +1017,7 @@ else
   sudo systemctl enable containerd.service
   echo "$msg_docker_init_auto_ok"
 fi
+echo ""
 
 #########################
 # Obter o IP da máquina #
@@ -1023,6 +1032,7 @@ if [ -z "$IP_ADDR" ]; then
 else
   echo -e "$msg_obter_ip_ok $IP_ADDR"
 fi
+echo ""
 
 ##################################################
 # Verificar se Docker Swarm já está inicializado #
@@ -1040,6 +1050,7 @@ else
     exit 1
   fi
 fi
+echo ""
 
 ##########################
 # Verificar/criar a rede #
@@ -1057,6 +1068,7 @@ else
     exit 1
   fi
 fi
+echo ""
 
 ##########################
 # Subir stack do Traefik #
@@ -1071,6 +1083,7 @@ else
   echo -e "$msg_stack_traefik_deploy_erro"
   exit 1
 fi
+echo ""
 
 ############################
 # Subir stack do Portainer #
@@ -1085,5 +1098,6 @@ else
   echo -e "$msg_stack_portainer_deploy_erro"
   exit 1
 fi
+echo ""
 
 echo -e "\n$msg_script_executado_ok"
