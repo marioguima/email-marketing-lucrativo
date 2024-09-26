@@ -94,13 +94,14 @@ validar_email() {
 #--------------------------
 validar_senha() {
   local senha="$1"
+  # Verifica se a senha tem menos de 8 caracteres, não contém letras, não contém números, ou não contém caracteres especiais
   if [[ ${#senha} -lt 8 ]] || 
      ! [[ "$senha" =~ [A-Za-z] ]] || 
      ! [[ "$senha" =~ [0-9] ]] || 
-     ! [[ "$senha" =~ [\!\@\#\$\%\^\&\*\(\)\_\+\-=\{\}\[\]\;\:\'\"\<\>\,\.\/\?] ]]; then
-    return 1
+     ! [[ "$senha" =~ [[:punct:]] ]]; then
+    return 1  # Senha inválida
   fi
-  return 0
+  return 0  # Senha válida
 }
 
 #--------------------------------------
@@ -134,6 +135,7 @@ definir_mensagens() {
 
       msg_mysql_obter_senha="Insira a senha de administrador do MySql:"
 
+      msg_senha_solicitar="📧 Por favor, insira sua senha:"
       msg_senha_ok="✅ Senha válida."
       msg_senha_erro="❌ Senha inválida. A senha deve ter pelo menos 8 caracteres, conter letras, números e pelo menos um caractere especial."
 
@@ -228,6 +230,7 @@ definir_mensagens() {
 
       msg_mysql_obter_senha="Enter the MySQL administrator password:"
 
+      msg_senha_solicitar="📧 Please enter your password:"
       msg_senha_ok="✅ Valid password."
       msg_senha_erro="❌ Invalid password. The password must be at least 8 characters long, contain letters, numbers, and at least one special character."
 
@@ -322,6 +325,7 @@ definir_mensagens() {
 
       msg_mysql_obter_senha="Ingrese la contraseña de administrador de MySQL:"
 
+      msg_senha_solicitar="📧 Por favor, introduzca su contraseña:"
       msg_senha_ok="✅ Contraseña válida."
       msg_senha_erro="❌ Contraseña inválida. La contraseña debe tener al menos 8 caracteres, contener letras, números y al menos un carácter especial."
 
@@ -416,6 +420,7 @@ definir_mensagens() {
 
       msg_mysql_obter_senha="Entrez le mot de passe administrateur de MySQL :"
 
+      msg_senha_solicitar="📧 Veuillez saisir votre mot de passe :"
       msg_senha_ok="✅ Mot de passe valide."
       msg_senha_erro="❌ Mot de passe invalide. Le mot de passe doit comporter au moins 8 caractères, contenir des lettres, des chiffres et au moins un caractère spécial."
 
@@ -510,6 +515,7 @@ definir_mensagens() {
 
       msg_mysql_obter_senha="Inserisci la password di amministratore di MySQL:"
 
+      msg_senha_solicitar="📧 Per favore, inserisci la tua password:"
       msg_senha_ok="✅ Password valida."
       msg_senha_erro="❌ Password non valida. La password deve avere almeno 8 caratteri, contenere lettere, numeri e almeno un carattere speciale."
 
@@ -671,7 +677,7 @@ done
 print_with_line "$msg_portainer_obter_senha"
 
 while true; do
-  echo -e "\n$msg_senha_solicitar"
+  echo -e "$msg_senha_solicitar"
   read -s -p "> " CHANGE_PORTAINER_ADMIN_PASSWORD
   echo # Para nova linha
   if validar_senha "$CHANGE_PORTAINER_ADMIN_PASSWORD"; then
@@ -691,7 +697,7 @@ done
 print_with_line "$msg_mysql_obter_senha"
 
 while true; do
-  echo -e "\n$msg_senha_solicitar"
+  echo -e "$msg_senha_solicitar"
   # Exibe a senha do portainer e permite edição
   read -e -p "> " -i "$CHANGE_PORTAINER_ADMIN_PASSWORD" CHANGE_MYSQL_ROOT_PASSWORD
   echo # Para nova linha
@@ -778,7 +784,7 @@ done
 print_with_line "$msg_mautic_obter_senha"
 
 while true; do
-  echo -e "\n$msg_senha_solicitar"
+  echo -e "$msg_senha_solicitar"
   # Exibe a senha do MySql e permite edição
   read -e -p "> " -i "$CHANGE_MYSQL_ROOT_PASSWORD" CHANGE_MAUTIC_ADMIN_PASSWORD
   echo # Para nova linha
