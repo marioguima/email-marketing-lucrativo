@@ -150,20 +150,20 @@ definir_mensagens() {
  case $idioma in
   1)
    # Português
-   msg_dominio="⚙️ Configurar o domínio 2"
+   msg_dominio="⚙️  Configurar o domínio"
    msg_dominio_solicitar="🌐 Por favor, insira um domínio:"
    msg_dominio_valido="✅ Domínio válido:"
    msg_dominio_invalido="❌ Domínio inválido. Por favor, tente novamente."
 
-   msg_traefik_obter_email="⚙️ Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
+   msg_traefik_obter_email="⚙️  Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
 
-   msg_subdominio_portainer="⚙️ Configurar o subdomínio para acessar o Portainer"
+   msg_subdominio_portainer="⚙️  Configurar o subdomínio para acessar o Portainer"
    msg_subdominio_portainer_solicitar="🌐 Por favor, insira o subdomínio para acessar o Portainer:"
 
-   msg_subdominio_pma="⚙️ Configurar o subdomínio para acessar o phpMyAdmin"
+   msg_subdominio_pma="⚙️  Configurar o subdomínio para acessar o phpMyAdmin"
    msg_subdominio_pma_solicitar="🌐 Por favor, insira o subdomínio para acessar o phpMyAdmin:"
 
-   msg_subdominio_mautic="⚙️ Configurar o subdomínio para acessar o Mautic"
+   msg_subdominio_mautic="⚙️  Configurar o subdomínio para acessar o Mautic"
    msg_subdominio_mautic_solicitar="🌐 Por favor, insira o subdomínio para acessar o Mautic:"
 
    msg_subdominio_valido="✅ Subdomínio válido:"
@@ -210,7 +210,7 @@ definir_mensagens() {
    msg_docker_chave_gpg_ok="✅ Chave GPG adicionada com sucesso."
    msg_docker_chave_gpg_erro="❌ Erro ao adicionar chave GPG."
 
-   msg_repositorio_docker="⚙️ Configurando Repositórios do Docker"
+   msg_repositorio_docker="⚙️  Configurando Repositórios do Docker"
    msg_repositorio_docker_pular="⚠️ Repositórios do Docker já configurados. Pulando."
    msg_repositorio_docker_ok="✅ Repositórios do Docker configurados com sucesso."
    msg_repositorio_docker_erro="❌ Erro ao configurar repositórios do Docker."
@@ -250,18 +250,18 @@ definir_mensagens() {
    ;;
   2)
    # English
-   msg_dominio="⚙️ Set up the domain"
+   msg_dominio="⚙️  Set up the domain"
    msg_dominio_solicitar="🌐 Please enter a domain:"
    msg_dominio_valido="✅ Valid domain:"
    msg_dominio_invalido="❌ Invalid domain. Please try again."
 
-   msg_subdominio_portainer="⚙️ Set up the subdomain to access Portainer"
+   msg_subdominio_portainer="⚙️  Set up the subdomain to access Portainer"
    msg_subdominio_portainer_solicitar="🌐 Please enter the subdomain to access Portainer:"
 
-   msg_subdominio_pma="⚙️ Set up the subdomain to access phpMyAdmin"
+   msg_subdominio_pma="⚙️  Set up the subdomain to access phpMyAdmin"
    msg_subdominio_pma_solicitar="🌐 Please enter the subdomain to access phpMyAdmin:"
 
-   msg_subdominio_mautic="⚙️ Set up the subdomain to access Mautic"
+   msg_subdominio_mautic="⚙️  Set up the subdomain to access Mautic"
    msg_subdominio_mautic_solicitar="🌐 Please enter the subdomain to access Mautic:"
 
    msg_subdominio_valido="✅ Valid subdomain:"
@@ -283,7 +283,7 @@ definir_mensagens() {
    msg_senha_requisito_numero="Contain at least 1 number"
    msg_senha_requisito_especial="Contain at least 1 special character ! @ # $ % & *"
 
-   msg_traefik_obter_email="⚙️ Enter your email to configure Let's Encrypt (SSL certificate) in Traefik:"
+   msg_traefik_obter_email="⚙️  Enter your email to configure Let's Encrypt (SSL certificate) in Traefik:"
 
    msg_email_solicitar="📧 Please enter your email:"
    msg_email_valido="✅ Valid email:"
@@ -310,7 +310,7 @@ definir_mensagens() {
    msg_docker_chave_gpg_ok="✅ GPG key added successfully."
    msg_docker_chave_gpg_erro="❌ Error adding GPG key."
 
-   msg_repositorio_docker="⚙️ Configuring Docker Repositories"
+   msg_repositorio_docker="⚙️  Configuring Docker Repositories"
    msg_repositorio_docker_pular="⚠️ Docker repositories already configured. Skipping."
    msg_repositorio_docker_ok="✅ Docker repositories configured successfully."
    msg_repositorio_docker_erro="❌ Error configuring Docker repositories."
@@ -350,18 +350,18 @@ definir_mensagens() {
    ;;
   3)
    # Español
-   msg_dominio="⚙️ Configurar el dominio"
+   msg_dominio="⚙️  Configurar el dominio"
    msg_dominio_solicitar="🌐 Por favor, introduzca un dominio:"
    msg_dominio_valido="✅ Dominio válido:"
    msg_dominio_invalido="❌ Dominio inválido. Por favor, intente nuevamente."
 
-   msg_subdominio_portainer="⚙️ Configurar el subdominio para acceder a Portainer"
+   msg_subdominio_portainer="⚙️  Configurar el subdominio para acceder a Portainer"
    msg_subdominio_portainer_solicitar="🌐 Por favor, ingrese el subdominio para acceder a Portainer:"
 
-   msg_subdominio_pma="⚙️ Configurar el subdominio para acceder a phpMyAdmin"
+   msg_subdominio_pma="⚙️  Configurar el subdominio para acceder a phpMyAdmin"
    msg_subdominio_pma_solicitar="🌐 Por favor, ingrese el subdominio para acceder a phpMyAdmin:"
 
-   msg_subdominio_mautic="⚙️ Configurar el subdominio para acceder a Mautic"
+   msg_subdominio_mautic="⚙️  Configurar el subdominio para acceder a Mautic"
    msg_subdominio_mautic_solicitar="🌐 Por favor, ingrese el subdominio para acceder a Mautic:"
 
    msg_subdominio_valido="✅ Subdominio válido:"
@@ -383,7 +383,7 @@ definir_mensagens() {
    msg_senha_requisito_numero="Contener al menos 1 número"
    msg_senha_requisito_especial="Contener al menos 1 carácter especial ! @ # $ % & *"
 
-   msg_traefik_obter_email="⚙️ Introduzca su correo electrónico para configurar Let's Encrypt (certificado SSL) en Traefik:"
+   msg_traefik_obter_email="⚙️  Introduzca su correo electrónico para configurar Let's Encrypt (certificado SSL) en Traefik:"
    
    msg_email_solicitar="📧 Por favor, introduzca su correo electrónico:"
    msg_email_valido="✅ Correo electrónico válido:"
@@ -410,7 +410,7 @@ definir_mensagens() {
    msg_docker_chave_gpg_ok="✅ Clave GPG añadida con éxito."
    msg_docker_chave_gpg_erro="❌ Error al añadir la clave GPG."
 
-   msg_repositorio_docker="⚙️ Configurando Repositorios de Docker"
+   msg_repositorio_docker="⚙️  Configurando Repositorios de Docker"
    msg_repositorio_docker_pular="⚠️ Los repositorios de Docker ya están configurados. Saltando."
    msg_repositorio_docker_ok="✅ Repositorios de Docker configurados con éxito."
    msg_repositorio_docker_erro="❌ Error al configurar los repositorios de Docker."
@@ -450,18 +450,18 @@ definir_mensagens() {
    ;;
   4)
    # Français
-   msg_dominio="⚙️ Configurer le domaine"
+   msg_dominio="⚙️  Configurer le domaine"
    msg_dominio_solicitar="🌐 Veuillez saisir un domaine :"
    msg_dominio_valido="✅ Domaine valide :"
    msg_dominio_invalido="❌ Domaine invalide. Veuillez réessayer."
 
-   msg_subdominio_portainer="⚙️ Configurer le sous-domaine pour accéder à Portainer"
+   msg_subdominio_portainer="⚙️  Configurer le sous-domaine pour accéder à Portainer"
    msg_subdominio_portainer_solicitar="🌐 Veuillez entrer le sous-domaine pour accéder à Portainer :"
 
-   msg_subdominio_pma="⚙️ Configurer le sous-domaine pour accéder à phpMyAdmin"
+   msg_subdominio_pma="⚙️  Configurer le sous-domaine pour accéder à phpMyAdmin"
    msg_subdominio_pma_solicitar="🌐 Veuillez entrer le sous-domaine pour accéder à phpMyAdmin :"
 
-   msg_subdominio_mautic="⚙️ Configurer le sous-domaine pour accéder à Mautic"
+   msg_subdominio_mautic="⚙️  Configurer le sous-domaine pour accéder à Mautic"
    msg_subdominio_mautic_solicitar="🌐 Veuillez entrer le sous-domaine pour accéder à Mautic :"
 
    msg_subdominio_valido="✅ Sous-domaine valide :"
@@ -483,7 +483,7 @@ definir_mensagens() {
    msg_senha_requisito_numero="Contenir au moins 1 chiffre"
    msg_senha_requisito_especial="Contenir au moins 1 caractère spécial ! @ # $ % & *"
 
-   msg_traefik_obter_email="⚙️ Veuillez saisir votre e-mail pour configurer Let's Encrypt (certificat SSL) sur Traefik :"
+   msg_traefik_obter_email="⚙️  Veuillez saisir votre e-mail pour configurer Let's Encrypt (certificat SSL) sur Traefik :"
    
    msg_email_solicitar="📧 Veuillez saisir votre e-mail :"
    msg_email_valido="✅ E-mail valide :"
@@ -510,7 +510,7 @@ definir_mensagens() {
    msg_docker_chave_gpg_ok="✅ Clé GPG ajoutée avec succès."
    msg_docker_chave_gpg_erro="❌ Erreur lors de l'ajout de la clé GPG."
 
-   msg_repositorio_docker="⚙️ Configuration des dépôts Docker"
+   msg_repositorio_docker="⚙️  Configuration des dépôts Docker"
    msg_repositorio_docker_pular="⚠️ Les dépôts Docker sont déjà configurés. Ignorer."
    msg_repositorio_docker_ok="✅ Dépôts Docker configurés avec succès."
    msg_repositorio_docker_erro="❌ Erreur lors de la configuration des dépôts Docker."
@@ -550,18 +550,18 @@ definir_mensagens() {
    ;;
   5)
    # Italiano
-   msg_dominio="⚙️ Configurare il dominio"
+   msg_dominio="⚙️  Configurare il dominio"
    msg_dominio_solicitar="🌐 Per favore, inserisci un dominio:"
    msg_dominio_valido="✅ Dominio valido:"
    msg_dominio_invalido="❌ Dominio non valido. Per favore, riprova."
 
-   msg_subdominio_portainer="⚙️ Configurare il sottodominio per accedere a Portainer"
+   msg_subdominio_portainer="⚙️  Configurare il sottodominio per accedere a Portainer"
    msg_subdominio_portainer_solicitar="🌐 Per favore, inserisci il sottodominio per accedere a Portainer:"
 
-   msg_subdominio_pma="⚙️ Configurare il sottodominio per accedere a phpMyAdmin"
+   msg_subdominio_pma="⚙️  Configurare il sottodominio per accedere a phpMyAdmin"
    msg_subdominio_pma_solicitar="🌐 Per favore, inserisci il sottodominio per accedere a phpMyAdmin:"
 
-   msg_subdominio_mautic="⚙️ Configurare il sottodominio per accedere a Mautic"
+   msg_subdominio_mautic="⚙️  Configurare il sottodominio per accedere a Mautic"
    msg_subdominio_mautic_solicitar="🌐 Per favore, inserisci il sottodominio per accedere a Mautic:"
 
    msg_subdominio_valido="✅ Sottodominio valido:"
@@ -583,7 +583,7 @@ definir_mensagens() {
    msg_senha_requisito_numero="Contenere almeno 1 numero"
    msg_senha_requisito_especial="Contenere almeno 1 carattere speciale ! @ # $ % & *"
 
-   msg_traefik_obter_email="⚙️ Inserisci la tua email per configurare Let's Encrypt (certificato SSL) su Traefik:"
+   msg_traefik_obter_email="⚙️  Inserisci la tua email per configurare Let's Encrypt (certificato SSL) su Traefik:"
    
    msg_email_solicitar="📧 Per favore, inserisci la tua email:"
    msg_email_valido="✅ Email valida:"
@@ -610,7 +610,7 @@ definir_mensagens() {
    msg_docker_chave_gpg_ok="✅ Chiave GPG aggiunta con successo."
    msg_docker_chave_gpg_erro="❌ Errore nell'aggiunta della chiave GPG."
 
-   msg_repositorio_docker="⚙️ Configurazione dei repository di Docker"
+   msg_repositorio_docker="⚙️  Configurazione dei repository di Docker"
    msg_repositorio_docker_pular="⚠️ I repository di Docker sono già configurati. Saltando."
    msg_repositorio_docker_ok="✅ Repository di Docker configurati con successo."
    msg_repositorio_docker_erro="❌ Errore nella configurazione dei repository di Docker."
