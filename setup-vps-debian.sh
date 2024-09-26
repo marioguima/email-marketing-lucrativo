@@ -13,7 +13,7 @@ SUBDOMINIO_MAUTIC_DEFAULT="leadmanager"
 # Função para exibir o menu 
 #---------------------------
 menu_idioma() {
-  printf "Escolha seu idioma / Choose your language / Elija su idioma / Choisissez votre langue / Scegli la tua lingua\n"
+  printf "🌍 Escolha seu idioma / Choose your language / Elija su idioma / Choisissez votre langue / Scegli la tua lingua\n"
   printf "1) Português - Digite 1 e pressione ENTER\n"
   printf "2) English   - Enter 2 and press ENTER\n"
   printf "3) Español   - Escriba 3 y presione ENTER\n"
