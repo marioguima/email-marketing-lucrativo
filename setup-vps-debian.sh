@@ -41,7 +41,7 @@ print_with_line() {
   local repeticao=$(printf "%${tamanho}s" | tr " " "$caracter")
 
   echo "$repeticao" # Exibe a linha de caracteres superior
-  echo "$texto"   # Exibe o texto
+  echo -e "$texto"   # Exibe o texto
   echo "$repeticao" # Exibe a linha de caracteres inferior
 }
 
