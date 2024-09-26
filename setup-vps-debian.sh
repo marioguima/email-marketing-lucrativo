@@ -34,7 +34,7 @@ print_with_line() {
   # Verifica se um caractere foi passado como segundo parâmetro
   local caracter="$2"
   if [ -z "$caracter" ]; then
-    caracter="="           # Usa '=' como padrão
+    caracter="-"           # Usa '-' como padrão
   fi
 
   # Repete o caractere pelo tamanho da string
