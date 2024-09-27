@@ -18,7 +18,7 @@ services:
     image: portainer/portainer-ce:sts
     command: -H tcp://tasks.agent:9001 --tlsskipverify
     environment:
-      - ADMIN_USERNAME=admin  # Define o nome do administrador
+      - ADMIN_USERNAME=CHANGE_PORTAINER_ADMIN_USERNAME  # Define o nome do administrador
       - ADMIN_PASSWORD=CHANGE_PORTAINER_ADMIN_PASSWORD  # Define a senha do administrador
     volumes:
       - portainer_data:/data

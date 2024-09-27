@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.5"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.6"
 echo ""
 echo ""
 
@@ -12,6 +12,9 @@ echo ""
 SUBDOMINIO_PMA_DEFAULT="pma"
 SUBDOMINIO_PORTAINER_DEFAULT="painel"
 SUBDOMINIO_MAUTIC_DEFAULT="leadmanager"
+# Defina as variáveis do Portainer
+PORTAINER_URL_LOCAL_API="http://localhost:9000/api"
+PORTAINER_ADMIN_USERNAME="admin"
 
 #---------------------------
 # Função para exibir o menu
@@ -973,6 +976,7 @@ echo ""
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-portainer.yml |
     sed -e "s/CHANGE_PORTAINER_ADMIN_PASSWORD/${CHANGE_PORTAINER_ADMIN_PASSWORD}/g" \
+        -e "s/CHANGE_PORTAINER_ADMIN_USERNAME/${PORTAINER_ADMIN_USERNAME}/g" \
         -e "s/CHANGE_URL_PORTAINER/${SUBDOMINIO_PORTAINER}.${DOMINIO}/g" >stack-portainer.yml
 
 if [[ -s stack-portainer.yml ]]; then
@@ -1194,13 +1198,9 @@ else
 fi
 echo ""
 
-echo "Parou para verificação"
-echo ""
-exit 1
-
-##########################
-# Subir stack do Traefik #
-##########################
+###########################
+# Deploy stack do Traefik #
+###########################
 echo ""
 print_with_line "$msg_stack_traefik_deploy"
 echo ""
@@ -1216,9 +1216,9 @@ else
 fi
 echo ""
 
-############################
-# Subir stack do Portainer #
-############################
+#############################
+# Deploy stack do Portainer #
+#############################
 echo ""
 print_with_line "$msg_stack_portainer_deploy"
 echo ""
@@ -1233,6 +1233,111 @@ else
     exit 1
 fi
 echo ""
+
+#################
+# Portainer API #
+#################
+
+# Esperar o Portainer ficar disponível
+echo "Aguardando o Portainer iniciar..."
+while ! curl -s "$PORTAINER_URL_LOCAL_API" >/dev/null; do
+    echo "Aguardando..."
+    sleep 5
+done
+
+# Autenticar no Portainer e obter o token JWT
+auth_response=$(curl -s -X POST -H "Content-Type: application/json" \
+    -d '{"Username":"'"$PORTAINER_ADMIN_USERNAME"'","Password":"'"$CHANGE_PORTAINER_ADMIN_PASSWORD"'"}' \
+    "$PORTAINER_URL_LOCAL_API/auth")
+
+# Extrair o token do JSON de resposta
+PORTAINER_TOKEN=$(echo $auth_response | jq -r .jwt)
+
+# Verificar se o token foi obtido corretamente
+if [[ "$PORTAINER_TOKEN" == "null" ]]; then
+    echo "Erro na autenticação. Verifique o usuário e a senha."
+    exit 1
+fi
+
+echo "Autenticação no Portainer bem-sucedida."
+
+#------------------------------
+# Função Deploy Stack Portainer
+#------------------------------
+deploy_stack_portainer() {
+    local STACK_NAME=$1
+    local COMPOSE_FILE_PATH=$2
+
+    # Enviar a stack para o Portainer
+    response=$(curl -s -X POST "$PORTAINER_URL_LOCAL_API/stacks" \
+        -H "Authorization: Bearer $PORTAINER_TOKEN" \
+        -F "method=file" \
+        -F "name=$STACK_NAME" \
+        -F "endpointId=1" \
+        -F "composeFile=@$COMPOSE_FILE_PATH")
+
+    # Exibir a resposta da API para depuração
+    echo "Resposta da API do Portainer:"
+    echo "$response"
+
+    # Verificar se a resposta contém erros
+    if [[ $response == *"err"* || $response == *"error"* ]]; then
+        echo "❌ Erro ao implantar a stack: $STACK_NAME"
+    else
+        echo "✅ Stack $STACK_NAME implantada com sucesso."
+    fi
+}
+
+#-------------------------------------------------
+# Função para verificar se o MySQL está disponível
+#-------------------------------------------------
+wait_for_mysql() {
+    local MYSQL_HOST=$1
+    local MYSQL_USER=$2
+    local MYSQL_PASSWORD=$3
+    local RETRIES=20 # Número máximo de tentativas
+    local DELAY=5    # Intervalo entre tentativas (em segundos)
+
+    echo "⏳ Aguardando o MySQL ficar disponível..."
+
+    for i in $(seq 1 $RETRIES); do
+        if mysql -h"$MYSQL_HOST" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "SELECT 1;" >/dev/null 2>&1; then
+            echo "✅ MySQL está disponível!"
+            return 0
+        else
+            echo "🔄 Tentativa $i de $RETRIES: MySQL ainda não está disponível, aguardando $DELAY segundos..."
+            sleep $DELAY
+        fi
+    done
+
+    echo "❌ Falha ao conectar ao MySQL após $RETRIES tentativas."
+    return 1
+}
+
+########################################
+# Deploy stack MySql via Portainer API #
+########################################
+STACK_MYSQL_NAME="mysql_mautic"
+COMPOSE_MYSQL_PATH="stack-mysql-mautic.yml"
+deploy_stack_portainer "$STACK_MYSQL_NAME" "$COMPOSE_MYSQL_PATH"
+
+#########################################
+# Deploy stack Mautic via Portainer API #
+#########################################
+STACK_MAUTIC_NAME="mautic"
+COMPOSE_MAUTIC_PATH="stack-mautic.yml"
+
+MYSQL_HOST="$STACK_MYSQL_NAME"               # Substitua pelo host do MySQL no ambiente Docker
+MYSQL_USER="root"                            # Substitua pelo usuário do MySQL
+MYSQL_PASSWORD="$CHANGE_MYSQL_ROOT_PASSWORD" # Substitua pela senha do MySQL
+
+# Aguardar o MySQL ficar disponível
+if wait_for_mysql "$MYSQL_HOST" "$MYSQL_USER" "$MYSQL_PASSWORD"; then
+    # Deploy do Mautic se o MySQL estiver disponível
+    deploy_stack_portainer "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
+else
+    echo "❌ O deploy do Mautic foi cancelado porque o MySQL não está disponível."
+fi
 
 echo -e "\n$msg_script_executado_ok"
 echo ""
