@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.7"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.8"
 echo ""
 echo ""
 
@@ -198,10 +198,6 @@ definir_mensagens() {
         msg_stack_traefik_ok="✅ Stack Traefik baixada e e-mail substituído com sucesso."
         msg_stack_traefik_erro="❌ Erro: Arquivo final da Stack Traefik está vazio ou não foi gerado corretamente."
 
-        msg_gerar_hash_senha_portain="Gerando o hash da senha do Portainer"
-        msg_gerar_hash_senha_portain_erro="❌ Erro ao gerar o hash da senha."
-        msg_gerar_hash_senha_portain_ok="✅ Hash da senha gerado com sucesso."
-
         msg_obter_stack_portainer="⬇️  Baixando Stack Portainer"
         msg_obter_stack_mysql="⬇️  Baixando Stack MySql"
         msg_obter_stack_pma="⬇️  Baixando Stack phpMyAdmin"
@@ -209,6 +205,19 @@ definir_mensagens() {
 
         msg_stack_ok="✅ Stack baixada e url substituída com sucesso."
         msg_stack_erro="❌ Erro: Arquivo final da Stack está vazio ou não foi gerado corretamente."
+
+        msg_portainer_definir_senha_admin="⚙️  Definindo a senha do admin no Portainer"
+        msg_portainer_definir_senha_admin_ok="✅ Senha do admin definida com sucesso no Portainer."
+        msg_portainer_definir_senha_admin_erro="❌ Erro ao definir a senha do admin no Portainer."
+
+        msg_portainer_autenticacao_token="⚙️  Autenticando no Portainer para obter o token JWT"
+        msg_portainer_autenticacao_token_ok="✅ Autenticação no Portainer bem-sucedida."
+        msg_portainer_autenticacao_token_erro="❌ Erro na autenticação. Verifique o usuário e a senha."
+
+        msg_mysql_aguardando="⏳ Verificando se o MySQL está disponível"
+        msg_mysql_disponivel="✅ MySQL está disponível!"
+        msg_mysql_falha="❌ Falha ao conectar ao MySQL após _RETRIES_ tentativas."
+        msg_mysql_aguardando_segundos="🔄 Tentativa _ATTEMPT_ de _RETRIES_: MySQL ainda não está disponível..."
 
         msg_repository="⚙️  Atualizando Repositórios"
         msg_repository_ok="✅ Repositórios atualizados com sucesso."
@@ -309,10 +318,6 @@ definir_mensagens() {
         msg_stack_traefik_ok="✅ Traefik stack downloaded and email successfully replaced."
         msg_stack_traefik_erro="❌ Error: Final Traefik Stack file is empty or was not generated correctly."
 
-        msg_gerar_hash_senha_portain="Generating the Portainer password hash"
-        msg_gerar_hash_senha_portain_erro="❌ Error generating the password hash."
-        msg_gerar_hash_senha_portain_ok="✅ Password hash successfully generated."
-
         msg_obter_stack_portainer="⬇️  Downloading Portainer Stack"
         msg_obter_stack_mysql="⬇️  Downloading MySQL Stack"
         msg_obter_stack_pma="⬇️  Downloading phpMyAdmin Stack"
@@ -320,6 +325,19 @@ definir_mensagens() {
 
         msg_stack_ok="✅ Portainer stack downloaded and url successfully replaced."
         msg_stack_erro="❌ Error: Final Portainer Stack file is empty or was not generated correctly."
+
+        msg_portainer_definir_senha_admin="⚙️  Setting the admin password in Portainer"
+        msg_portainer_definir_senha_admin_ok="✅ Admin password successfully set in Portainer."
+        msg_portainer_definir_senha_admin_erro="❌ Error setting the admin password in Portainer."
+
+        msg_portainer_autenticacao_token="⚙️  Authenticating with Portainer to obtain the JWT token"
+        msg_portainer_autenticacao_token_ok="✅ Authentication with Portainer successful."
+        msg_portainer_autenticacao_token_erro="❌ Authentication error. Check the username and password."
+
+        msg_mysql_aguardando="⏳ Checking if MySQL is available"
+        msg_mysql_disponivel="✅ MySQL is available!"
+        msg_mysql_falha="❌ Failed to connect to MySQL after _RETRIES_ attempts."
+        msg_mysql_aguardando_segundos="🔄 Attempt _ATTEMPT_ of _RETRIES_: MySQL is still unavailable..."
 
         msg_repository="⚙️  Updating Repositories"
         msg_repository_ok="✅ Repositories successfully updated."
@@ -420,10 +438,6 @@ definir_mensagens() {
         msg_stack_traefik_ok="✅ Stack de Traefik descargada y correo electrónico reemplazado con éxito."
         msg_stack_traefik_erro="❌ Error: El archivo final de la Stack de Traefik está vacío o no se generó correctamente."
 
-        msg_gerar_hash_senha_portain="Generando el hash de la contraseña de Portainer"
-        msg_gerar_hash_senha_portain_erro="❌ Error al generar el hash de la contraseña."
-        msg_gerar_hash_senha_portain_ok="✅ Hash de la contraseña generado con éxito."
-
         msg_obter_stack_portainer="⬇️  Descargando la Stack de Portainer"
         msg_obter_stack_mysql="⬇️  Descargando Stack de MySQL"
         msg_obter_stack_pma="⬇️  Descargando Stack de phpMyAdmin"
@@ -431,6 +445,19 @@ definir_mensagens() {
 
         msg_stack_ok="✅ Stack de Portainer descargada y url reemplazado con éxito."
         msg_stack_erro="❌ Error: El archivo final de la Stack de Portainer está vacío o no se generó correctamente."
+
+        msg_portainer_definir_senha_admin="⚙️  Configurando la contraseña de administrador en Portainer"
+        msg_portainer_definir_senha_admin_ok="✅ Contraseña de administrador configurada con éxito en Portainer."
+        msg_portainer_definir_senha_admin_erro="❌ Error al configurar la contraseña de administrador en Portainer."
+
+        msg_portainer_autenticacao_token="⚙️  Autenticando en Portainer para obtener el token JWT"
+        msg_portainer_autenticacao_token_ok="✅ Autenticación en Portainer exitosa."
+        msg_portainer_autenticacao_token_erro="❌ Error de autenticación. Verifique el nombre de usuario y la contraseña."
+
+        msg_mysql_aguardando="⏳ Verificando si MySQL está disponible"
+        msg_mysql_disponivel="✅ MySQL está disponible!"
+        msg_mysql_falha="❌ Falló al conectar a MySQL después de _RETRIES_ intentos."
+        msg_mysql_aguardando_segundos="🔄 Intento _ATTEMPT_ de _RETRIES_: MySQL aún no está disponible..."
 
         msg_repository="⚙️  Actualizando Repositorios"
         msg_repository_ok="✅ Repositorios actualizados con éxito."
@@ -531,10 +558,6 @@ definir_mensagens() {
         msg_stack_traefik_ok="✅ Stack Traefik téléchargée et e-mail remplacé avec succès."
         msg_stack_traefik_erro="❌ Erreur : Le fichier final de la Stack Traefik est vide ou n'a pas été généré correctement."
 
-        msg_gerar_hash_senha_portain="Génération du hachage du mot de passe Portainer"
-        msg_gerar_hash_senha_portain_erro="❌ Erreur lors de la génération du hachage du mot de passe."
-        msg_gerar_hash_senha_portain_ok="✅ Hachage du mot de passe généré avec succès."
-
         msg_obter_stack_portainer="⬇️  Téléchargement de la Stack Portainer"
         msg_obter_stack_mysql="⬇️  Téléchargement de la Stack MySQL"
         msg_obter_stack_pma="⬇️  Téléchargement de la Stack phpMyAdmin"
@@ -542,6 +565,19 @@ definir_mensagens() {
 
         msg_stack_ok="✅ Stack Portainer téléchargée et url remplacé avec succès."
         msg_stack_erro="❌ Erreur : Le fichier final de la Stack Portainer est vide ou n'a pas été généré correctement."
+
+        msg_portainer_definir_senha_admin="⚙️  Définition du mot de passe administrateur dans Portainer"
+        msg_portainer_definir_senha_admin_ok="✅ Mot de passe administrateur défini avec succès dans Portainer."
+        msg_portainer_definir_senha_admin_erro="❌ Erreur lors de la définition du mot de passe administrateur dans Portainer."
+
+        msg_portainer_autenticacao_token="⚙️  Authentification avec Portainer pour obtenir le jeton JWT"
+        msg_portainer_autenticacao_token_ok="✅ Authentification réussie avec Portainer."
+        msg_portainer_autenticacao_token_erro="❌ Erreur d'authentification. Vérifiez le nom d'utilisateur et le mot de passe."
+
+        msg_mysql_aguardando="⏳ Vérification de la disponibilité de MySQL"
+        msg_mysql_disponivel="✅ MySQL est disponible !"
+        msg_mysql_falha="❌ Échec de la connexion à MySQL après _RETRIES_ tentatives."
+        msg_mysql_aguardando_segundos="🔄 Tentative _ATTEMPT_ de _RETRIES_: MySQL est toujours indisponible..."
 
         msg_repository="⚙️  Mise à jour des dépôts"
         msg_repository_ok="✅ Dépôts mis à jour avec succès."
@@ -642,10 +678,6 @@ definir_mensagens() {
         msg_stack_traefik_ok="✅ Stack Traefik scaricata e email sostituita con successo."
         msg_stack_traefik_erro="❌ Errore: Il file finale della Stack Traefik è vuoto o non è stato generato correttamente."
 
-        msg_gerar_hash_senha_portain="Gerando o hash da senha do Portainer"
-        msg_gerar_hash_senha_portain_erro="❌ Erro ao gerar o hash da senha."
-        msg_gerar_hash_senha_portain_ok="✅ Hash da senha gerado com sucesso."
-
         msg_obter_stack_portainer="⬇️  Scaricamento della Stack Portainer"
         msg_obter_stack_mysql="⬇️  Scaricamento Stack MySQL"
         msg_obter_stack_pma="⬇️  Scaricamento Stack phpMyAdmin"
@@ -653,6 +685,19 @@ definir_mensagens() {
 
         msg_stack_ok="✅ Stack Portainer scaricata e url sostituita con successo."
         msg_stack_erro="❌ Errore: Il file finale della Stack Portainer è vuoto o non è stato generato correttamente."
+
+        msg_portainer_definir_senha_admin="⚙️  Impostazione della password amministratore in Portainer"
+        msg_portainer_definir_senha_admin_ok="✅ Password amministratore impostata con successo in Portainer."
+        msg_portainer_definir_senha_admin_erro="❌ Errore durante l'impostazione della password amministratore in Portainer."
+
+        msg_portainer_autenticacao_token="⚙️  Autenticazione su Portainer per ottenere il token JWT"
+        msg_portainer_autenticacao_token_ok="✅ Autenticazione su Portainer riuscita."
+        msg_portainer_autenticacao_token_erro="❌ Errore di autenticazione. Verifica nome utente e password."
+
+        msg_mysql_aguardando="⏳ Verificando se MySQL è disponibile"
+        msg_mysql_disponivel="✅ MySQL è disponibile!"
+        msg_mysql_falha="❌ Impossibile connettersi a MySQL dopo _RETRIES_ tentativi."
+        msg_mysql_aguardando_segundos="🔄 Tentativo _ATTEMPT_ di _RETRIES_: MySQL è ancora non disponibile..."
 
         msg_repository="⚙️  Aggiornamento dei repository"
         msg_repository_ok="✅ Repository aggiornati con successo."
@@ -986,25 +1031,6 @@ else
 fi
 echo ""
 
-######################################
-# Gerar o hash da senha do Portainer #
-######################################
-echo ""
-print_with_line "$msg_gerar_hash_senha_portain"
-echo ""
-
-CHANGE_PORTAINER_ADMIN_PASSWORD=$(docker run --rm httpd:2.4-alpine htpasswd -nbB admin "${CHANGE_PORTAINER_ADMIN_PASSWORD}" | cut -d ":" -f 2 | sed 's/\$/\$\$/g')
-
-echo ""
-
-# Testar se o hash foi gerado com sucesso
-if [[ -z "$CHANGE_PORTAINER_ADMIN_PASSWORD" ]]; then
-    echo -e "$msg_gerar_hash_senha_portain_erro"
-    exit 1
-fi
-
-echo -e "$msg_gerar_hash_senha_portain_ok"
-
 ##########################
 # Baixar stack Portainer #
 ##########################
@@ -1012,9 +1038,7 @@ echo ""
 print_with_line "$msg_obter_stack_portainer"
 echo ""
 
-curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-portainer.yml |
-    sed -e "s/CHANGE_PORTAINER_ADMIN_PASSWORD/${CHANGE_PORTAINER_ADMIN_PASSWORD}/g" \
-        -e "s/CHANGE_URL_PORTAINER/${SUBDOMINIO_PORTAINER}.${DOMINIO}/g" >stack-portainer.yml
+curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-portainer.yml | sed "s/CHANGE_URL_PORTAINER/${SUBDOMINIO_PORTAINER}.${DOMINIO}/g" >stack-portainer.yml
 
 if [[ -s stack-portainer.yml ]]; then
     echo -e "$msg_stack_ok"
@@ -1271,18 +1295,33 @@ else
 fi
 echo ""
 
-#################
-# Portainer API #
-#################
+############################################
+# Portainer API - Definindo senha do admin #
+############################################
+echo ""
+print_with_line "$msg_portainer_definir_senha_admin"
+echo ""
 
-# Esperar o Portainer ficar disponível
-echo "Aguardando o Portainer iniciar..."
-while ! curl -s "$PORTAINER_URL_LOCAL_API" >/dev/null; do
-    echo "Aguardando..."
-    sleep 5
-done
+# Definir a senha do admin usando o endpoint de inicialização
+admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
+    -d '{"Username":"admin","Password":"'"$CHANGE_PORTAINER_ADMIN_PASSWORD"'"}' \
+    "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
 
-# Autenticar no Portainer e obter o token JWT
+# Verificar se houve algum erro
+if [[ "$admin_init_response" == *"err"* || "$admin_init_response" == *"error"* ]]; then
+    echo -e "$msg_portainer_definir_senha_admin_erro"
+    exit 1
+else
+    echo -e "$msg_portainer_definir_senha_admin_ok"
+fi
+
+###############################################################
+# Portainer API - Autenticar no Portainer e obter o token JWT #
+###############################################################
+echo ""
+print_with_line "$msg_portainer_autenticacao_token"
+echo ""
+
 auth_response=$(curl -s -X POST -H "Content-Type: application/json" \
     -d '{"Username":"'"admin"'","Password":"'"$CHANGE_PORTAINER_ADMIN_PASSWORD"'"}' \
     "$PORTAINER_URL_LOCAL_API/auth")
@@ -1292,11 +1331,13 @@ PORTAINER_TOKEN=$(echo $auth_response | jq -r .jwt)
 
 # Verificar se o token foi obtido corretamente
 if [[ "$PORTAINER_TOKEN" == "null" ]]; then
-    echo "Erro na autenticação. Verifique o usuário e a senha."
+    echo -e "$msg_portainer_autenticacao_token_erro"
+    echo ""
     exit 1
 fi
 
-echo "Autenticação no Portainer bem-sucedida."
+echo -e "$msg_portainer_autenticacao_token_ok"
+echo ""
 
 #------------------------------
 # Função Deploy Stack Portainer
@@ -1325,6 +1366,22 @@ deploy_stack_portainer() {
     fi
 }
 
+#-----------------------------------------
+# Função para exibir o contador e aguardar
+#-----------------------------------------
+aguardar() {
+    local segundos=$1
+
+    for ((i = 1; i <= segundos; i++)); do
+        # Mostra o contador na mesma linha
+        echo -ne "Aguardando: $i de $segundos segundos\r"
+        sleep 1
+    done
+
+    # Garante que a próxima linha seja exibida corretamente
+    echo ""
+}
+
 #-------------------------------------------------
 # Função para verificar se o MySQL está disponível
 #-------------------------------------------------
@@ -1334,20 +1391,31 @@ wait_for_mysql() {
     local MYSQL_PASSWORD=$3
     local RETRIES=20 # Número máximo de tentativas
     local DELAY=5    # Intervalo entre tentativas (em segundos)
+    local attempt=0  # Contador de tentativas
 
-    echo "⏳ Aguardando o MySQL ficar disponível..."
+    # Substituindo as variáveis nas mensagens com os valores atuais
+    local msg_mysql_falha_completa=${msg_mysql_falha//_RETRIES_/$RETRIES}
 
-    for i in $(seq 1 $RETRIES); do
+    echo "$msg_mysql_aguardando"
+
+    # Loop até que o MySQL esteja disponível ou o número máximo de tentativas seja atingido
+    while [ $attempt -lt $RETRIES ]; do
         if mysql -h"$MYSQL_HOST" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "SELECT 1;" >/dev/null 2>&1; then
-            echo "✅ MySQL está disponível!"
+            echo "$msg_mysql_disponivel"
             return 0
         else
-            echo "🔄 Tentativa $i de $RETRIES: MySQL ainda não está disponível, aguardando $DELAY segundos..."
-            sleep $DELAY
+            attempt=$((attempt + 1))
+
+            # Substitui _ATTEMPT_ e _RETRIES_ na mensagem
+            local msg_tentativa=${msg_mysql_aguardando_segundos//_ATTEMPT_/$attempt}
+            local msg_tentativa=${msg_tentativa//_RETRIES_/$RETRIES}
+
+            # Chama a função aguardar passando a mensagem atualizada
+            aguardar "$msg_tentativa" $DELAY
         fi
     done
 
-    echo "❌ Falha ao conectar ao MySQL após $RETRIES tentativas."
+    echo "$msg_mysql_falha_completa"
     return 1
 }
 
