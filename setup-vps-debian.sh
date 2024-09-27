@@ -14,7 +14,6 @@ SUBDOMINIO_PORTAINER_DEFAULT="painel"
 SUBDOMINIO_MAUTIC_DEFAULT="leadmanager"
 # Defina as variáveis do Portainer
 PORTAINER_URL_LOCAL_API="http://localhost:9000/api"
-PORTAINER_ADMIN_USERNAME="admin"
 
 #---------------------------
 # Função para exibir o menu
@@ -199,6 +198,10 @@ definir_mensagens() {
         msg_stack_traefik_ok="✅ Stack Traefik baixada e e-mail substituído com sucesso."
         msg_stack_traefik_erro="❌ Erro: Arquivo final da Stack Traefik está vazio ou não foi gerado corretamente."
 
+        msg_gerar_hash_senha_portain="Gerando o hash da senha do Portainer"
+        msg_gerar_hash_senha_portain_erro="❌ Erro ao gerar o hash da senha."
+        msg_gerar_hash_senha_portain_ok="✅ Hash da senha gerado com sucesso."
+
         msg_obter_stack_portainer="⬇️  Baixando Stack Portainer"
         msg_obter_stack_mysql="⬇️  Baixando Stack MySql"
         msg_obter_stack_pma="⬇️  Baixando Stack phpMyAdmin"
@@ -305,6 +308,10 @@ definir_mensagens() {
         msg_obter_stack_traefik="⬇️  Downloading Traefik Stack"
         msg_stack_traefik_ok="✅ Traefik stack downloaded and email successfully replaced."
         msg_stack_traefik_erro="❌ Error: Final Traefik Stack file is empty or was not generated correctly."
+
+        msg_gerar_hash_senha_portain="Generating the Portainer password hash"
+        msg_gerar_hash_senha_portain_erro="❌ Error generating the password hash."
+        msg_gerar_hash_senha_portain_ok="✅ Password hash successfully generated."
 
         msg_obter_stack_portainer="⬇️  Downloading Portainer Stack"
         msg_obter_stack_mysql="⬇️  Downloading MySQL Stack"
@@ -413,6 +420,10 @@ definir_mensagens() {
         msg_stack_traefik_ok="✅ Stack de Traefik descargada y correo electrónico reemplazado con éxito."
         msg_stack_traefik_erro="❌ Error: El archivo final de la Stack de Traefik está vacío o no se generó correctamente."
 
+        msg_gerar_hash_senha_portain="Generando el hash de la contraseña de Portainer"
+        msg_gerar_hash_senha_portain_erro="❌ Error al generar el hash de la contraseña."
+        msg_gerar_hash_senha_portain_ok="✅ Hash de la contraseña generado con éxito."
+
         msg_obter_stack_portainer="⬇️  Descargando la Stack de Portainer"
         msg_obter_stack_mysql="⬇️  Descargando Stack de MySQL"
         msg_obter_stack_pma="⬇️  Descargando Stack de phpMyAdmin"
@@ -520,6 +531,10 @@ definir_mensagens() {
         msg_stack_traefik_ok="✅ Stack Traefik téléchargée et e-mail remplacé avec succès."
         msg_stack_traefik_erro="❌ Erreur : Le fichier final de la Stack Traefik est vide ou n'a pas été généré correctement."
 
+        msg_gerar_hash_senha_portain="Génération du hachage du mot de passe Portainer"
+        msg_gerar_hash_senha_portain_erro="❌ Erreur lors de la génération du hachage du mot de passe."
+        msg_gerar_hash_senha_portain_ok="✅ Hachage du mot de passe généré avec succès."
+
         msg_obter_stack_portainer="⬇️  Téléchargement de la Stack Portainer"
         msg_obter_stack_mysql="⬇️  Téléchargement de la Stack MySQL"
         msg_obter_stack_pma="⬇️  Téléchargement de la Stack phpMyAdmin"
@@ -626,6 +641,10 @@ definir_mensagens() {
         msg_obter_stack_traefik="⬇️  Scaricamento della Stack Traefik"
         msg_stack_traefik_ok="✅ Stack Traefik scaricata e email sostituita con successo."
         msg_stack_traefik_erro="❌ Errore: Il file finale della Stack Traefik è vuoto o non è stato generato correttamente."
+
+        msg_gerar_hash_senha_portain="Gerando o hash da senha do Portainer"
+        msg_gerar_hash_senha_portain_erro="❌ Erro ao gerar o hash da senha."
+        msg_gerar_hash_senha_portain_ok="✅ Hash da senha gerado com sucesso."
 
         msg_obter_stack_portainer="⬇️  Scaricamento della Stack Portainer"
         msg_obter_stack_mysql="⬇️  Scaricamento Stack MySQL"
@@ -967,6 +986,25 @@ else
 fi
 echo ""
 
+######################################
+# Gerar o hash da senha do Portainer #
+######################################
+echo ""
+print_with_line "$msg_gerar_hash_senha_portain"
+echo ""
+
+CHANGE_PORTAINER_ADMIN_PASSWORD=$(docker run --rm httpd:2.4-alpine htpasswd -nbB admin "${CHANGE_PORTAINER_ADMIN_PASSWORD}" | cut -d ":" -f 2 | sed 's/\$/\$\$/g')
+
+echo ""
+
+# Testar se o hash foi gerado com sucesso
+if [[ -z "$CHANGE_PORTAINER_ADMIN_PASSWORD" ]]; then
+    echo -e "$msg_gerar_hash_senha_portain_erro"
+    exit 1
+fi
+
+echo -e "$msg_gerar_hash_senha_portain_ok"
+
 ##########################
 # Baixar stack Portainer #
 ##########################
@@ -976,7 +1014,6 @@ echo ""
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-portainer.yml |
     sed -e "s/CHANGE_PORTAINER_ADMIN_PASSWORD/${CHANGE_PORTAINER_ADMIN_PASSWORD}/g" \
-        -e "s/CHANGE_PORTAINER_ADMIN_USERNAME/${PORTAINER_ADMIN_USERNAME}/g" \
         -e "s/CHANGE_URL_PORTAINER/${SUBDOMINIO_PORTAINER}.${DOMINIO}/g" >stack-portainer.yml
 
 if [[ -s stack-portainer.yml ]]; then
@@ -1247,7 +1284,7 @@ done
 
 # Autenticar no Portainer e obter o token JWT
 auth_response=$(curl -s -X POST -H "Content-Type: application/json" \
-    -d '{"Username":"'"$PORTAINER_ADMIN_USERNAME"'","Password":"'"$CHANGE_PORTAINER_ADMIN_PASSWORD"'"}' \
+    -d '{"Username":"'"admin"'","Password":"'"$CHANGE_PORTAINER_ADMIN_PASSWORD"'"}' \
     "$PORTAINER_URL_LOCAL_API/auth")
 
 # Extrair o token do JSON de resposta
