@@ -888,7 +888,9 @@ echo ""
 print_with_line "$msg_obter_stack_portainer"
 echo ""
 
-curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-portainer.yml | sed "s/CHANGE_URL_PORTAINER/${SUBDOMINIO_PORTAINER}.${DOMINIO}/g" >stack-portainer.yml
+curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-portainer.yml |
+    sed -e "s/CHANGE_PORTAINER_ADMIN_PASSWORD/${CHANGE_PORTAINER_ADMIN_PASSWORD}/g" \
+        -e "s/CHANGE_URL_PORTAINER/${SUBDOMINIO_PORTAINER}.${DOMINIO}/g" >stack-portainer.yml
 
 if [[ -s stack-portainer.yml ]]; then
     echo -e "$msg_stack_ok"
