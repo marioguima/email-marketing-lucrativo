@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.14"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.15"
 echo ""
 echo ""
 
@@ -1329,8 +1329,12 @@ print_with_line "$msg_portainer_autenticacao_token"
 echo ""
 
 auth_response=$(curl -s -X POST -H "Content-Type: application/json" \
-    -d '{"Username":"'"admin"'","Password":"'"$CHANGE_PORTAINER_ADMIN_PASSWORD"'"}' \
+    -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
     "$PORTAINER_URL_LOCAL_API/api/auth")
+
+echo "Retorno da autenticação no Portainer"
+echo $auth_response
+echo ""
 
 # Extrair o token do JSON de resposta
 PORTAINER_TOKEN=$(echo $auth_response | jq -r .jwt)
@@ -1343,6 +1347,7 @@ if [[ "$PORTAINER_TOKEN" == "null" ]]; then
 fi
 
 echo -e "$msg_portainer_autenticacao_token_ok"
+echo "Token: $PORTAINER_TOKEN"
 echo ""
 
 #------------------------------
@@ -1365,6 +1370,7 @@ deploy_stack_portainer() {
     # Exibir a resposta da API para depuração
     echo "Resposta da API do Portainer:"
     echo "$response"
+    echo ""
 
     # Verificar se a resposta contém erros
     if [[ $response == *"err"* || $response == *"error"* ]]; then
@@ -1425,7 +1431,7 @@ wait_for_mysql() {
             echo "$DELAY"
 
             # Chama a função aguardar passando a mensagem atualizada
-            aguardar "$msg_tentativa" $DELAY
+            aguardar $DELAY
         fi
     done
 
