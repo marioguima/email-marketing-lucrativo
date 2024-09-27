@@ -188,7 +188,7 @@ definir_mensagens() {
         msg_email_informado="✅ Email informado:"
         msg_email_invalido="❌ Email inválido. Tente novamente."
 
-        msg_obter_stack_traefik="⬇️  Baixando Stack Traefik:"
+        msg_obter_stack_traefik="⬇️  Baixando Stack Traefik"
         msg_stack_traefik_ok="✅ Stack Traefik baixada e e-mail substituído com sucesso."
         msg_stack_traefik_erro="❌ Erro: Arquivo final da Stack Traefik está vazio ou não foi gerado corretamente."
 
@@ -288,7 +288,7 @@ definir_mensagens() {
         msg_email_informado="✅ Email provided:"
         msg_email_invalido="❌ Invalid email. Please try again."
 
-        msg_obter_stack_traefik="⬇️  Downloading Traefik Stack:"
+        msg_obter_stack_traefik="⬇️  Downloading Traefik Stack"
         msg_stack_traefik_ok="✅ Traefik stack downloaded and email successfully replaced."
         msg_stack_traefik_erro="❌ Error: Final Traefik Stack file is empty or was not generated correctly."
 
@@ -388,7 +388,7 @@ definir_mensagens() {
         msg_email_informado="✅ Correo electrónico informado:"
         msg_email_invalido="❌ Correo electrónico inválido. Intente nuevamente."
 
-        msg_obter_stack_traefik="⬇️  Descargando la Stack de Traefik:"
+        msg_obter_stack_traefik="⬇️  Descargando la Stack de Traefik"
         msg_stack_traefik_ok="✅ Stack de Traefik descargada y correo electrónico reemplazado con éxito."
         msg_stack_traefik_erro="❌ Error: El archivo final de la Stack de Traefik está vacío o no se generó correctamente."
 
@@ -488,7 +488,7 @@ definir_mensagens() {
         msg_email_informado="✅ E-mail fourni :"
         msg_email_invalido="❌ E-mail invalide. Veuillez réessayer."
 
-        msg_obter_stack_traefik="⬇️  Téléchargement de la Stack Traefik :"
+        msg_obter_stack_traefik="⬇️  Téléchargement de la Stack Traefik"
         msg_stack_traefik_ok="✅ Stack Traefik téléchargée et e-mail remplacé avec succès."
         msg_stack_traefik_erro="❌ Erreur : Le fichier final de la Stack Traefik est vide ou n'a pas été généré correctement."
 
@@ -588,7 +588,7 @@ definir_mensagens() {
         msg_email_informado="✅ Email fornito:"
         msg_email_invalido="❌ Email non valida. Riprova."
 
-        msg_obter_stack_traefik="⬇️  Scaricamento della Stack Traefik:"
+        msg_obter_stack_traefik="⬇️  Scaricamento della Stack Traefik"
         msg_stack_traefik_ok="✅ Stack Traefik scaricata e email sostituita con successo."
         msg_stack_traefik_erro="❌ Errore: Il file finale della Stack Traefik è vuoto o non è stato generato correttamente."
 
