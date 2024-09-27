@@ -255,7 +255,7 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ Rede 'network_swarm_public' criada com sucesso."
         msg_docker_network_swarm_erro="❌ Erro ao criar a rede."
 
-        msg_stack_traefik_deploy="🖧 Subindo Stack Traefik"
+        msg_stack_traefik_deploy="🖧  Subindo Stack Traefik"
         msg_stack_traefik_deploy_ok="✅ Stack Traefik implantada com sucesso!"
         msg_stack_traefik_deploy_erro="❌ Erro ao implantar Stack Traefik."
 
@@ -375,7 +375,7 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ 'network_swarm_public' network created successfully."
         msg_docker_network_swarm_erro="❌ Error creating the network."
 
-        msg_stack_traefik_deploy="🖧 Deploying Traefik Stack"
+        msg_stack_traefik_deploy="🖧  Deploying Traefik Stack"
         msg_stack_traefik_deploy_ok="✅ Traefik Stack deployed successfully!"
         msg_stack_traefik_deploy_erro="❌ Error deploying Traefik Stack."
 
@@ -495,7 +495,7 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ Red 'network_swarm_public' creada con éxito."
         msg_docker_network_swarm_erro="❌ Error al crear la red."
 
-        msg_stack_traefik_deploy="🖧 Desplegando la Stack de Traefik"
+        msg_stack_traefik_deploy="🖧  Desplegando la Stack de Traefik"
         msg_stack_traefik_deploy_ok="✅ Stack de Traefik desplegada con éxito!"
         msg_stack_traefik_deploy_erro="❌ Error al desplegar la Stack de Traefik."
 
@@ -615,7 +615,7 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ Réseau 'network_swarm_public' créé avec succès."
         msg_docker_network_swarm_erro="❌ Erreur lors de la création du réseau."
 
-        msg_stack_traefik_deploy="🖧 Déploiement de la Stack Traefik"
+        msg_stack_traefik_deploy="🖧  Déploiement de la Stack Traefik"
         msg_stack_traefik_deploy_ok="✅ Stack Traefik déployée avec succès !"
         msg_stack_traefik_deploy_erro="❌ Erreur lors du déploiement de la Stack Traefik."
 
@@ -735,7 +735,7 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ Rete 'network_swarm_public' creata con successo."
         msg_docker_network_swarm_erro="❌ Errore nella creazione della rete."
 
-        msg_stack_traefik_deploy="🖧 Avvio della Stack Traefik"
+        msg_stack_traefik_deploy="🖧  Avvio della Stack Traefik"
         msg_stack_traefik_deploy_ok="✅ Stack Traefik avviata con successo!"
         msg_stack_traefik_deploy_erro="❌ Errore nell'avvio della Stack Traefik."
 
