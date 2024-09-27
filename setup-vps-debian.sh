@@ -1201,6 +1201,10 @@ else
 fi
 echo ""
 
+echo "Parou para verificação"
+echo ""
+exit 1
+
 ##########################
 # Subir stack do Traefik #
 ##########################
