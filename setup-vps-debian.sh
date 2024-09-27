@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.13"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.14"
 echo ""
 echo ""
 
@@ -1303,35 +1303,10 @@ echo ""
 print_with_line "$msg_portainer_definir_senha_admin"
 echo ""
 
-# echo "Variáveis antes de executar"
-# echo "Password: $CHANGE_PORTAINER_ADMIN_PASSWORD"
-# echo "URL: $PORTAINER_URL_LOCAL_API"
-# echo ""
-
-# echo "String completa do curl para ver como ela foi formada"
-# echo "curl -s -X POST -H \"Content-Type: application/json\" -d '{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}' \"$PORTAINER_URL_LOCAL_API/api/users/admin/init\""
-# echo ""
-
-# echo "Depuração do curl"
-# depuracao_curl=$(curl -v -X POST -H "Content-Type: application/json" \
-#     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
-#     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
-# echo depuracao_curl
-# echo ""
-
-# echo "Uso do --trace-ascii para gerar um arquivo de log da requisição"
-# trace-ascii=$(curl --trace-ascii /dev/stdout -X POST -H "Content-Type: application/json" \
-#     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
-#     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
-# echo trace-ascii
-
 # Definir a senha do admin usando o endpoint de inicialização
 admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
-
-echo "Retorno da chamada a api do Portainer para inicialização da senha do admin"
-echo $admin_init_response
 
 # Verificar se houve algum erro
 if [[ "$admin_init_response" == *"err"* || "$admin_init_response" == *"error"* ]]; then
@@ -1438,6 +1413,12 @@ wait_for_mysql() {
             # Substitui _ATTEMPT_ e _RETRIES_ na mensagem
             local msg_tentativa=${msg_mysql_aguardando_segundos//_ATTEMPT_/$attempt}
             local msg_tentativa=${msg_tentativa//_RETRIES_/$RETRIES}
+
+            echo "valor da variável msg_tentativa"
+            echo "$msg_tentativa"
+
+            echo "valor da variável DELAY"
+            echo "$DELAY"
 
             # Chama a função aguardar passando a mensagem atualizada
             aguardar "$msg_tentativa" $DELAY
