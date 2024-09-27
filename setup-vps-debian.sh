@@ -1368,7 +1368,7 @@ deploy_stack_portainer() {
     )
 
     # Exibir a resposta da API para depuração
-    echo "Resposta da API do Portainer:"
+    echo "deploy_stack_portainer: Resposta da API do Portainer:"
     echo "$response"
     echo ""
 
@@ -1440,6 +1440,7 @@ wait_for_mysql() {
 ########################################
 STACK_MYSQL_NAME="mysql_mautic"
 COMPOSE_MYSQL_PATH="stack-mysql-mautic.yml"
+
 deploy_stack_portainer "$STACK_MYSQL_NAME" "$COMPOSE_MYSQL_PATH"
 
 #########################################
@@ -1448,12 +1449,8 @@ deploy_stack_portainer "$STACK_MYSQL_NAME" "$COMPOSE_MYSQL_PATH"
 STACK_MAUTIC_NAME="mautic"
 COMPOSE_MAUTIC_PATH="stack-mautic.yml"
 
-MYSQL_HOST="$STACK_MYSQL_NAME"               # Substitua pelo host do MySQL no ambiente Docker
-MYSQL_USER="root"                            # Substitua pelo usuário do MySQL
-MYSQL_PASSWORD="$CHANGE_MYSQL_ROOT_PASSWORD" # Substitua pela senha do MySQL
-
 # Aguardar o MySQL ficar disponível
-if wait_for_mysql "$MYSQL_HOST" "$MYSQL_USER" "$MYSQL_PASSWORD"; then
+if wait_for_mysql "localhost:3306" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     # Deploy do Mautic se o MySQL estiver disponível
     deploy_stack_portainer "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
 else

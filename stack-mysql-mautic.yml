@@ -28,8 +28,8 @@ services:
     networks:
       - network_swarm_public
     # # Define as portas do container
-    # ports:
-    #  - 3306:3306
+    ports:
+     - 3306:3306
     # define o volume que vai armazenar os dados do MySQL
     volumes:
       - mysql_data:/var/lib/mysql
