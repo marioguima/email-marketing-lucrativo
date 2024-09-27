@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.4"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.5"
 echo ""
 echo ""
 
@@ -224,7 +224,6 @@ definir_mensagens() {
         msg_instalar_docker_pular="⚠️  Docker já instalado. Pulando."
 
         msg_docker_init_auto="🐋 Configurando Docker para iniciar automaticamente"
-        msg_docker_init_auto_pular="⚠️  Docker já configurado para iniciar automaticamente."
         msg_docker_init_auto_ok="✅ Serviço Docker configurado para iniciar automaticamente."
 
         msg_obter_ip="💻 Obtendo IP da máquina"
@@ -332,7 +331,6 @@ definir_mensagens() {
         msg_instalar_docker_pular="⚠️  Docker already installed. Skipping."
 
         msg_docker_init_auto="🐋 Configuring Docker to start automatically"
-        msg_docker_init_auto_pular="⚠️  Docker already configured to start automatically."
         msg_docker_init_auto_ok="✅ Docker service configured to start automatically."
 
         msg_obter_ip="💻 Obtaining machine IP"
@@ -440,7 +438,6 @@ definir_mensagens() {
         msg_instalar_docker_pular="⚠️  Docker ya está instalado. Saltando."
 
         msg_docker_init_auto="🐋 Configurando Docker para iniciar automáticamente"
-        msg_docker_init_auto_pular="⚠️  Docker ya está configurado para iniciar automáticamente."
         msg_docker_init_auto_ok="✅ Servicio Docker configurado para iniciar automáticamente."
 
         msg_obter_ip="💻 Obteniendo IP de la máquina"
@@ -548,7 +545,6 @@ definir_mensagens() {
         msg_instalar_docker_pular="⚠️  Docker est déjà installé. Ignorer."
 
         msg_docker_init_auto="🐋 Configuration de Docker pour démarrer automatiquement"
-        msg_docker_init_auto_pular="⚠️  Docker est déjà configuré pour démarrer automatiquement."
         msg_docker_init_auto_ok="✅ Service Docker configuré pour démarrer automatiquement."
 
         msg_obter_ip="💻 Obtention de l'IP de la machine"
@@ -656,7 +652,6 @@ definir_mensagens() {
         msg_instalar_docker_pular="⚠️  Docker è già installato. Saltando."
 
         msg_docker_init_auto="🐋 Configurazione di Docker per avviarsi automaticamente"
-        msg_docker_init_auto_pular="⚠️  Docker è già configurato per avviarsi automaticamente."
         msg_docker_init_auto_ok="✅ Servizio Docker configurato per avviarsi automaticamente."
 
         msg_obter_ip="💻 Ottenimento dell'IP della macchina"
@@ -1094,6 +1089,7 @@ if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
     echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
     sudo apt-get update
+    echo ""
     if [ $? -eq 0 ]; then
         echo -e "$msg_repositorio_docker_ok"
     else
@@ -1114,6 +1110,7 @@ echo ""
 
 if ! command -v docker &>/dev/null; then
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    echo ""
     if [ $? -eq 0 ]; then
         echo -e "$msg_instalar_docker_ok"
     else
@@ -1132,13 +1129,9 @@ echo ""
 print_with_line "$msg_docker_init_auto"
 echo ""
 
-if systemctl is-enabled docker.service | grep -q "enabled"; then
-    echo "$msg_docker_init_auto_pular"
-else
-    sudo systemctl enable docker.service
-    sudo systemctl enable containerd.service
-    echo "$msg_docker_init_auto_ok"
-fi
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
+echo "$msg_docker_init_auto_ok"
 echo ""
 
 #########################
