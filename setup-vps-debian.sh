@@ -2,6 +2,10 @@
 
 clear
 
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.1"
+echo ""
+echo ""
+
 #-------------------
 # Valores pré-definido
 #-------------------
