@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.3"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.4"
 echo ""
 echo ""
 
