@@ -1424,11 +1424,7 @@ wait_for_mysql() {
             local msg_tentativa=${msg_mysql_aguardando_segundos//_ATTEMPT_/$attempt}
             local msg_tentativa=${msg_tentativa//_RETRIES_/$RETRIES}
 
-            echo "valor da variável msg_tentativa"
-            echo "$msg_tentativa"
-
-            echo "valor da variável DELAY"
-            echo "$DELAY"
+            echo $msg_tentativa
 
             # Chama a função aguardar passando a mensagem atualizada
             aguardar $DELAY
