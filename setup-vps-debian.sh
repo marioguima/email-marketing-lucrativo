@@ -151,7 +151,7 @@ definir_mensagens() {
         # Português
         msg_dominio="⚙️  Configurar o domínio"
         msg_dominio_solicitar="🌐 Por favor, insira um domínio:"
-        msg_dominio_valido="✅ Domínio válido:"
+        msg_dominio_valido="✅ Domínio informado:"
         msg_dominio_invalido="❌ Domínio inválido. Por favor, tente novamente."
 
         msg_traefik_obter_email="⚙️  Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
@@ -169,7 +169,7 @@ definir_mensagens() {
         msg_subdominio_mautic="⚙️  Configurar o subdomínio para acessar o Mautic"
         msg_subdominio_mautic_solicitar="🌐 Por favor, insira o subdomínio para acessar o Mautic:"
 
-        msg_subdominio_valido="✅ Subdomínio válido:"
+        msg_subdominio_valido="✅ Subdomínio informado:"
         msg_subdominio_invalido="❌ Subdomínio inválido. Por favor, tente novamente."
 
         msg_mautic_obter_email="⚙️  Insira o e-mail do administrador do Mautic"
@@ -251,7 +251,7 @@ definir_mensagens() {
         # English
         msg_dominio="⚙️  Set up the domain"
         msg_dominio_solicitar="🌐 Please enter a domain:"
-        msg_dominio_valido="✅ Valid domain:"
+        msg_dominio_valido="✅ Domain provided:"
         msg_dominio_invalido="❌ Invalid domain. Please try again."
 
         msg_traefik_obter_email="⚙️  Enter your email to configure Let's Encrypt (SSL certificate) in Traefik:"
@@ -269,7 +269,7 @@ definir_mensagens() {
         msg_subdominio_mautic="⚙️  Set up the subdomain to access Mautic"
         msg_subdominio_mautic_solicitar="🌐 Please enter the subdomain to access Mautic:"
 
-        msg_subdominio_valido="✅ Valid subdomain:"
+        msg_subdominio_valido="✅ Subdomain provided:"
         msg_subdominio_invalido="❌ Invalid subdomain. Please try again."
 
         msg_mautic_obter_email="⚙️  Enter the Mautic administrator's email"
@@ -351,7 +351,7 @@ definir_mensagens() {
         # Español
         msg_dominio="⚙️  Configurar el dominio"
         msg_dominio_solicitar="🌐 Por favor, introduzca un dominio:"
-        msg_dominio_valido="✅ Dominio válido:"
+        msg_dominio_valido="✅ Dominio informado:"
         msg_dominio_invalido="❌ Dominio inválido. Por favor, intente nuevamente."
 
         msg_traefik_obter_email="⚙️  Introduzca su correo electrónico para configurar Let's Encrypt (certificado SSL) en Traefik:"
@@ -369,7 +369,7 @@ definir_mensagens() {
         msg_subdominio_mautic="⚙️  Configurar el subdominio para acceder a Mautic"
         msg_subdominio_mautic_solicitar="🌐 Por favor, ingrese el subdominio para acceder a Mautic:"
 
-        msg_subdominio_valido="✅ Subdominio válido:"
+        msg_subdominio_valido="✅ Subdominio informado:"
         msg_subdominio_invalido="❌ Subdominio inválido. Por favor, intente de nuevo."
 
         msg_mautic_obter_email="⚙️  Ingrese el correo electrónico del administrador de Mautic"
@@ -451,7 +451,7 @@ definir_mensagens() {
         # Français
         msg_dominio="⚙️  Configurer le domaine"
         msg_dominio_solicitar="🌐 Veuillez saisir un domaine :"
-        msg_dominio_valido="✅ Domaine valide :"
+        msg_dominio_valido="✅ Domaine fourni :"
         msg_dominio_invalido="❌ Domaine invalide. Veuillez réessayer."
 
         msg_traefik_obter_email="⚙️  Veuillez saisir votre e-mail pour configurer Let's Encrypt (certificat SSL) sur Traefik :"
@@ -469,7 +469,7 @@ definir_mensagens() {
         msg_subdominio_mautic="⚙️  Configurer le sous-domaine pour accéder à Mautic"
         msg_subdominio_mautic_solicitar="🌐 Veuillez entrer le sous-domaine pour accéder à Mautic :"
 
-        msg_subdominio_valido="✅ Sous-domaine valide :"
+        msg_subdominio_valido="✅ Sous-domaine fourni :"
         msg_subdominio_invalido="❌ Sous-domaine invalide. Veuillez réessayer."
 
         msg_mautic_obter_email="⚙️  Entrez l'e-mail de l'administrateur de Mautic"
@@ -551,7 +551,7 @@ definir_mensagens() {
         # Italiano
         msg_dominio="⚙️  Configurare il dominio"
         msg_dominio_solicitar="🌐 Per favore, inserisci un dominio:"
-        msg_dominio_valido="✅ Dominio valido:"
+        msg_dominio_valido="✅ Dominio fornito:"
         msg_dominio_invalido="❌ Dominio non valido. Per favore, riprova."
 
         msg_traefik_obter_email="⚙️  Inserisci la tua email per configurare Let's Encrypt (certificato SSL) su Traefik:"
@@ -569,7 +569,7 @@ definir_mensagens() {
         msg_subdominio_mautic="⚙️  Configurare il sottodominio per accedere a Mautic"
         msg_subdominio_mautic_solicitar="🌐 Per favore, inserisci il sottodominio per accedere a Mautic:"
 
-        msg_subdominio_valido="✅ Sottodominio valido:"
+        msg_subdominio_valido="✅ Sottodominio fornito:"
         msg_subdominio_invalido="❌ Sottodominio non valido. Per favore, riprova."
 
         msg_mautic_obter_email="⚙️  Inserisci l'e-mail dell'amministratore di Mautic"
