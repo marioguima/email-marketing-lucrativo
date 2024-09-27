@@ -945,7 +945,7 @@ curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/m
         -e "s/CHANGE_MAUTIC_ADMIN_PASSWORD/${CHANGE_MAUTIC_ADMIN_PASSWORD}/g" >stack-mautic.yml
 
 if [[ -s stack-mautic.yml ]]; then
-    echo -e "$msg_stack_pma_ok"
+    echo -e "$msg_stack_ok"
 else
     echo -e "$msg_stack_erro"
     exit 1
