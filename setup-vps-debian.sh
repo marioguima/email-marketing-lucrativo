@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.12"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.13"
 echo ""
 echo ""
 
@@ -13,7 +13,7 @@ SUBDOMINIO_PMA_DEFAULT="pma"
 SUBDOMINIO_PORTAINER_DEFAULT="painel"
 SUBDOMINIO_MAUTIC_DEFAULT="leadmanager"
 # Defina as variáveis do Portainer
-PORTAINER_URL_LOCAL_API="http://localhost:9000/api"
+PORTAINER_URL_LOCAL_API="http://localhost:9000"
 
 #---------------------------
 # Função para exibir o menu
@@ -1303,32 +1303,32 @@ echo ""
 print_with_line "$msg_portainer_definir_senha_admin"
 echo ""
 
-echo "Variáveis antes de executar"
-echo "Password: $CHANGE_PORTAINER_ADMIN_PASSWORD"
-echo "URL: $PORTAINER_URL_LOCAL_API"
-echo ""
+# echo "Variáveis antes de executar"
+# echo "Password: $CHANGE_PORTAINER_ADMIN_PASSWORD"
+# echo "URL: $PORTAINER_URL_LOCAL_API"
+# echo ""
 
-echo "String completa do curl para ver como ela foi formada"
-echo "curl -s -X POST -H \"Content-Type: application/json\" -d '{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}' \"$PORTAINER_URL_LOCAL_API/api/users/admin/init\""
-echo ""
+# echo "String completa do curl para ver como ela foi formada"
+# echo "curl -s -X POST -H \"Content-Type: application/json\" -d '{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}' \"$PORTAINER_URL_LOCAL_API/api/users/admin/init\""
+# echo ""
 
-echo "Depuração do curl"
-depuracao_curl=$(curl -v -X POST -H "Content-Type: application/json" \
-    -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
-    "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
-echo depuracao_curl
-echo ""
-
-echo "Uso do --trace-ascii para gerar um arquivo de log da requisição"
-trace-ascii=$(curl --trace-ascii /dev/stdout -X POST -H "Content-Type: application/json" \
-    -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
-    "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
-echo trace-ascii
-
-# Definir a senha do admin usando o endpoint de inicialização
-# admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
+# echo "Depuração do curl"
+# depuracao_curl=$(curl -v -X POST -H "Content-Type: application/json" \
 #     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
 #     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
+# echo depuracao_curl
+# echo ""
+
+# echo "Uso do --trace-ascii para gerar um arquivo de log da requisição"
+# trace-ascii=$(curl --trace-ascii /dev/stdout -X POST -H "Content-Type: application/json" \
+#     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
+#     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
+# echo trace-ascii
+
+# Definir a senha do admin usando o endpoint de inicialização
+admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
+    -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
+    "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
 
 echo "Retorno da chamada a api do Portainer para inicialização da senha do admin"
 echo $admin_init_response
@@ -1351,7 +1351,7 @@ echo ""
 
 auth_response=$(curl -s -X POST -H "Content-Type: application/json" \
     -d '{"Username":"'"admin"'","Password":"'"$CHANGE_PORTAINER_ADMIN_PASSWORD"'"}' \
-    "$PORTAINER_URL_LOCAL_API/auth")
+    "$PORTAINER_URL_LOCAL_API/api/auth")
 
 # Extrair o token do JSON de resposta
 PORTAINER_TOKEN=$(echo $auth_response | jq -r .jwt)
@@ -1375,7 +1375,7 @@ deploy_stack_portainer() {
 
     # Enviar a stack para o Portainer
     response=$(
-        curl -s -X POST "$PORTAINER_URL_LOCAL_API/stacks" \
+        curl -s -X POST "$PORTAINER_URL_LOCAL_API/api/stacks" \
             -H "Authorization: Bearer $PORTAINER_TOKEN" \
             -F "method=file" \
             -F "name=$STACK_NAME" \
