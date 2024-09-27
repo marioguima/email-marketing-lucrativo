@@ -728,7 +728,7 @@ while true; do
     read -e -p "> " -i "$SUBDOMINIO_PORTAINER_DEFAULT" SUBDOMINIO_PORTAINER
     if validar_subdominio "$SUBDOMINIO_PORTAINER"; then
         echo ""
-        echo "$msg_subdominio_valido $SUBDOMINIO_PORTAINER"
+        echo "$msg_subdominio_valido $SUBDOMINIO_PORTAINER.$DOMINIO"
         break
     else
         echo -e "$msg_subdominio_invalido"
@@ -791,7 +791,7 @@ while true; do
     read -e -p "> " -i "$SUBDOMINIO_PMA_DEFAULT" SUBDOMINIO_PMA
     if validar_subdominio "$SUBDOMINIO_PMA"; then
         echo ""
-        echo "$msg_subdominio_valido $SUBDOMINIO_PMA"
+        echo "$msg_subdominio_valido $SUBDOMINIO_PMA.$DOMINIO"
         break
     else
         echo -e "$msg_subdominio_invalido"
@@ -815,7 +815,7 @@ while true; do
     read -e -p "> " -i "$SUBDOMINIO_MAUTIC_DEFAULT" SUBDOMINIO_MAUTIC
     if validar_subdominio "$SUBDOMINIO_MAUTIC"; then
         echo ""
-        echo "$msg_subdominio_valido $SUBDOMINIO_MAUTIC"
+        echo "$msg_subdominio_valido $SUBDOMINIO_MAUTIC.$DOMINIO"
         break
     else
         echo -e "$msg_subdominio_invalido"
