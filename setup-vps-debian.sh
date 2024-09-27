@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.1"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.2"
 echo ""
 echo ""
 
@@ -250,6 +250,14 @@ definir_mensagens() {
         msg_stack_portainer_deploy_erro="❌ Erro ao implantar Stack Portainer."
 
         msg_script_executado_ok="🚀 Script executado com sucesso!"
+
+        msg_revisao_informacoes="📝 Revise as informações antes de continuar"
+        msg_senhas_nao_exibidas="👀 As senhas foram ocultadas por motivos de segurança"
+        msg_confirmacao_revisar="👉 As informações estão corretas?"
+        msg_prosseguir_enter="🟢 Para confirmar pressione ENTER"
+        msg_cancelar_esc="🔴 Para cancelar pressione ESC"
+        msg_cancelado_pelo_usuario="💔 Cancelado."
+
         ;;
     2)
         # English
@@ -350,6 +358,14 @@ definir_mensagens() {
         msg_stack_portainer_deploy_erro="❌ Error deploying Portainer stack."
 
         msg_script_executado_ok="🚀 Script executed successfully!"
+
+        msg_revisao_informacoes="📝 Review the information before proceeding"
+        msg_senhas_nao_exibidas="👀 Passwords have been hidden for security reasons"
+        msg_confirmacao_revisar="👉 Is the information correct?"
+        msg_prosseguir_enter="🟢 To confirm, press ENTER"
+        msg_cancelar_esc="🔴 To cancel, press ESC"
+        msg_cancelado_pelo_usuario="💔 Canceled."
+
         ;;
     3)
         # Español
@@ -450,6 +466,14 @@ definir_mensagens() {
         msg_stack_portainer_deploy_erro="❌ Error al desplegar Stack Portainer."
 
         msg_script_executado_ok="🚀 ¡Script ejecutado con éxito!"
+
+        msg_revisao_informacoes="📝 Revise la información antes de continuar"
+        msg_senhas_nao_exibidas="👀 Las contraseñas han sido ocultadas por razones de seguridad"
+        msg_confirmacao_revisar="👉 ¿La información es correcta?"
+        msg_prosseguir_enter="🟢 Para confirmar, presione ENTER"
+        msg_cancelar_esc="🔴 Para cancelar, presione ESC"
+        msg_cancelado_pelo_usuario="💔 Cancelado."
+
         ;;
     4)
         # Français
@@ -550,6 +574,14 @@ definir_mensagens() {
         msg_stack_portainer_deploy_erro="❌ Erreur lors du déploiement de la Stack Portainer."
 
         msg_script_executado_ok="🚀 Script exécuté avec succès !"
+
+        msg_revisao_informacoes="📝 Vérifiez les informations avant de continuer"
+        msg_senhas_nao_exibidas="👀 Les mots de passe ont été masqués pour des raisons de sécurité"
+        msg_confirmacao_revisar="👉 Les informations sont-elles correctes ?"
+        msg_prosseguir_enter="🟢 Pour confirmer, appuyez sur ENTER"
+        msg_cancelar_esc="🔴 Pour annuler, appuyez sur ESC"
+        msg_cancelado_pelo_usuario="💔 Annulé."
+
         ;;
     5)
         # Italiano
@@ -650,6 +682,14 @@ definir_mensagens() {
         msg_stack_portainer_deploy_erro="❌ Errore durante l'esecuzione della Stack Portainer."
 
         msg_script_executado_ok="🚀 Script eseguito con successo!"
+
+        msg_revisao_informacoes="📝 Rivedi le informazioni prima di continuare"
+        msg_senhas_nao_exibidas="👀 Le password sono state nascoste per motivi di sicurezza"
+        msg_confirmacao_revisar="👉 Le informazioni sono corrette?"
+        msg_prosseguir_enter="🟢 Per confermare, premi ENTER"
+        msg_cancelar_esc="🔴 Per annullare, premi ESC"
+        msg_cancelado_pelo_usuario="💔 Annullato."
+
         ;;
     *)
         echo "Português: Opção inválida. Tente novamente."
@@ -867,6 +907,47 @@ while true; do
     fi
 done
 echo ""
+
+########################################
+# Revisar entradas antes de prosseguir #
+########################################
+echo ""
+print_with_line "$msg_revisao_informacoes"
+echo ""
+
+echo "$msg_dominio_informado: $DOMINIO"
+echo ""
+echo "$msg_email_informado - Traefik: $CHANGE_EMAIL_TRAEFIK"
+echo ""
+echo "$msg_subdominio_informado - Portainer: $SUBDOMINIO_PORTAINER.$DOMINIO"
+echo ""
+echo "$msg_subdominio_informado - phpMyAdmin: $SUBDOMINIO_PMA.$DOMINIO"
+echo ""
+echo "$msg_subdominio_informado - Mautic: $SUBDOMINIO_MAUTIC.$DOMINIO"
+echo ""
+echo "$msg_email_informado - Mautic: $CHANGE_MAUTIC_ADMIN_EMAIL"
+echo ""
+# Não exibir as senhas
+echo "$msg_senhas_nao_exibidas"
+echo ""
+echo ""
+echo -e "$msg_confirmacao_revisar"
+echo ""
+echo -e "$msg_prosseguir_enter"
+echo -e "$msg_cancelar_esc"
+
+# Aguardar confirmação
+while true; do
+    read -rsn1 input
+    if [[ "$input" == "" ]]; then
+        # Usuário pressionou ENTER, continuar com a execução
+        break
+    elif [[ "$input" == $'\e' ]]; then
+        # Usuário pressionou ESC, encerrar o script
+        echo "$msg_cancelado_pelo_usuario"
+        exit 0
+    fi
+done
 
 ########################
 # Baixar stack Traefik #
