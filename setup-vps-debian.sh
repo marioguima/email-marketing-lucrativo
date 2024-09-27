@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.11"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.12"
 echo ""
 echo ""
 
@@ -1302,16 +1302,38 @@ echo ""
 print_with_line "$msg_portainer_definir_senha_admin"
 echo ""
 
-# Definir a senha do admin usando o endpoint de inicialização
-admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
+echo "Variáveis antes de executar"
+echo "Password: $CHANGE_PORTAINER_ADMIN_PASSWORD"
+echo "URL: $PORTAINER_URL_LOCAL_API"
+echo ""
+
+echo "String completa do curl para ver como ela foi formada"
+echo "curl -s -X POST -H \"Content-Type: application/json\" -d '{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}' \"$PORTAINER_URL_LOCAL_API/api/users/admin/init\""
+echo ""
+
+echo "Depuração do curl"
+depuracao_curl=$(curl -v -X POST -H "Content-Type: application/json" \
     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
+echo depuracao_curl
+echo ""
+
+echo "Uso do --trace-ascii para gerar um arquivo de log da requisição"
+trace-ascii=$(curl --trace-ascii /dev/stdout -X POST -H "Content-Type: application/json" \
+    -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
+    "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
+echo trace-ascii
+
+# Definir a senha do admin usando o endpoint de inicialização
+# admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
+#     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
+#     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
 
 echo "Retorno da chamada a api do Portainer para inicialização da senha do admin"
-echo $admin_init_response | jq
+echo $admin_init_response
 
 # Verificar se houve algum erro
-if [[ "$admin_init_response" == *"message"* || "$admin_init_response" == *"details"* ]]; then
+if [[ "$admin_init_response" == *"err"* || "$admin_init_response" == *"error"* ]]; then
     echo -e "$msg_portainer_definir_senha_admin_erro"
     echo $admin_init_response | jq
     exit 1
