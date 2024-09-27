@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.2"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.3"
 echo ""
 echo ""
 
@@ -915,17 +915,17 @@ echo ""
 print_with_line "$msg_revisao_informacoes"
 echo ""
 
-echo "$msg_dominio_informado: $DOMINIO"
+echo "$msg_dominio_informado $DOMINIO"
 echo ""
-echo "$msg_email_informado - Traefik: $CHANGE_EMAIL_TRAEFIK"
+echo "$msg_email_informado [Traefik] $CHANGE_EMAIL_TRAEFIK"
 echo ""
-echo "$msg_subdominio_informado - Portainer: $SUBDOMINIO_PORTAINER.$DOMINIO"
+echo "$msg_subdominio_informado [Portainer] $SUBDOMINIO_PORTAINER.$DOMINIO"
 echo ""
-echo "$msg_subdominio_informado - phpMyAdmin: $SUBDOMINIO_PMA.$DOMINIO"
+echo "$msg_subdominio_informado [phpMyAdmin] $SUBDOMINIO_PMA.$DOMINIO"
 echo ""
-echo "$msg_subdominio_informado - Mautic: $SUBDOMINIO_MAUTIC.$DOMINIO"
+echo "$msg_subdominio_informado [Mautic] $SUBDOMINIO_MAUTIC.$DOMINIO"
 echo ""
-echo "$msg_email_informado - Mautic: $CHANGE_MAUTIC_ADMIN_EMAIL"
+echo "$msg_email_informado [Mautic] $CHANGE_MAUTIC_ADMIN_EMAIL"
 echo ""
 # Não exibir as senhas
 echo "$msg_senhas_nao_exibidas"
@@ -944,10 +944,13 @@ while true; do
         break
     elif [[ "$input" == $'\e' ]]; then
         # Usuário pressionou ESC, encerrar o script
+        echo ""
         echo "$msg_cancelado_pelo_usuario"
+        echo ""
         exit 0
     fi
 done
+echo ""
 
 ########################
 # Baixar stack Traefik #
