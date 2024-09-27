@@ -1308,6 +1308,10 @@ admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
 
+echo "Retorno da chamada admin/init"
+echo $admin_init_response
+echo ""
+
 # Verificar se houve algum erro
 if [[ "$admin_init_response" == *"err"* || "$admin_init_response" == *"error"* ]]; then
     echo -e "$msg_portainer_definir_senha_admin_erro"
