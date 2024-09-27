@@ -21,6 +21,8 @@ services:
       - portainer_data:/data
     networks:
       - network_swarm_public
+    ports:
+      - "9000:9000"  # Expondo a porta 9000 para acesso direto a API
     deploy:
       mode: replicated
       replicas: 1
