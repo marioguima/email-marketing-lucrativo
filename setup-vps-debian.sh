@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.10"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.11"
 echo ""
 echo ""
 
@@ -1304,12 +1304,16 @@ echo ""
 
 # Definir a senha do admin usando o endpoint de inicialização
 admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
-    -d '{"Username":"admin","Password":"'"$CHANGE_PORTAINER_ADMIN_PASSWORD"'"}' \
+    -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
 
+echo "Retorno da chamada a api do Portainer para inicialização da senha do admin"
+echo $admin_init_response | jq
+
 # Verificar se houve algum erro
-if [[ "$admin_init_response" == *"err"* || "$admin_init_response" == *"error"* ]]; then
+if [[ "$admin_init_response" == *"message"* || "$admin_init_response" == *"details"* ]]; then
     echo -e "$msg_portainer_definir_senha_admin_erro"
+    echo $admin_init_response | jq
     exit 1
 else
     echo -e "$msg_portainer_definir_senha_admin_ok"
@@ -1347,12 +1351,14 @@ deploy_stack_portainer() {
     local COMPOSE_FILE_PATH=$2
 
     # Enviar a stack para o Portainer
-    response=$(curl -s -X POST "$PORTAINER_URL_LOCAL_API/stacks" \
-        -H "Authorization: Bearer $PORTAINER_TOKEN" \
-        -F "method=file" \
-        -F "name=$STACK_NAME" \
-        -F "endpointId=1" \
-        -F "composeFile=@$COMPOSE_FILE_PATH")
+    response=$(
+        curl -s -X POST "$PORTAINER_URL_LOCAL_API/stacks" \
+            -H "Authorization: Bearer $PORTAINER_TOKEN" \
+            -F "method=file" \
+            -F "name=$STACK_NAME" \
+            -F "endpointId=1" \
+            -F "composeFile=@$COMPOSE_FILE_PATH"
+    )
 
     # Exibir a resposta da API para depuração
     echo "Resposta da API do Portainer:"
