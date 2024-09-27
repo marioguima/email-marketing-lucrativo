@@ -151,7 +151,7 @@ definir_mensagens() {
         # Português
         msg_dominio="⚙️  Configurar o domínio"
         msg_dominio_solicitar="🌐 Por favor, insira um domínio:"
-        msg_dominio_valido="✅ Domínio informado:"
+        msg_dominio_informado="✅ Domínio informado:"
         msg_dominio_invalido="❌ Domínio inválido. Por favor, tente novamente."
 
         msg_traefik_obter_email="⚙️  Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
@@ -169,7 +169,7 @@ definir_mensagens() {
         msg_subdominio_mautic="⚙️  Configurar o subdomínio para acessar o Mautic"
         msg_subdominio_mautic_solicitar="🌐 Por favor, insira o subdomínio para acessar o Mautic:"
 
-        msg_subdominio_valido="✅ Subdomínio informado:"
+        msg_subdominio_informado="✅ Subdomínio informado:"
         msg_subdominio_invalido="❌ Subdomínio inválido. Por favor, tente novamente."
 
         msg_mautic_obter_email="⚙️  Insira o e-mail do administrador do Mautic"
@@ -185,7 +185,7 @@ definir_mensagens() {
         msg_senha_requisito_especial="Conter ao menos 1 caracter especial ! @ # $ % & *"
 
         msg_email_solicitar="📧 Por favor, insira seu e-mail:"
-        msg_email_valido="✅ Email válido:"
+        msg_email_informado="✅ Email informado:"
         msg_email_invalido="❌ Email inválido. Tente novamente."
 
         msg_obter_stack_traefik="⬇️  Baixando Stack Traefik:"
@@ -251,7 +251,7 @@ definir_mensagens() {
         # English
         msg_dominio="⚙️  Set up the domain"
         msg_dominio_solicitar="🌐 Please enter a domain:"
-        msg_dominio_valido="✅ Domain provided:"
+        msg_dominio_informado="✅ Domain provided:"
         msg_dominio_invalido="❌ Invalid domain. Please try again."
 
         msg_traefik_obter_email="⚙️  Enter your email to configure Let's Encrypt (SSL certificate) in Traefik:"
@@ -269,7 +269,7 @@ definir_mensagens() {
         msg_subdominio_mautic="⚙️  Set up the subdomain to access Mautic"
         msg_subdominio_mautic_solicitar="🌐 Please enter the subdomain to access Mautic:"
 
-        msg_subdominio_valido="✅ Subdomain provided:"
+        msg_subdominio_informado="✅ Subdomain provided:"
         msg_subdominio_invalido="❌ Invalid subdomain. Please try again."
 
         msg_mautic_obter_email="⚙️  Enter the Mautic administrator's email"
@@ -285,7 +285,7 @@ definir_mensagens() {
         msg_senha_requisito_especial="Contain at least 1 special character ! @ # $ % & *"
 
         msg_email_solicitar="📧 Please enter your email:"
-        msg_email_valido="✅ Valid email:"
+        msg_email_informado="✅ Email provided:"
         msg_email_invalido="❌ Invalid email. Please try again."
 
         msg_obter_stack_traefik="⬇️  Downloading Traefik Stack:"
@@ -351,7 +351,7 @@ definir_mensagens() {
         # Español
         msg_dominio="⚙️  Configurar el dominio"
         msg_dominio_solicitar="🌐 Por favor, introduzca un dominio:"
-        msg_dominio_valido="✅ Dominio informado:"
+        msg_dominio_informado="✅ Dominio informado:"
         msg_dominio_invalido="❌ Dominio inválido. Por favor, intente nuevamente."
 
         msg_traefik_obter_email="⚙️  Introduzca su correo electrónico para configurar Let's Encrypt (certificado SSL) en Traefik:"
@@ -369,7 +369,7 @@ definir_mensagens() {
         msg_subdominio_mautic="⚙️  Configurar el subdominio para acceder a Mautic"
         msg_subdominio_mautic_solicitar="🌐 Por favor, ingrese el subdominio para acceder a Mautic:"
 
-        msg_subdominio_valido="✅ Subdominio informado:"
+        msg_subdominio_informado="✅ Subdominio informado:"
         msg_subdominio_invalido="❌ Subdominio inválido. Por favor, intente de nuevo."
 
         msg_mautic_obter_email="⚙️  Ingrese el correo electrónico del administrador de Mautic"
@@ -385,7 +385,7 @@ definir_mensagens() {
         msg_senha_requisito_especial="Contener al menos 1 carácter especial ! @ # $ % & *"
 
         msg_email_solicitar="📧 Por favor, introduzca su correo electrónico:"
-        msg_email_valido="✅ Correo electrónico válido:"
+        msg_email_informado="✅ Correo electrónico informado:"
         msg_email_invalido="❌ Correo electrónico inválido. Intente nuevamente."
 
         msg_obter_stack_traefik="⬇️  Descargando la Stack de Traefik:"
@@ -451,7 +451,7 @@ definir_mensagens() {
         # Français
         msg_dominio="⚙️  Configurer le domaine"
         msg_dominio_solicitar="🌐 Veuillez saisir un domaine :"
-        msg_dominio_valido="✅ Domaine fourni :"
+        msg_dominio_informado="✅ Domaine fourni :"
         msg_dominio_invalido="❌ Domaine invalide. Veuillez réessayer."
 
         msg_traefik_obter_email="⚙️  Veuillez saisir votre e-mail pour configurer Let's Encrypt (certificat SSL) sur Traefik :"
@@ -469,7 +469,7 @@ definir_mensagens() {
         msg_subdominio_mautic="⚙️  Configurer le sous-domaine pour accéder à Mautic"
         msg_subdominio_mautic_solicitar="🌐 Veuillez entrer le sous-domaine pour accéder à Mautic :"
 
-        msg_subdominio_valido="✅ Sous-domaine fourni :"
+        msg_subdominio_informado="✅ Sous-domaine fourni :"
         msg_subdominio_invalido="❌ Sous-domaine invalide. Veuillez réessayer."
 
         msg_mautic_obter_email="⚙️  Entrez l'e-mail de l'administrateur de Mautic"
@@ -485,7 +485,7 @@ definir_mensagens() {
         msg_senha_requisito_especial="Contenir au moins 1 caractère spécial ! @ # $ % & *"
 
         msg_email_solicitar="📧 Veuillez saisir votre e-mail :"
-        msg_email_valido="✅ E-mail valide :"
+        msg_email_informado="✅ E-mail fourni :"
         msg_email_invalido="❌ E-mail invalide. Veuillez réessayer."
 
         msg_obter_stack_traefik="⬇️  Téléchargement de la Stack Traefik :"
@@ -551,7 +551,7 @@ definir_mensagens() {
         # Italiano
         msg_dominio="⚙️  Configurare il dominio"
         msg_dominio_solicitar="🌐 Per favore, inserisci un dominio:"
-        msg_dominio_valido="✅ Dominio fornito:"
+        msg_dominio_informado="✅ Dominio fornito:"
         msg_dominio_invalido="❌ Dominio non valido. Per favore, riprova."
 
         msg_traefik_obter_email="⚙️  Inserisci la tua email per configurare Let's Encrypt (certificato SSL) su Traefik:"
@@ -569,7 +569,7 @@ definir_mensagens() {
         msg_subdominio_mautic="⚙️  Configurare il sottodominio per accedere a Mautic"
         msg_subdominio_mautic_solicitar="🌐 Per favore, inserisci il sottodominio per accedere a Mautic:"
 
-        msg_subdominio_valido="✅ Sottodominio fornito:"
+        msg_subdominio_informado="✅ Sottodominio fornito:"
         msg_subdominio_invalido="❌ Sottodominio non valido. Per favore, riprova."
 
         msg_mautic_obter_email="⚙️  Inserisci l'e-mail dell'amministratore di Mautic"
@@ -585,7 +585,7 @@ definir_mensagens() {
         msg_senha_requisito_especial="Contenere almeno 1 carattere speciale ! @ # $ % & *"
 
         msg_email_solicitar="� Per favore, inserisci la tua email:"
-        msg_email_valido="✅ Email valida:"
+        msg_email_informado="✅ Email fornito:"
         msg_email_invalido="❌ Email non valida. Riprova."
 
         msg_obter_stack_traefik="⬇️  Scaricamento della Stack Traefik:"
@@ -684,7 +684,7 @@ while true; do
     read -p "> " DOMINIO
     if validar_dominio "$DOMINIO"; then
         echo ""
-        echo "$msg_dominio_valido $DOMINIO"
+        echo "$msg_dominio_informado $DOMINIO"
         break
     else
         echo -e "$msg_dominio_invalido"
@@ -704,7 +704,7 @@ while true; do
     read -p "> " CHANGE_EMAIL_TRAEFIK
     if validar_email "$CHANGE_EMAIL_TRAEFIK"; then
         echo ""
-        echo "$msg_email_valido $CHANGE_EMAIL_TRAEFIK"
+        echo "$msg_email_informado $CHANGE_EMAIL_TRAEFIK"
         break
     else
         echo "$msg_email_invalido"
@@ -728,7 +728,7 @@ while true; do
     read -e -p "> " -i "$SUBDOMINIO_PORTAINER_DEFAULT" SUBDOMINIO_PORTAINER
     if validar_subdominio "$SUBDOMINIO_PORTAINER"; then
         echo ""
-        echo "$msg_subdominio_valido $SUBDOMINIO_PORTAINER.$DOMINIO"
+        echo "$msg_subdominio_informado $SUBDOMINIO_PORTAINER.$DOMINIO"
         break
     else
         echo -e "$msg_subdominio_invalido"
@@ -791,7 +791,7 @@ while true; do
     read -e -p "> " -i "$SUBDOMINIO_PMA_DEFAULT" SUBDOMINIO_PMA
     if validar_subdominio "$SUBDOMINIO_PMA"; then
         echo ""
-        echo "$msg_subdominio_valido $SUBDOMINIO_PMA.$DOMINIO"
+        echo "$msg_subdominio_informado $SUBDOMINIO_PMA.$DOMINIO"
         break
     else
         echo -e "$msg_subdominio_invalido"
@@ -815,7 +815,7 @@ while true; do
     read -e -p "> " -i "$SUBDOMINIO_MAUTIC_DEFAULT" SUBDOMINIO_MAUTIC
     if validar_subdominio "$SUBDOMINIO_MAUTIC"; then
         echo ""
-        echo "$msg_subdominio_valido $SUBDOMINIO_MAUTIC.$DOMINIO"
+        echo "$msg_subdominio_informado $SUBDOMINIO_MAUTIC.$DOMINIO"
         break
     else
         echo -e "$msg_subdominio_invalido"
@@ -836,7 +836,7 @@ while true; do
     read -e -p "> " -i "$CHANGE_EMAIL_TRAEFIK" CHANGE_MAUTIC_ADMIN_EMAIL
     if validar_email "$CHANGE_MAUTIC_ADMIN_EMAIL"; then
         echo ""
-        echo "$msg_email_valido $CHANGE_MAUTIC_ADMIN_EMAIL"
+        echo "$msg_email_informado $CHANGE_MAUTIC_ADMIN_EMAIL"
         break
     else
         echo -e "$msg_email_invalido"
