@@ -961,6 +961,7 @@ echo ""
 
 apt-get update && apt install -y sudo gnupg2 wget ca-certificates apt-transport-https curl gnupg nano htop
 
+echo ""
 if [ $? -eq 0 ]; then
     echo -e "$msg_repository_ok"
 else
@@ -980,15 +981,14 @@ if [ ! -f /etc/apt/keyrings/docker.gpg ]; then
     sudo install -m 0755 -d /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
     sudo chmod a+r /etc/apt/keyrings/docker.gpg
+    if [ $? -eq 0 ]; then
+        echo -e "$msg_docker_chave_gpg_ok"
+    else
+        echo -e "$msg_docker_chave_gpg_erro"
+        exit 1
+    fi
 else
     echo "$msg_docker_chave_gpg_pular"
-fi
-
-if [ $? -eq 0 ]; then
-    echo -e "$msg_docker_chave_gpg_ok"
-else
-    echo -e "$msg_docker_chave_gpg_erro"
-    exit 1
 fi
 echo ""
 
@@ -1003,15 +1003,14 @@ if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
     echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
     sudo apt-get update
+    if [ $? -eq 0 ]; then
+        echo -e "$msg_repositorio_docker_ok"
+    else
+        echo -e "$msg_repositorio_docker_erro"
+        exit 1
+    fi
 else
     echo "$msg_repositorio_docker_pular"
-fi
-
-if [ $? -eq 0 ]; then
-    echo -e "$msg_repositorio_docker_ok"
-else
-    echo -e "$msg_repositorio_docker_erro"
-    exit 1
 fi
 echo ""
 
@@ -1079,6 +1078,7 @@ if docker info | grep -q "Swarm: active"; then
     echo "$msg_docker_swarm_pular"
 else
     docker swarm init --advertise-addr=$IP_ADDR
+    echo ""
     if [ $? -eq 0 ]; then
         echo -e "$msg_docker_swarm_ok"
     else
@@ -1099,6 +1099,7 @@ if docker network ls | grep -q "network_swarm_public"; then
     echo "$msg_docker_network_swarm_pular"
 else
     docker network create --driver=overlay network_swarm_public
+    echo ""
     if [ $? -eq 0 ]; then
         echo -e "$msg_docker_network_swarm_ok"
     else
@@ -1116,6 +1117,7 @@ print_with_line "$msg_stack_traefik_deploy"
 echo ""
 
 docker stack deploy --prune --detach=false --resolve-image always -c stack-traefik-v2.yml traefik
+echo ""
 
 if [ $? -eq 0 ]; then
     echo -e "$msg_stack_traefik_deploy_ok"
@@ -1133,6 +1135,7 @@ print_with_line "$msg_stack_portainer_deploy"
 echo ""
 
 docker stack deploy --prune --detach=false --resolve-image always -c stack-portainer.yml portainer
+echo ""
 
 if [ $? -eq 0 ]; then
     echo -e "$msg_stack_portainer_deploy_ok"
