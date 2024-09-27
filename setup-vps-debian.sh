@@ -857,6 +857,7 @@ while true; do
     read -s -p "> " CHANGE_MAUTIC_ADMIN_PASSWORD
     echo ""
     if validar_senha "$CHANGE_MAUTIC_ADMIN_PASSWORD"; then
+        echo ""
         echo "$msg_senha_ok"
         break
     fi
