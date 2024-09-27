@@ -319,15 +319,15 @@ definir_mensagens() {
         msg_instalar_docker_erro="❌ Error installing Docker."
         msg_instalar_docker_pular="⚠️  Docker already installed. Skipping."
 
-        msg_docker_init_auto="� Configuring Docker to start automatically"
+        msg_docker_init_auto="🐋 Configuring Docker to start automatically"
         msg_docker_init_auto_pular="⚠️  Docker already configured to start automatically."
         msg_docker_init_auto_ok="✅ Docker service configured to start automatically."
 
-        msg_obter_ip="� Obtaining machine IP"
+        msg_obter_ip="💻 Obtaining machine IP"
         msg_obter_ip_erro="❌ Error obtaining machine IP."
         msg_obter_ip_ok="✅ Machine IP:"
 
-        msg_docker_swarm="� Verifying Docker Swarm"
+        msg_docker_swarm="🐋 Verifying Docker Swarm"
         msg_docker_swarm_pular="⚠️  Docker Swarm already initialized. Skipping."
         msg_docker_swarm_ok="✅ Docker Swarm initialized successfully."
         msg_docker_swarm_erro="❌ Error initializing Docker Swarm."
@@ -337,11 +337,11 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ 'network_swarm_public' network created successfully."
         msg_docker_network_swarm_erro="❌ Error creating the network."
 
-        msg_stack_traefik_deploy="� Deploying Traefik Stack"
+        msg_stack_traefik_deploy="🖧 Deploying Traefik Stack"
         msg_stack_traefik_deploy_ok="✅ Traefik Stack deployed successfully!"
         msg_stack_traefik_deploy_erro="❌ Error deploying Traefik Stack."
 
-        msg_stack_portainer_deploy="� Deploying Portainer Stack"
+        msg_stack_portainer_deploy="📦 Deploying Portainer Stack"
         msg_stack_portainer_deploy_ok="✅ Portainer stack deployed successfully!"
         msg_stack_portainer_deploy_erro="❌ Error deploying Portainer stack."
 
@@ -375,7 +375,7 @@ definir_mensagens() {
         msg_mautic_obter_email="⚙️  Ingrese el correo electrónico del administrador de Mautic"
         msg_mautic_obter_senha="⚙️  Ingrese la contraseña del administrador de Mautic"
 
-        msg_senha_solicitar="� Por favor, introduzca su contraseña:"
+        msg_senha_solicitar="🔑 Por favor, introduzca su contraseña:"
         msg_senha_ok="✅ Contraseña válida."
 
         msg_senha_invalida="⚠️  Contraseña inválida. La contraseña debe cumplir todos los requisitos:"
@@ -419,11 +419,11 @@ definir_mensagens() {
         msg_instalar_docker_erro="❌ Error al instalar Docker."
         msg_instalar_docker_pular="⚠️  Docker ya está instalado. Saltando."
 
-        msg_docker_init_auto="� Configurando Docker para iniciar automáticamente"
+        msg_docker_init_auto="🐋 Configurando Docker para iniciar automáticamente"
         msg_docker_init_auto_pular="⚠️  Docker ya está configurado para iniciar automáticamente."
         msg_docker_init_auto_ok="✅ Servicio Docker configurado para iniciar automáticamente."
 
-        msg_obter_ip="� Obteniendo IP de la máquina"
+        msg_obter_ip="💻 Obteniendo IP de la máquina"
         msg_obter_ip_erro="❌ Error al obtener la IP de la máquina."
         msg_obter_ip_ok="✅ IP de la máquina:"
 
@@ -432,7 +432,7 @@ definir_mensagens() {
         msg_docker_swarm_ok="✅ Docker Swarm inicializado con éxito."
         msg_docker_swarm_erro="❌ Error al inicializar Docker Swarm."
 
-        msg_docker_network_swarm="� Verificando la Red 'network_swarm_public'"
+        msg_docker_network_swarm="🔗 Verificando la Red 'network_swarm_public'"
         msg_docker_network_swarm_pular="⚠️  La red 'network_swarm_public' ya existe. Saltando."
         msg_docker_network_swarm_ok="✅ Red 'network_swarm_public' creada con éxito."
         msg_docker_network_swarm_erro="❌ Error al crear la red."
@@ -514,16 +514,16 @@ definir_mensagens() {
         msg_repositorio_docker_ok="✅ Dépôts Docker configurés avec succès."
         msg_repositorio_docker_erro="❌ Erreur lors de la configuration des dépôts Docker."
 
-        msg_instalar_docker="� Installation de Docker"
+        msg_instalar_docker="🐋 Installation de Docker"
         msg_instalar_docker_ok="✅ Docker installé avec succès."
         msg_instalar_docker_erro="❌ Erreur lors de l'installation de Docker."
         msg_instalar_docker_pular="⚠️  Docker est déjà installé. Ignorer."
 
-        msg_docker_init_auto="� Configuration de Docker pour démarrer automatiquement"
+        msg_docker_init_auto="🐋 Configuration de Docker pour démarrer automatiquement"
         msg_docker_init_auto_pular="⚠️  Docker est déjà configuré pour démarrer automatiquement."
         msg_docker_init_auto_ok="✅ Service Docker configuré pour démarrer automatiquement."
 
-        msg_obter_ip="� Obtention de l'IP de la machine"
+        msg_obter_ip="💻 Obtention de l'IP de la machine"
         msg_obter_ip_erro="❌ Erreur lors de l'obtention de l'IP de la machine."
         msg_obter_ip_ok="✅ IP de la machine :"
 
@@ -584,7 +584,7 @@ definir_mensagens() {
         msg_senha_requisito_numero="Contenere almeno 1 numero"
         msg_senha_requisito_especial="Contenere almeno 1 carattere speciale ! @ # $ % & *"
 
-        msg_email_solicitar="� Per favore, inserisci la tua email:"
+        msg_email_solicitar="📧 Per favore, inserisci la tua email:"
         msg_email_informado="✅ Email fornito:"
         msg_email_invalido="❌ Email non valida. Riprova."
 
