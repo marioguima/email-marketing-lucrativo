@@ -1196,6 +1196,7 @@ echo ""
 
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
+echo ""
 echo "$msg_docker_init_auto_ok"
 echo ""
 
