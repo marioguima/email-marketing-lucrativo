@@ -178,7 +178,7 @@ definir_mensagens() {
         msg_senha_solicitar="🔑 Por favor, insira sua senha:"
         msg_senha_ok="✅ Senha válida."
 
-        msg_senha_invalida="⚠️ Senha inválida. A senha precisa preencher todos os requisitos:"
+        msg_senha_invalida="⚠️  Senha inválida. A senha precisa preencher todos os requisitos:"
         msg_senha_requisito_min_caracteres="Ter no mínimo 8 caracteres"
         msg_senha_requisito_letra="Conter ao menos uma letra"
         msg_senha_requisito_numero="Conter ao menos 1 número"
@@ -205,22 +205,22 @@ definir_mensagens() {
         msg_repository_erro="❌ Erro ao atualizar repositórios."
 
         msg_docker_chave_gpg="⚙️  Verificando Chave GPG do Docker"
-        msg_docker_chave_gpg_pular="⚠️ Chave GPG do Docker já existe. Pulando."
+        msg_docker_chave_gpg_pular="⚠️  Chave GPG do Docker já existe. Pulando."
         msg_docker_chave_gpg_ok="✅ Chave GPG adicionada com sucesso."
         msg_docker_chave_gpg_erro="❌ Erro ao adicionar chave GPG."
 
         msg_repositorio_docker="⚙️  Configurando Repositórios do Docker"
-        msg_repositorio_docker_pular="⚠️ Repositórios do Docker já configurados. Pulando."
+        msg_repositorio_docker_pular="⚠️  Repositórios do Docker já configurados. Pulando."
         msg_repositorio_docker_ok="✅ Repositórios do Docker configurados com sucesso."
         msg_repositorio_docker_erro="❌ Erro ao configurar repositórios do Docker."
 
         msg_instalar_docker="🐋 Instalando Docker"
         msg_instalar_docker_ok="✅ Docker instalado com sucesso."
         msg_instalar_docker_erro="❌ Erro ao instalar o Docker."
-        msg_instalar_docker_pular="⚠️ Docker já instalado. Pulando."
+        msg_instalar_docker_pular="⚠️  Docker já instalado. Pulando."
 
         msg_docker_init_auto="🐋 Configurando Docker para iniciar automaticamente"
-        msg_docker_init_auto_pular="⚠️ Docker já configurado para iniciar automaticamente."
+        msg_docker_init_auto_pular="⚠️  Docker já configurado para iniciar automaticamente."
         msg_docker_init_auto_ok="✅ Serviço Docker configurado para iniciar automaticamente."
 
         msg_obter_ip="💻 Obtendo IP da máquina"
@@ -228,12 +228,12 @@ definir_mensagens() {
         msg_obter_ip_ok="✅ IP da máquina:"
 
         msg_docker_swarm="🐋 Verificando Docker Swarm"
-        msg_docker_swarm_pular="⚠️ Docker Swarm já inicializado. Pulando."
+        msg_docker_swarm_pular="⚠️  Docker Swarm já inicializado. Pulando."
         msg_docker_swarm_ok="✅ Docker Swarm inicializado com sucesso."
         msg_docker_swarm_erro="❌ Erro ao inicializar Docker Swarm."
 
         msg_docker_network_swarm="🔗 Verificando Rede 'network_swarm_public'"
-        msg_docker_network_swarm_pular="⚠️ Rede 'network_swarm_public' já existe. Pulando."
+        msg_docker_network_swarm_pular="⚠️  Rede 'network_swarm_public' já existe. Pulando."
         msg_docker_network_swarm_ok="✅ Rede 'network_swarm_public' criada com sucesso."
         msg_docker_network_swarm_erro="❌ Erro ao criar a rede."
 
@@ -278,7 +278,7 @@ definir_mensagens() {
         msg_senha_solicitar="🔑 Please enter your password:"
         msg_senha_ok="✅ Valid password."
 
-        msg_senha_invalida="⚠️ Invalid password. The password must meet all requirements:"
+        msg_senha_invalida="⚠️  Invalid password. The password must meet all requirements:"
         msg_senha_requisito_min_caracteres="Have at least 8 characters"
         msg_senha_requisito_letra="Contain at least one letter"
         msg_senha_requisito_numero="Contain at least 1 number"
@@ -305,22 +305,22 @@ definir_mensagens() {
         msg_repository_erro="❌ Error updating repositories."
 
         msg_docker_chave_gpg="⚙️  Verifying Docker GPG Key"
-        msg_docker_chave_gpg_pular="⚠️ Docker GPG key already exists. Skipping."
+        msg_docker_chave_gpg_pular="⚠️  Docker GPG key already exists. Skipping."
         msg_docker_chave_gpg_ok="✅ GPG key added successfully."
         msg_docker_chave_gpg_erro="❌ Error adding GPG key."
 
         msg_repositorio_docker="⚙️  Configuring Docker Repositories"
-        msg_repositorio_docker_pular="⚠️ Docker repositories already configured. Skipping."
+        msg_repositorio_docker_pular="⚠️  Docker repositories already configured. Skipping."
         msg_repositorio_docker_ok="✅ Docker repositories configured successfully."
         msg_repositorio_docker_erro="❌ Error configuring Docker repositories."
 
         msg_instalar_docker="🐋 Installing Docker"
         msg_instalar_docker_ok="✅ Docker installed successfully."
         msg_instalar_docker_erro="❌ Error installing Docker."
-        msg_instalar_docker_pular="⚠️ Docker already installed. Skipping."
+        msg_instalar_docker_pular="⚠️  Docker already installed. Skipping."
 
         msg_docker_init_auto="� Configuring Docker to start automatically"
-        msg_docker_init_auto_pular="⚠️ Docker already configured to start automatically."
+        msg_docker_init_auto_pular="⚠️  Docker already configured to start automatically."
         msg_docker_init_auto_ok="✅ Docker service configured to start automatically."
 
         msg_obter_ip="� Obtaining machine IP"
@@ -328,12 +328,12 @@ definir_mensagens() {
         msg_obter_ip_ok="✅ Machine IP:"
 
         msg_docker_swarm="� Verifying Docker Swarm"
-        msg_docker_swarm_pular="⚠️ Docker Swarm already initialized. Skipping."
+        msg_docker_swarm_pular="⚠️  Docker Swarm already initialized. Skipping."
         msg_docker_swarm_ok="✅ Docker Swarm initialized successfully."
         msg_docker_swarm_erro="❌ Error initializing Docker Swarm."
 
         msg_docker_network_swarm="🔗 Verifying 'network_swarm_public' Network"
-        msg_docker_network_swarm_pular="⚠️ 'network_swarm_public' network already exists. Skipping."
+        msg_docker_network_swarm_pular="⚠️  'network_swarm_public' network already exists. Skipping."
         msg_docker_network_swarm_ok="✅ 'network_swarm_public' network created successfully."
         msg_docker_network_swarm_erro="❌ Error creating the network."
 
@@ -378,7 +378,7 @@ definir_mensagens() {
         msg_senha_solicitar="� Por favor, introduzca su contraseña:"
         msg_senha_ok="✅ Contraseña válida."
 
-        msg_senha_invalida="⚠️ Contraseña inválida. La contraseña debe cumplir todos los requisitos:"
+        msg_senha_invalida="⚠️  Contraseña inválida. La contraseña debe cumplir todos los requisitos:"
         msg_senha_requisito_min_caracteres="Tener al menos 8 caracteres"
         msg_senha_requisito_letra="Contener al menos una letra"
         msg_senha_requisito_numero="Contener al menos 1 número"
@@ -405,22 +405,22 @@ definir_mensagens() {
         msg_repository_erro="❌ Error al actualizar los repositorios."
 
         msg_docker_chave_gpg="⚙️  Verificando la Clave GPG de Docker"
-        msg_docker_chave_gpg_pular="⚠️ La clave GPG de Docker ya existe. Saltando."
+        msg_docker_chave_gpg_pular="⚠️  La clave GPG de Docker ya existe. Saltando."
         msg_docker_chave_gpg_ok="✅ Clave GPG añadida con éxito."
         msg_docker_chave_gpg_erro="❌ Error al añadir la clave GPG."
 
         msg_repositorio_docker="⚙️  Configurando Repositorios de Docker"
-        msg_repositorio_docker_pular="⚠️ Los repositorios de Docker ya están configurados. Saltando."
+        msg_repositorio_docker_pular="⚠️  Los repositorios de Docker ya están configurados. Saltando."
         msg_repositorio_docker_ok="✅ Repositorios de Docker configurados con éxito."
         msg_repositorio_docker_erro="❌ Error al configurar los repositorios de Docker."
 
         msg_instalar_docker="🐋 Instalando Docker"
         msg_instalar_docker_ok="✅ Docker instalado con éxito."
         msg_instalar_docker_erro="❌ Error al instalar Docker."
-        msg_instalar_docker_pular="⚠️ Docker ya está instalado. Saltando."
+        msg_instalar_docker_pular="⚠️  Docker ya está instalado. Saltando."
 
         msg_docker_init_auto="� Configurando Docker para iniciar automáticamente"
-        msg_docker_init_auto_pular="⚠️ Docker ya está configurado para iniciar automáticamente."
+        msg_docker_init_auto_pular="⚠️  Docker ya está configurado para iniciar automáticamente."
         msg_docker_init_auto_ok="✅ Servicio Docker configurado para iniciar automáticamente."
 
         msg_obter_ip="� Obteniendo IP de la máquina"
@@ -428,12 +428,12 @@ definir_mensagens() {
         msg_obter_ip_ok="✅ IP de la máquina:"
 
         msg_docker_swarm="🐋 Verificando Docker Swarm"
-        msg_docker_swarm_pular="⚠️ Docker Swarm ya está inicializado. Saltando."
+        msg_docker_swarm_pular="⚠️  Docker Swarm ya está inicializado. Saltando."
         msg_docker_swarm_ok="✅ Docker Swarm inicializado con éxito."
         msg_docker_swarm_erro="❌ Error al inicializar Docker Swarm."
 
         msg_docker_network_swarm="� Verificando la Red 'network_swarm_public'"
-        msg_docker_network_swarm_pular="⚠️ La red 'network_swarm_public' ya existe. Saltando."
+        msg_docker_network_swarm_pular="⚠️  La red 'network_swarm_public' ya existe. Saltando."
         msg_docker_network_swarm_ok="✅ Red 'network_swarm_public' creada con éxito."
         msg_docker_network_swarm_erro="❌ Error al crear la red."
 
@@ -478,7 +478,7 @@ definir_mensagens() {
         msg_senha_solicitar="🔑 Veuillez saisir votre mot de passe :"
         msg_senha_ok="✅ Mot de passe valide."
 
-        msg_senha_invalida="⚠️ Mot de passe invalide. Le mot de passe doit remplir toutes les conditions :"
+        msg_senha_invalida="⚠️  Mot de passe invalide. Le mot de passe doit remplir toutes les conditions :"
         msg_senha_requisito_min_caracteres="Avoir au moins 8 caractères"
         msg_senha_requisito_letra="Contenir au moins une lettre"
         msg_senha_requisito_numero="Contenir au moins 1 chiffre"
@@ -505,22 +505,22 @@ definir_mensagens() {
         msg_repository_erro="❌ Erreur lors de la mise à jour des dépôts."
 
         msg_docker_chave_gpg="⚙️  Vérification de la clé GPG de Docker"
-        msg_docker_chave_gpg_pular="⚠️ La clé GPG de Docker existe déjà. Ignorer."
+        msg_docker_chave_gpg_pular="⚠️  La clé GPG de Docker existe déjà. Ignorer."
         msg_docker_chave_gpg_ok="✅ Clé GPG ajoutée avec succès."
         msg_docker_chave_gpg_erro="❌ Erreur lors de l'ajout de la clé GPG."
 
         msg_repositorio_docker="⚙️  Configuration des dépôts Docker"
-        msg_repositorio_docker_pular="⚠️ Les dépôts Docker sont déjà configurés. Ignorer."
+        msg_repositorio_docker_pular="⚠️  Les dépôts Docker sont déjà configurés. Ignorer."
         msg_repositorio_docker_ok="✅ Dépôts Docker configurés avec succès."
         msg_repositorio_docker_erro="❌ Erreur lors de la configuration des dépôts Docker."
 
         msg_instalar_docker="� Installation de Docker"
         msg_instalar_docker_ok="✅ Docker installé avec succès."
         msg_instalar_docker_erro="❌ Erreur lors de l'installation de Docker."
-        msg_instalar_docker_pular="⚠️ Docker est déjà installé. Ignorer."
+        msg_instalar_docker_pular="⚠️  Docker est déjà installé. Ignorer."
 
         msg_docker_init_auto="� Configuration de Docker pour démarrer automatiquement"
-        msg_docker_init_auto_pular="⚠️ Docker est déjà configuré pour démarrer automatiquement."
+        msg_docker_init_auto_pular="⚠️  Docker est déjà configuré pour démarrer automatiquement."
         msg_docker_init_auto_ok="✅ Service Docker configuré pour démarrer automatiquement."
 
         msg_obter_ip="� Obtention de l'IP de la machine"
@@ -528,12 +528,12 @@ definir_mensagens() {
         msg_obter_ip_ok="✅ IP de la machine :"
 
         msg_docker_swarm="🐋 Vérification de Docker Swarm"
-        msg_docker_swarm_pular="⚠️ Docker Swarm est déjà initialisé. Ignorer."
+        msg_docker_swarm_pular="⚠️  Docker Swarm est déjà initialisé. Ignorer."
         msg_docker_swarm_ok="✅ Docker Swarm initialisé avec succès."
         msg_docker_swarm_erro="❌ Erreur lors de l'initialisation de Docker Swarm."
 
         msg_docker_network_swarm="🔗 Vérification du Réseau 'network_swarm_public'"
-        msg_docker_network_swarm_pular="⚠️ Le réseau 'network_swarm_public' existe déjà. Ignorer."
+        msg_docker_network_swarm_pular="⚠️  Le réseau 'network_swarm_public' existe déjà. Ignorer."
         msg_docker_network_swarm_ok="✅ Réseau 'network_swarm_public' créé avec succès."
         msg_docker_network_swarm_erro="❌ Erreur lors de la création du réseau."
 
@@ -578,7 +578,7 @@ definir_mensagens() {
         msg_senha_solicitar="🔑 Per favore, inserisci la tua password:"
         msg_senha_ok="✅ Password valida."
 
-        msg_senha_invalida="⚠️ Password non valida. La password deve soddisfare tutti i requisiti:"
+        msg_senha_invalida="⚠️  Password non valida. La password deve soddisfare tutti i requisiti:"
         msg_senha_requisito_min_caracteres="Avere almeno 8 caratteri"
         msg_senha_requisito_letra="Contenere almeno una lettera"
         msg_senha_requisito_numero="Contenere almeno 1 numero"
@@ -605,22 +605,22 @@ definir_mensagens() {
         msg_repository_erro="❌ Errore durante l'aggiornamento dei repository."
 
         msg_docker_chave_gpg="⚙️  Verifica della chiave GPG di Docker"
-        msg_docker_chave_gpg_pular="⚠️ La chiave GPG di Docker esiste già. Saltando."
+        msg_docker_chave_gpg_pular="⚠️  La chiave GPG di Docker esiste già. Saltando."
         msg_docker_chave_gpg_ok="✅ Chiave GPG aggiunta con successo."
         msg_docker_chave_gpg_erro="❌ Errore nell'aggiunta della chiave GPG."
 
         msg_repositorio_docker="⚙️  Configurazione dei repository di Docker"
-        msg_repositorio_docker_pular="⚠️ I repository di Docker sono già configurati. Saltando."
+        msg_repositorio_docker_pular="⚠️  I repository di Docker sono già configurati. Saltando."
         msg_repositorio_docker_ok="✅ Repository di Docker configurati con successo."
         msg_repositorio_docker_erro="❌ Errore nella configurazione dei repository di Docker."
 
         msg_instalar_docker="🐋 Installazione di Docker"
         msg_instalar_docker_ok="✅ Docker installato con successo."
         msg_instalar_docker_erro="❌ Errore durante l'installazione di Docker."
-        msg_instalar_docker_pular="⚠️ Docker è già installato. Saltando."
+        msg_instalar_docker_pular="⚠️  Docker è già installato. Saltando."
 
         msg_docker_init_auto="🐋 Configurazione di Docker per avviarsi automaticamente"
-        msg_docker_init_auto_pular="⚠️ Docker è già configurato per avviarsi automaticamente."
+        msg_docker_init_auto_pular="⚠️  Docker è già configurato per avviarsi automaticamente."
         msg_docker_init_auto_ok="✅ Servizio Docker configurato per avviarsi automaticamente."
 
         msg_obter_ip="💻 Ottenimento dell'IP della macchina"
@@ -628,12 +628,12 @@ definir_mensagens() {
         msg_obter_ip_ok="✅ IP della macchina:"
 
         msg_docker_swarm="🐋 Verifica di Docker Swarm"
-        msg_docker_swarm_pular="⚠️ Docker Swarm è già inizializzato. Saltando."
+        msg_docker_swarm_pular="⚠️  Docker Swarm è già inizializzato. Saltando."
         msg_docker_swarm_ok="✅ Docker Swarm inizializzato con successo."
         msg_docker_swarm_erro="❌ Errore durante l'inizializzazione di Docker Swarm."
 
         msg_docker_network_swarm="🔗 Verifica della rete 'network_swarm_public'"
-        msg_docker_network_swarm_pular="⚠️ La rete 'network_swarm_public' esiste già. Saltando."
+        msg_docker_network_swarm_pular="⚠️  La rete 'network_swarm_public' esiste già. Saltando."
         msg_docker_network_swarm_ok="✅ Rete 'network_swarm_public' creata con successo."
         msg_docker_network_swarm_erro="❌ Errore nella creazione della rete."
 
@@ -1075,6 +1075,7 @@ print_with_line "$msg_docker_swarm"
 echo ""
 
 if docker info | grep -q "Swarm: active"; then
+    echo ""
     echo "$msg_docker_swarm_pular"
 else
     docker swarm init --advertise-addr=$IP_ADDR
@@ -1146,3 +1147,4 @@ fi
 echo ""
 
 echo -e "\n$msg_script_executado_ok"
+echo ""
