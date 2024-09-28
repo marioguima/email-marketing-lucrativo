@@ -728,8 +728,8 @@ echo ""
 # Domínio
 #--------
 while true; do
-    echo -e -n "$msg_dominio_solicitar "
-    read -e DOMINIO
+    # echo -e -n "$msg_dominio_solicitar "
+    read -e -p "$msg_dominio_solicitar " DOMINIO
 
     if validar_dominio "$DOMINIO"; then
         break
