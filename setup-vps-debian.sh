@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.28"
+VERSION="v0.0.29"
 
 MODE=$1
 
@@ -27,8 +27,7 @@ debug_log() {
     fi
 }
 
-debug_log "DEBUG"
-debug_log " "
+debug_log "DEBUG\n"
 
 #-------------------
 # Valores pré-definido
@@ -1402,8 +1401,7 @@ admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
 
 debug_log "Retorno da chamada admin/init"
-debug_log "$admin_init_response"
-debug_log " "
+debug_log "$admin_init_response\n"
 
 # Verificar se houve algum erro
 if [[ "$admin_init_response" == *"err"* || "$admin_init_response" == *"error"* ]]; then
@@ -1426,8 +1424,7 @@ auth_response=$(curl -s -X POST -H "Content-Type: application/json" \
     "$PORTAINER_URL_LOCAL_API/api/auth")
 
 debug_log "Retorno da autenticação no Portainer:"
-debug_log "$auth_response"
-debug_log " "
+debug_log "$auth_response\n"
 
 # Extrair o token do JSON de resposta
 PORTAINER_TOKEN=$(echo $auth_response | jq -r .jwt)
@@ -1470,8 +1467,7 @@ deploy_stack_portainer() {
 
     # Exibir a resposta da API para depuração
     debug_log "Resposta da API do Portainer:"
-    debug_log "$response"
-    debug_log " "
+    debug_log "$response\n"
 
     # Verificar se a resposta contém erros
     if [[ $response == *"err"* || $response == *"error"* ]]; then
