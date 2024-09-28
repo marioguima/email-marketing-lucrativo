@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.18"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.19"
 echo ""
 echo ""
 
@@ -214,10 +214,10 @@ definir_mensagens() {
         msg_portainer_autenticacao_token_ok="✅ Autenticação no Portainer bem-sucedida."
         msg_portainer_autenticacao_token_erro="❌ Erro na autenticação. Verifique o usuário e a senha."
 
-        msg_mysql_aguardando="⏳ Verificando se o MySQL está disponível"
+        msg_mysql_verificando="⏳ Verificando se o MySQL está disponível"
         msg_mysql_disponivel="✅ MySQL está disponível!"
         msg_mysql_falha="❌ Falha ao conectar ao MySQL após _RETRIES_ tentativas."
-        msg_mysql_aguardando_segundos="🔄 Tentativa _ATTEMPT_ de _RETRIES_: MySQL ainda não está disponível..."
+        msg_mysql_verificando_segundos="🔄 Tentativa _ATTEMPT_ de _RETRIES_ para conectar ao MySQL..."
 
         msg_repository="⚙️  Atualizando Repositórios"
         msg_repository_ok="✅ Repositórios atualizados com sucesso."
@@ -334,10 +334,10 @@ definir_mensagens() {
         msg_portainer_autenticacao_token_ok="✅ Authentication with Portainer successful."
         msg_portainer_autenticacao_token_erro="❌ Authentication error. Check the username and password."
 
-        msg_mysql_aguardando="⏳ Checking if MySQL is available"
+        msg_mysql_verificando="⏳ Checking if MySQL is available"
         msg_mysql_disponivel="✅ MySQL is available!"
         msg_mysql_falha="❌ Failed to connect to MySQL after _RETRIES_ attempts."
-        msg_mysql_aguardando_segundos="🔄 Attempt _ATTEMPT_ of _RETRIES_: MySQL is still unavailable..."
+        msg_mysql_verificando_segundos="🔄 Attempt _ATTEMPT_ of _RETRIES_ to connect to MySQL..."
 
         msg_repository="⚙️  Updating Repositories"
         msg_repository_ok="✅ Repositories successfully updated."
@@ -454,10 +454,10 @@ definir_mensagens() {
         msg_portainer_autenticacao_token_ok="✅ Autenticación en Portainer exitosa."
         msg_portainer_autenticacao_token_erro="❌ Error de autenticación. Verifique el nombre de usuario y la contraseña."
 
-        msg_mysql_aguardando="⏳ Verificando si MySQL está disponible"
+        msg_mysql_verificando="⏳ Verificando si MySQL está disponible"
         msg_mysql_disponivel="✅ MySQL está disponible!"
         msg_mysql_falha="❌ Falló al conectar a MySQL después de _RETRIES_ intentos."
-        msg_mysql_aguardando_segundos="🔄 Intento _ATTEMPT_ de _RETRIES_: MySQL aún no está disponible..."
+        msg_mysql_verificando_segundos="🔄 Intento _ATTEMPT_ de _RETRIES_ para conectar a MySQL..."
 
         msg_repository="⚙️  Actualizando Repositorios"
         msg_repository_ok="✅ Repositorios actualizados con éxito."
@@ -574,10 +574,10 @@ definir_mensagens() {
         msg_portainer_autenticacao_token_ok="✅ Authentification réussie avec Portainer."
         msg_portainer_autenticacao_token_erro="❌ Erreur d'authentification. Vérifiez le nom d'utilisateur et le mot de passe."
 
-        msg_mysql_aguardando="⏳ Vérification de la disponibilité de MySQL"
+        msg_mysql_verificando="⏳ Vérification de la disponibilité de MySQL"
         msg_mysql_disponivel="✅ MySQL est disponible !"
         msg_mysql_falha="❌ Échec de la connexion à MySQL après _RETRIES_ tentatives."
-        msg_mysql_aguardando_segundos="🔄 Tentative _ATTEMPT_ de _RETRIES_: MySQL est toujours indisponible..."
+        msg_mysql_verificando_segundos="🔄 Tentative _ATTEMPT_ sur _RETRIES_ pour se connecter à MySQL..."
 
         msg_repository="⚙️  Mise à jour des dépôts"
         msg_repository_ok="✅ Dépôts mis à jour avec succès."
@@ -694,10 +694,10 @@ definir_mensagens() {
         msg_portainer_autenticacao_token_ok="✅ Autenticazione su Portainer riuscita."
         msg_portainer_autenticacao_token_erro="❌ Errore di autenticazione. Verifica nome utente e password."
 
-        msg_mysql_aguardando="⏳ Verificando se MySQL è disponibile"
+        msg_mysql_verificando="⏳ Verificando se MySQL è disponibile"
         msg_mysql_disponivel="✅ MySQL è disponibile!"
         msg_mysql_falha="❌ Impossibile connettersi a MySQL dopo _RETRIES_ tentativi."
-        msg_mysql_aguardando_segundos="🔄 Tentativo _ATTEMPT_ di _RETRIES_: MySQL è ancora non disponibile..."
+        msg_mysql_verificando_segundos="🔄 Tentativo _ATTEMPT_ di _RETRIES_ per connettersi a MySQL..."
 
         msg_repository="⚙️  Aggiornamento dei repository"
         msg_repository_ok="✅ Repository aggiornati con successo."
@@ -1296,6 +1296,61 @@ else
 fi
 echo ""
 
+msg_portainer_verificando="⏳ Verificando se o Portainer está disponível"
+msg_portainer_disponivel="✅ O Portainer está ativo."
+msg_portainer_verificando_tentativa="🔄 Tentativa _ATTEMPT_ de _RETRIES_ para conectar ao Portainer..."
+msg_portainer_falha_completa="❌ Falha ao conectar ao Portainer após _RETRIES_ tentativas."
+
+#----------------------------------------------------------------------------------
+# Função para verificar se o Portainer está ativo e pronto para receber requisições
+#----------------------------------------------------------------------------------
+wait_for_portainer() {
+    local RETRIES=20 # Número máximo de tentativas
+    local DELAY=5    # Intervalo entre tentativas (em segundos)
+    local attempt=0  # Contador de tentativas
+
+    echo "$msg_portainer_verificando"
+    echo ""
+
+    # Loop até que o Portainer esteja disponível ou o número máximo de tentativas seja atingido
+    while [ $attempt -lt $RETRIES ]; do
+        # Tentar acessar o endpoint de status do Portainer
+        status=$(curl -s -o /dev/null -w "%{http_code}" "$PORTAINER_URL_LOCAL_API/api/status")
+
+        # Se o status for 200, o Portainer está ativo
+        if [[ "$status" -eq 200 ]]; then
+            return 0
+        else
+            attempt=$((attempt + 1))
+
+            # Substituir variáveis nas mensagens
+            local msg_tentativa=${msg_portainer_verificando_tentativa//_ATTEMPT_/$attempt}
+            local msg_tentativa=${msg_tentativa//_RETRIES_/$RETRIES}
+
+            echo "$msg_tentativa"
+
+            # Chamar a função aguardar passando o tempo de espera
+            aguardar $DELAY
+            echo ""
+        fi
+    done
+
+    echo "$msg_portainer_falha_completa"
+    return 1
+}
+
+########################################
+# Esperar o Portainer ficar disponível #
+########################################
+if wait_for_portainer; then
+    echo "$msg_portainer_disponivel"
+else
+    echo ""
+    echo "❌ Encerrando o script."
+    exit 1
+fi
+echo ""
+
 ############################################
 # Portainer API - Definindo senha do admin #
 ############################################
@@ -1420,7 +1475,7 @@ wait_for_mysql() {
     # Substituindo as variáveis nas mensagens com os valores atuais
     local msg_mysql_falha_completa=${msg_mysql_falha//_RETRIES_/$RETRIES}
 
-    echo "$msg_mysql_aguardando"
+    echo "$msg_mysql_verificando"
 
     # Loop até que o MySQL esteja disponível ou o número máximo de tentativas seja atingido
     while [ $attempt -lt $RETRIES ]; do
@@ -1431,7 +1486,7 @@ wait_for_mysql() {
             attempt=$((attempt + 1))
 
             # Substitui _ATTEMPT_ e _RETRIES_ na mensagem
-            local msg_tentativa=${msg_mysql_aguardando_segundos//_ATTEMPT_/$attempt}
+            local msg_tentativa=${msg_mysql_verificando_segundos//_ATTEMPT_/$attempt}
             local msg_tentativa=${msg_tentativa//_RETRIES_/$RETRIES}
 
             echo $msg_tentativa
