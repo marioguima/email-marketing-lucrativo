@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.25"
+VERSION="v0.0.26"
 
 MODE=$1
 
@@ -9,14 +9,6 @@ clear
 echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - $VERSION"
 echo ""
 echo ""
-
-#-------------------
-# Valores pré-definido
-#-------------------
-SUBDOMINIO_PMA_DEFAULT="pma"
-SUBDOMINIO_PORTAINER_DEFAULT="painel"
-SUBDOMINIO_MAUTIC_DEFAULT="leadmanager"
-PORTAINER_URL_LOCAL_API="http://localhost:9000"
 
 #-----------------------------------------------
 # Função para logar saídas somente no modo DEBUG
@@ -34,6 +26,17 @@ debug_log() {
         fi
     fi
 }
+
+debug_log "DEBUG"
+debug_log ""
+
+#-------------------
+# Valores pré-definido
+#-------------------
+SUBDOMINIO_PMA_DEFAULT="pma"
+SUBDOMINIO_PORTAINER_DEFAULT="painel"
+SUBDOMINIO_MAUTIC_DEFAULT="leadmanager"
+PORTAINER_URL_LOCAL_API="http://localhost:9000"
 
 #---------------------------
 # Função para exibir o menu
