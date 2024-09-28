@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.23"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.24"
 echo ""
 echo ""
 
@@ -12,7 +12,6 @@ echo ""
 SUBDOMINIO_PMA_DEFAULT="pma"
 SUBDOMINIO_PORTAINER_DEFAULT="painel"
 SUBDOMINIO_MAUTIC_DEFAULT="leadmanager"
-# Defina as variáveis do Portainer
 PORTAINER_URL_LOCAL_API="http://localhost:9000"
 
 #---------------------------
@@ -825,9 +824,6 @@ echo ""
 print_with_line "$msg_subdominio_portainer"
 echo ""
 
-#----------------------------------------------------------
-# Loop para garantir a definição do subdominio do Portainer
-#----------------------------------------------------------
 while true; do
     echo -e "$msg_subdominio_portainer_solicitar"
     # Exibe o valor padrão e permite edição
@@ -888,9 +884,6 @@ echo ""
 print_with_line "$msg_subdominio_pma"
 echo ""
 
-#-----------------------------------------------------------
-# Loop para garantir a definição do subdominio do phpMyAdmin
-#-----------------------------------------------------------
 while true; do
     echo -e "$msg_subdominio_pma_solicitar\n"
     # Exibe o valor padrão e permite edição
@@ -912,9 +905,6 @@ echo ""
 print_with_line "$msg_subdominio_mautic"
 echo ""
 
-#-------------------------------------------------------
-# Loop para garantir a definição do subdominio do Mautic
-#-------------------------------------------------------
 while true; do
     echo -e "$msg_subdominio_mautic_solicitar\n"
     # Exibe o valor padrão e permite edição
@@ -1433,7 +1423,10 @@ deploy_stack_portainer() {
 
     # Exibir a resposta da API para depuração
     echo "deploy_stack_portainer: Resposta da API do Portainer:"
+    echo ""
     echo "$response"
+    echo ""
+    echo "$response" | jq
     echo ""
 
     # Verificar se a resposta contém erros
@@ -1481,8 +1474,8 @@ wait_for_mysql() {
     # Loop até que o MySQL esteja disponível ou o número máximo de tentativas seja atingido
     while [ $attempt -lt $RETRIES ]; do
         if mysql -h"$MYSQL_HOST" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "SELECT 1;" >/dev/null 2>&1; then
-            echo ""
             echo "$msg_mysql_disponivel"
+            echo ""
             return 0
         else
             attempt=$((attempt + 1))
