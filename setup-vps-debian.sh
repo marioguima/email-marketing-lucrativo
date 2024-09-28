@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.37"
+VERSION="v0.0.38"
 
 MODE=$1
 
