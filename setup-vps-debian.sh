@@ -1173,7 +1173,7 @@ echo ""
 
 if docker info | grep -q "Swarm: active"; then
     echo ""
-    echo "$msg_docker_swarm_pular"
+    format_multi_part_text "$msg_docker_swarm_pular\n;yellow;italic;default"
 else
     docker swarm init --advertise-addr=$IP_ADDR
     echo ""
@@ -1194,7 +1194,7 @@ print_with_line "$msg_docker_network_swarm" "yellow;bold;default"
 echo ""
 
 if docker network ls | grep -q "network_swarm_public"; then
-    echo "$msg_docker_network_swarm_pular"
+    format_multi_part_text "$msg_docker_network_swarm_pular\n;yellow;italic;default"
 else
     docker network create --driver=overlay network_swarm_public
     echo ""
