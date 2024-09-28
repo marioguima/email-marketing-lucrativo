@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.16"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.17"
 echo ""
 echo ""
 
@@ -1357,14 +1357,13 @@ deploy_stack_portainer() {
     local STACK_NAME=$1
     local COMPOSE_FILE_PATH=$2
 
-    # Enviar a stack para o Portainer
+    # Enviar a stack para o Portainer como um arquivo
     response=$(
-        curl -s -X POST "$PORTAINER_URL_LOCAL_API/api/stacks" \
+        curl -s -X POST "$PORTAINER_URL_LOCAL_API/api/stacks/create/swarm/file?endpointId=1" \
             -H "Authorization: Bearer $PORTAINER_TOKEN" \
-            -F "method=file" \
-            -F "name=$STACK_NAME" \
-            -F "endpointId=1" \
-            -F "composeFile=@$COMPOSE_FILE_PATH"
+            -F "Name=$STACK_NAME" \
+            -F "SwarmID=" \
+            -F "file=@$COMPOSE_FILE_PATH"
     )
 
     # Exibir a resposta da API para depuração
@@ -1378,6 +1377,7 @@ deploy_stack_portainer() {
     else
         echo "✅ Stack $STACK_NAME implantada com sucesso."
     fi
+    echo ""
 }
 
 #-----------------------------------------
