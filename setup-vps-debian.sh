@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.42"
+VERSION="v0.0.43"
 
 MODE=$1
 
@@ -50,12 +50,9 @@ format_multi_part_text() {
         # Exibindo o texto com formatação
         echo -ne "\e[${style_code};${color_code};${bg_code}m${text}\e[0m"
     done
-
-    # Pulando linha após a impressão
-    echo
 }
 
-format_multi_part_text "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - ;cyan;default;default" "$VERSION;yellow;bold;default"
+format_multi_part_text "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - ;cyan;default;default" "$VERSION\n;yellow;bold;default"
 echo ""
 echo ""
 
@@ -89,13 +86,12 @@ PORTAINER_URL_LOCAL_API="http://localhost:9000"
 # Função para exibir o menu
 #---------------------------
 menu_idioma() {
-    format_multi_part_text "🌍 Escolha seu idioma / Choose your language / Elija su idioma / Choisissez votre langue / Scegli la tua lingua;cyan;bold;default"
-    echo ""
-    format_multi_part_text "1 - Português;white;default;default"
-    format_multi_part_text "2 - English;white;default;default"
-    format_multi_part_text "3 - Español;white;default;default"
-    format_multi_part_text "4 - Français;white;default;default"
-    format_multi_part_text "5 - Italiano;white;default;default"
+    format_multi_part_text "🌍 Escolha seu idioma / Choose your language / Elija su idioma / Choisissez votre langue / Scegli la tua lingua\n\n;cyan;bold;default"
+    format_multi_part_text "1;yellow;default;default" " - Português\n;white;default;default"
+    format_multi_part_text "2;yellow;default;default" " - English\n;white;default;default"
+    format_multi_part_text "3;yellow;default;default" " - Español\n;white;default;default"
+    format_multi_part_text "4;yellow;default;default" " - Français\n;white;default;default"
+    format_multi_part_text "5;yellow;default;default" " - Italiano\n;white;default;default"
     echo ""
     read -p "> " idioma
     echo ""
@@ -120,8 +116,8 @@ print_with_line() {
     # echo "$repeticao" # Exibe a linha de caracteres superior
     # echo -e "$texto"  # Exibe o texto
     # echo "$repeticao" # Exibe a linha de caracteres inferior
-    format_multi_part_text "$texto;$formato"
-    format_multi_part_text "$repeticao;$formato"
+    format_multi_part_text "$texto\n;$formato"
+    format_multi_part_text "$repeticao\n;$formato"
 }
 
 # Função para validar o domínio
@@ -792,7 +788,7 @@ while true; do
 done
 echo ""
 
-echo "[Traefik]"
+format_multi_part_text "[;yellow;default;default" "Traefik;white;default;default" "]\n;yellow;default;default"
 # E-mail do traefik
 #------------------
 while true; do
@@ -807,7 +803,7 @@ while true; do
 done
 echo ""
 
-echo "[Portainer]"
+format_multi_part_text "[;yellow;default;default" "Portainer;white;default;default" "]\n;yellow;default;default"
 # Subdominio do Portainer
 #------------------------------------
 while true; do
@@ -837,7 +833,7 @@ while true; do
 done
 echo ""
 
-echo "[MySql]"
+format_multi_part_text "[;yellow;default;default" "MySql;white;default;default" "]\n;yellow;default;default"
 # Senha do Admin do MySql
 #------------------------
 while true; do
@@ -853,7 +849,7 @@ while true; do
 done
 echo ""
 
-echo "[phpMyAdmin]"
+format_multi_part_text "[;yellow;default;default" "phpMyAdmin;white;default;default" "]\n;yellow;default;default"
 # Subdomínio para o phpMyAdmin
 #-----------------------------
 while true; do
@@ -867,7 +863,7 @@ while true; do
 done
 echo ""
 
-echo "[Mautic]"
+format_multi_part_text "[;yellow;default;default" "Mautic;white;default;default" "]\n;yellow;default;default"
 # Subdomínio para o Mautic
 #-------------------------
 while true; do
@@ -915,37 +911,40 @@ echo ""
 print_with_line "$msg_revisao_informacoes" "yellow;bold;default"
 echo ""
 
-echo "$msg_dominio_informado $DOMINIO"
+format_multi_part_text "$msg_dominio_informado;yellow;default;default" " $DOMINIO\n;white;default;default"
 echo ""
-echo "[Traefik]"
-echo "$msg_email_informado $CHANGE_EMAIL_TRAEFIK"
+format_multi_part_text "[;yellow;default;default" "Traefik;white;default;default" "]\n;yellow;default;default"
+format_multi_part_text "$msg_email_informado;yellow;default;default" " $CHANGE_EMAIL_TRAEFIK\n;white;default;default"
 echo ""
-echo "[Portainer]"
-echo "$msg_subdominio_informado $SUBDOMINIO_PORTAINER.$DOMINIO"
-debug_log "${msg_senha_ok/./:} $CHANGE_PORTAINER_ADMIN_PASSWORD"
+format_multi_part_text "[;yellow;default;default" "Portainer;white;default;default" "]\n;yellow;default;default"
+format_multi_part_text "$msg_subdominio_informado;yellow;default;default" " $SUBDOMINIO_PORTAINER.$DOMINIO\n;white;default;default"
+debug_log "${msg_senha_ok/./:};yellow;default;default"
+debug_log " $CHANGE_PORTAINER_ADMIN_PASSWORD\n;white;default;default"
 echo ""
-echo "[phpMyAdmin]"
-echo "$msg_subdominio_informado $SUBDOMINIO_PMA.$DOMINIO"
+format_multi_part_text "[;yellow;default;default" "phpMyAdmin;white;default;default" "]\n;yellow;default;default"
+format_multi_part_text "$msg_subdominio_informado;yellow;default;default" " $SUBDOMINIO_PMA.$DOMINIO\n;white;default;default"
 echo ""
-echo "[Mautic]"
-echo "$msg_subdominio_informado $SUBDOMINIO_MAUTIC.$DOMINIO"
-echo "$msg_email_informado $CHANGE_MAUTIC_ADMIN_EMAIL"
-debug_log "${msg_senha_ok/./:} $CHANGE_MAUTIC_ADMIN_PASSWORD"
+format_multi_part_text "[;yellow;default;default" "Mautic;white;default;default" "]\n;yellow;default;default"
+format_multi_part_text "$msg_subdominio_informado;yellow;default;default" " $SUBDOMINIO_MAUTIC.$DOMINIO\n;white;default;default"
+format_multi_part_text "$msg_email_informado;yellow;default;default" " $CHANGE_MAUTIC_ADMIN_EMAIL\n;white;default;default"
+debug_log "${msg_senha_ok/./:};yellow;default;default"
+debug_log " $CHANGE_MAUTIC_ADMIN_PASSWORD\n;white;default;default"
 echo ""
 if [ "$MODE" == "DEBUG" ]; then
     # exibe a senha
-    debug_log "[MySql]"
-    debug_log "${msg_senha_ok/./:} $CHANGE_MYSQL_ROOT_PASSWORD"
+    format_multi_part_text "[;yellow;default;default" "MySql;white;default;default" "]\n;yellow;default;default"
+    debug_log "${msg_senha_ok/./:};yellow;default;default"
+    debug_log " $CHANGE_MYSQL_ROOT_PASSWORD\n;white;default;default"
 else
     # Não exibir as senhas
-    echo "$msg_senhas_nao_exibidas"
+    format_multi_part_text "$msg_senhas_nao_exibidas\n;purple;italic;default"
 fi
 echo ""
 echo ""
-echo -e "$msg_confirmacao_revisar"
+format_multi_part_text "$msg_confirmacao_revisar\n;yellow;underline;default"
 echo ""
-echo -e "$msg_prosseguir_enter"
-echo -e "$msg_cancelar_esc"
+format_multi_part_text "$msg_prosseguir_enter\n;green;default;default"
+format_multi_part_text "$msg_prosseguir_entemsg_cancelar_esc\n;red;italic;default"
 
 # Aguardar confirmação
 while true; do
@@ -956,7 +955,7 @@ while true; do
     elif [[ "$input" == $'\e' ]]; then
         # Usuário pressionou ESC, encerrar o script
         echo ""
-        echo "$msg_cancelado_pelo_usuario"
+        format_multi_part_text "$msg_cancelado_pelo_usuario\n;red;bold;default"
         echo ""
         exit 0
     fi
@@ -975,7 +974,7 @@ curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/m
 if [[ -s stack-traefik-v2.yml ]]; then
     echo -e "$msg_stack_traefik_ok"
 else
-    echo -e "$msg_stack_traefik_erro"
+    format_multi_part_text "$msg_stack_traefik_erro\n;red;bold;default"
     exit 1
 fi
 echo ""
@@ -992,7 +991,7 @@ curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/m
 if [[ -s stack-portainer.yml ]]; then
     echo -e "$msg_stack_ok"
 else
-    echo -e "$msg_stack_erro"
+    format_multi_part_text "$msg_stack_erro\n;red;bold;default"
     exit 1
 fi
 echo ""
@@ -1009,7 +1008,7 @@ curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/m
 if [[ -s stack-mysql-mautic.yml ]]; then
     echo -e "$msg_stack_ok"
 else
-    echo -e "$msg_stack_erro"
+    format_multi_part_text "$msg_stack_erro\n;red;bold;default"
     exit 1
 fi
 echo ""
@@ -1026,7 +1025,7 @@ curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/m
 if [[ -s stack-pma.yml ]]; then
     echo -e "$msg_stack_ok"
 else
-    echo -e "$msg_stack_erro"
+    format_multi_part_text "$msg_stack_erro\n;red;bold;default"
     exit 1
 fi
 echo ""
@@ -1047,7 +1046,7 @@ curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/m
 if [[ -s stack-mautic.yml ]]; then
     echo -e "$msg_stack_ok"
 else
-    echo -e "$msg_stack_erro"
+    format_multi_part_text "$msg_stack_erro\n;red;bold;default"
     exit 1
 fi
 echo ""
@@ -1065,7 +1064,7 @@ echo ""
 if [ $? -eq 0 ]; then
     echo -e "$msg_repository_ok"
 else
-    echo -e "$msg_repository_erro"
+    format_multi_part_text "$msg_repository_erro\n;red;bold;default"
     exit 1
 fi
 echo ""
@@ -1088,7 +1087,7 @@ if [ ! -f /etc/apt/keyrings/docker.gpg ]; then
         exit 1
     fi
 else
-    echo "$msg_docker_chave_gpg_pular"
+    format_multi_part_text "$msg_docker_chave_gpg_pular\n;yellow;italic;default"
 fi
 echo ""
 
@@ -1107,11 +1106,11 @@ if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
     if [ $? -eq 0 ]; then
         echo -e "$msg_repositorio_docker_ok"
     else
-        echo -e "$msg_repositorio_docker_erro"
+        format_multi_part_text "$msg_repositorio_docker_erro\n;red;bold;default"
         exit 1
     fi
 else
-    echo "$msg_repositorio_docker_pular"
+    format_multi_part_text "$msg_repositorio_docker_pular\n;yellow;italic;default"
 fi
 echo ""
 
@@ -1128,11 +1127,11 @@ if ! command -v docker &>/dev/null; then
     if [ $? -eq 0 ]; then
         echo -e "$msg_instalar_docker_ok"
     else
-        echo -e "$msg_instalar_docker_erro"
+        format_multi_part_text "$msg_instalar_docker_erro\n;red;bold;default"
         exit 1
     fi
 else
-    echo "$msg_instalar_docker_pular"
+    format_multi_part_text "$msg_instalar_docker_pular\n;yellow;italic;default"
 fi
 echo ""
 
@@ -1159,7 +1158,7 @@ echo ""
 IP_ADDR=$(hostname -I | awk '{print $1}')
 
 if [ -z "$IP_ADDR" ]; then
-    echo -e "$msg_obter_ip_erro"
+    format_multi_part_text "$msg_obter_ip_erro\n;red;bold;default"
     exit 1
 else
     echo -e "$msg_obter_ip_ok $IP_ADDR"
@@ -1182,7 +1181,7 @@ else
     if [ $? -eq 0 ]; then
         echo -e "$msg_docker_swarm_ok"
     else
-        echo -e "$msg_docker_swarm_erro"
+        format_multi_part_text "$msg_docker_swarm_erro\n;red;bold;default"
         exit 1
     fi
 fi
@@ -1203,7 +1202,7 @@ else
     if [ $? -eq 0 ]; then
         echo -e "$msg_docker_network_swarm_ok"
     else
-        echo -e "$msg_docker_network_swarm_erro"
+        format_multi_part_text "$msg_docker_network_swarm_erro\n;red;bold;default"
         exit 1
     fi
 fi
@@ -1222,7 +1221,7 @@ echo ""
 if [ $? -eq 0 ]; then
     echo -e "$msg_stack_traefik_deploy_ok"
 else
-    echo -e "$msg_stack_traefik_deploy_erro"
+    format_multi_part_text "$msg_stack_traefik_deploy_erro\n;red;bold;default"
     exit 1
 fi
 echo ""
@@ -1240,7 +1239,7 @@ echo ""
 if [ $? -eq 0 ]; then
     echo -e "$msg_stack_portainer_deploy_ok"
 else
-    echo -e "$msg_stack_portainer_deploy_erro"
+    format_multi_part_text "$msg_stack_portainer_deploy_erro\n;red;bold;default"
     exit 1
 fi
 echo ""
@@ -1258,7 +1257,7 @@ wait_for_portainer() {
     local DELAY=5    # Intervalo entre tentativas (em segundos)
     local attempt=0  # Contador de tentativas
 
-    echo "$msg_portainer_verificando"
+    format_multi_part_text "$msg_portainer_verificando\n;yellow;italic;default"
     echo ""
 
     # Loop até que o Portainer esteja disponível ou o número máximo de tentativas seja atingido
@@ -1276,7 +1275,7 @@ wait_for_portainer() {
             local msg_tentativa=${msg_portainer_verificando_tentativa//_ATTEMPT_/$attempt}
             local msg_tentativa=${msg_tentativa//_RETRIES_/$RETRIES}
 
-            echo "$msg_tentativa"
+            format_multi_part_text "$msg_tentativa\n;cyan;italic;default"
 
             # Chamar a função aguardar passando o tempo de espera
             aguardar $DELAY
@@ -1284,7 +1283,7 @@ wait_for_portainer() {
         fi
     done
 
-    echo "$msg_portainer_falha_completa"
+    format_multi_part_text "$msg_portainer_falha_completa\n;white;default;default"
     return 1
 }
 
@@ -1292,10 +1291,10 @@ wait_for_portainer() {
 # Esperar o Portainer ficar disponível #
 ########################################
 if wait_for_portainer; then
-    echo "$msg_portainer_disponivel"
+    format_multi_part_text "$msg_portainer_disponivel\n;yellow;default;default"
 else
     echo ""
-    echo "❌ Encerrando o script."
+    format_multi_part_text "❌ Encerrando o script.\n;red;bold;default"
     exit 1
 fi
 echo ""
@@ -1312,14 +1311,15 @@ admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
 
-debug_log "Retorno da chamada admin/init"
+debug_log "Retorno da chamada admin/init\n;red;italic;default"
 debug_log "$admin_init_response"
 debug_log "\n"
 
 # Verificar se houve algum erro
 if [[ "$admin_init_response" == *"err"* || "$admin_init_response" == *"error"* ]]; then
-    echo -e "$msg_portainer_definir_senha_admin_erro"
+    format_multi_part_text "$msg_portainer_definir_senha_admin_erro\n;red;bold;default"
     debug_log "$admin_init_response"
+    debug_log "\n"
     exit 1
 else
     echo -e "$msg_portainer_definir_senha_admin_ok"
@@ -1338,7 +1338,7 @@ auth_response=$(
         "$PORTAINER_URL_LOCAL_API/api/auth"
 )
 
-debug_log "Retorno da autenticação no Portainer:"
+debug_log "Retorno da autenticação no Portainer:\n;red;italic;default"
 debug_log "$auth_response"
 debug_log "\n"
 
@@ -1368,7 +1368,7 @@ deploy_stack_portainer() {
 
     # Verificar se o Swarm ID foi obtido corretamente
     if [[ -z "$SWARM_ID" ]]; then
-        echo "❌ Não foi possível obter o Swarm ID."
+        format_multi_part_text "❌ Não foi possível obter o Swarm ID.\n;red;bold;default"
         return 1
     fi
 
@@ -1388,9 +1388,9 @@ deploy_stack_portainer() {
 
     # Verificar se a resposta contém erros
     if [[ $response == *"err"* || $response == *"error"* ]]; then
-        echo "❌ Erro ao implantar a stack: $STACK_NAME"
+        format_multi_part_text "❌ Erro ao implantar a stack: ;red;bold;default" "$STACK_NAME\n;white;default;default"
     else
-        echo "✅ Stack $STACK_NAME implantada com sucesso."
+        format_multi_part_text "✅ Stack ;yellow;default;default" "$STACK_NAME;white;default;default" " implantada com sucesso.\n;yellow;default;default"
     fi
     echo ""
 }
@@ -1425,7 +1425,7 @@ wait_for_mysql() {
     # Substituindo as variáveis nas mensagens com os valores atuais
     local msg_mysql_falha_completa=${msg_mysql_falha//_RETRIES_/$RETRIES}
 
-    echo "$msg_mysql_verificando"
+    format_multi_part_text "$msg_mysql_verificando\n;yellow;italic;default"
     echo ""
 
     # Loop até que o MySQL esteja disponível ou o número máximo de tentativas seja atingido
@@ -1441,7 +1441,7 @@ wait_for_mysql() {
             local msg_tentativa=${msg_mysql_verificando_segundos//_ATTEMPT_/$attempt}
             local msg_tentativa=${msg_tentativa//_RETRIES_/$RETRIES}
 
-            echo $msg_tentativa
+            format_multi_part_text "$msg_tentativa\n;cyan;italic;default"
 
             # Chama a função aguardar passando a mensagem atualizada
             aguardar $DELAY
@@ -1472,7 +1472,7 @@ if wait_for_mysql "127.0.0.1" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     # Deploy do Mautic se o MySQL estiver disponível
     deploy_stack_portainer "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
 else
-    echo "❌ O deploy do Mautic foi cancelado porque o MySQL não está disponível."
+    format_multi_part_text "❌ O deploy do Mautic foi cancelado porque o MySQL não está disponível.\n;red;bold;default"
 fi
 
 echo -e "\n$msg_script_executado_ok"
