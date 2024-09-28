@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.27"
+VERSION="v0.0.28"
 
 MODE=$1
 
@@ -1021,7 +1021,9 @@ echo ""
 if [ "$MODE" == "DEBUG" ]; then
     # exibe a senha
     echo "$msg_senha_ok [Portainer] $CHANGE_PORTAINER_ADMIN_PASSWORD"
+    echo ""
     echo "$msg_senha_ok [MySql] $CHANGE_MYSQL_ROOT_PASSWORD"
+    echo ""
     echo "$msg_senha_ok [Mautic] $CHANGE_MAUTIC_ADMIN_PASSWORD"
 else
     # Não exibir as senhas
