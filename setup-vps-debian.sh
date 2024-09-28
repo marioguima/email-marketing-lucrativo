@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.31"
+VERSION="v0.0.32"
 
 MODE=$1
 
@@ -1012,7 +1012,7 @@ echo "$msg_email_informado $CHANGE_EMAIL_TRAEFIK"
 echo ""
 echo "[Portainer]"
 echo "$msg_subdominio_informado $SUBDOMINIO_PORTAINER.$DOMINIO"
-debug_log "${msg_senha_ok/.//:} $CHANGE_PORTAINER_ADMIN_PASSWORD"
+debug_log "${msg_senha_ok/./:} $CHANGE_PORTAINER_ADMIN_PASSWORD"
 echo ""
 echo "[phpMyAdmin]"
 echo "$msg_subdominio_informado $SUBDOMINIO_PMA.$DOMINIO"
@@ -1020,12 +1020,12 @@ echo ""
 echo "[Mautic]"
 echo "$msg_subdominio_informado $SUBDOMINIO_MAUTIC.$DOMINIO"
 echo "$msg_email_informado $CHANGE_MAUTIC_ADMIN_EMAIL"
-debug_log "${msg_senha_ok/.//:} $CHANGE_MAUTIC_ADMIN_PASSWORD"
+debug_log "${msg_senha_ok/./:} $CHANGE_MAUTIC_ADMIN_PASSWORD"
 echo ""
 if [ "$MODE" == "DEBUG" ]; then
     # exibe a senha
     debug_log "[MySql]"
-    debug_log "${msg_senha_ok/.//:} $CHANGE_MYSQL_ROOT_PASSWORD"
+    debug_log "${msg_senha_ok/./:} $CHANGE_MYSQL_ROOT_PASSWORD"
 else
     # Não exibir as senhas
     echo "$msg_senhas_nao_exibidas"
