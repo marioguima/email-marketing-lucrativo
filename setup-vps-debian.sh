@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.0"
+VERSION="v0.1.1"
 
 MODE=$1
 
@@ -910,26 +910,33 @@ echo ""
 print_with_line "$msg_revisao_informacoes" "yellow;bold;default"
 echo ""
 
+# dominio
 format_multi_part_text "$msg_dominio_informado;yellow;default;default" " $DOMINIO\n;white;default;default"
 echo ""
+
+# Traefik
 format_multi_part_text "[;yellow;default;default" "Traefik;white;default;default" "]\n;yellow;default;default"
 format_multi_part_text "$msg_email_informado;yellow;default;default" " $CHANGE_EMAIL_TRAEFIK\n;white;default;default"
 echo ""
+
+# Portainer
 format_multi_part_text "[;yellow;default;default" "Portainer;white;default;default" "]\n;yellow;default;default"
 format_multi_part_text "$msg_subdominio_informado;yellow;default;default" " $SUBDOMINIO_PORTAINER.$DOMINIO\n;white;default;default"
 debug_log "${msg_senha_ok/./:};yellow;default;default"
 debug_log " $CHANGE_PORTAINER_ADMIN_PASSWORD\n;white;default;default"
 echo ""
-if [ "$MODE" == "DEBUG" ]; then
-    # exibe a senha
-    format_multi_part_text "[;yellow;default;default" "MySql;white;default;default" "]\n;yellow;default;default"
-    debug_log "${msg_senha_ok/./:};yellow;default;default"
-    debug_log " $CHANGE_MYSQL_ROOT_PASSWORD\n;white;default;default"
-fi
-echo ""
+
+# MySql - exibe a senha se está no modo DEBUG
+debug_log "[;yellow;default;default" "MySql;white;default;default" "]\n;yellow;default;default"
+debug_log "${msg_senha_ok/./:};yellow;default;default"
+debug_log " $CHANGE_MYSQL_ROOT_PASSWORD\n\n;white;default;default"
+
+# phpMyAdmin
 format_multi_part_text "[;yellow;default;default" "phpMyAdmin;white;default;default" "]\n;yellow;default;default"
 format_multi_part_text "$msg_subdominio_informado;yellow;default;default" " $SUBDOMINIO_PMA.$DOMINIO\n;white;default;default"
 echo ""
+
+# Mautic
 format_multi_part_text "[;yellow;default;default" "Mautic;white;default;default" "]\n;yellow;default;default"
 format_multi_part_text "$msg_subdominio_informado;yellow;default;default" " $SUBDOMINIO_MAUTIC.$DOMINIO\n;white;default;default"
 format_multi_part_text "$msg_email_informado;yellow;default;default" " $CHANGE_MAUTIC_ADMIN_EMAIL\n;white;default;default"
@@ -1325,6 +1332,7 @@ if [[ "$admin_init_response" == *"err"* || "$admin_init_response" == *"error"* ]
 else
     echo -e "$msg_portainer_definir_senha_admin_ok"
 fi
+echo ""
 
 ###############################################################
 # Portainer API - Autenticar no Portainer e obter o token JWT #
@@ -1364,8 +1372,7 @@ deploy_stack_portainer() {
     local STACK_NAME=$1
     local COMPOSE_FILE_PATH=$2
 
-    debug_log "Fazendo deploy da stack ;yellow;underline;default"
-    debug_log "$STACK_NAME\n\n;white;default;default"
+    format_multi_part_text "Fazendo deploy da stack ;yellow;underline;default" "$STACK_NAME\n\n;white;underline;default"
 
     # Obter o Swarm ID
     SWARM_ID=$(curl -s -H "Authorization: Bearer $PORTAINER_TOKEN" \
@@ -1394,6 +1401,7 @@ deploy_stack_portainer() {
     # Verificar se a resposta contém erros
     if [[ $response == *"err"* || $response == *"error"* ]]; then
         format_multi_part_text "❌ Erro ao implantar a stack: ;red;bold;default" "$STACK_NAME\n;white;default;default"
+        exit 1
     else
         format_multi_part_text "✅ Stack ;yellow;italic;default" "$STACK_NAME;white;default;default" " implantada com sucesso.\n;yellow;italic;default"
     fi
@@ -1481,6 +1489,7 @@ if wait_for_mysql "127.0.0.1" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
 else
     echo ""
     format_multi_part_text "❌ O deploy do Mautic foi cancelado porque o MySQL não está disponível.\n;red;bold;default"
+    exit 1
 fi
 echo ""
 
