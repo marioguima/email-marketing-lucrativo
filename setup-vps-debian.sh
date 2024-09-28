@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.33"
+VERSION="v0.0.34"
 
 MODE=$1
 
@@ -16,12 +16,13 @@ echo ""
 debug_log() {
     if [[ "$MODE" == "DEBUG" ]]; then
         local log_content=$1
-        # Verifica se o conteúdo é JSON, se não, apenas imprime
+
+        # Verifica se o conteúdo é JSON
         if echo "$log_content" | jq . >/dev/null 2>&1; then
             # Formata a saída com jq
-            echo "$log_content" | jq
+            echo "$log_content" | jq .
         else
-            # Usa echo -e para permitir a interpretação de sequências de escape, como \n
+            # Usa echo -e para permitir a interpretação de sequências de escape
             echo -e "$log_content"
         fi
     fi
@@ -1408,7 +1409,8 @@ admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
 
 debug_log "Retorno da chamada admin/init"
-debug_log "$admin_init_response\n"
+debug_log "$admin_init_response"
+debug_log "\n"
 
 # Verificar se houve algum erro
 if [[ "$admin_init_response" == *"err"* || "$admin_init_response" == *"error"* ]]; then
@@ -1433,7 +1435,8 @@ auth_response=$(
 )
 
 debug_log "Retorno da autenticação no Portainer:"
-debug_log "$auth_response\n"
+debug_log "$auth_response"
+debug_log "\n"
 
 # Extrair o token do JSON de resposta
 PORTAINER_TOKEN=$(echo $auth_response | jq -r .jwt)
@@ -1476,7 +1479,8 @@ deploy_stack_portainer() {
 
     # Exibir a resposta da API para depuração
     debug_log "Resposta da API do Portainer:"
-    debug_log "$response\n"
+    debug_log "$response"
+    debug_log "\n"
 
     # Verificar se a resposta contém erros
     if [[ $response == *"err"* || $response == *"error"* ]]; then
