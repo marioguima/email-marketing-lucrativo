@@ -1353,6 +1353,7 @@ fi
 
 echo -e "$msg_portainer_autenticacao_token_ok"
 echo ""
+echo ""
 
 #------------------------------
 # Função Deploy Stack Portainer
@@ -1360,6 +1361,9 @@ echo ""
 deploy_stack_portainer() {
     local STACK_NAME=$1
     local COMPOSE_FILE_PATH=$2
+
+    debug_log "Fazendo deploy da stack ;yellow;italic;default"
+    debug_log "$STACK_NAME;white;default;default"
 
     # Obter o Swarm ID
     SWARM_ID=$(curl -s -H "Authorization: Bearer $PORTAINER_TOKEN" \
@@ -1381,7 +1385,7 @@ deploy_stack_portainer() {
     )
 
     # Exibir a resposta da API para depuração
-    debug_log "Resposta da API do Portainer:"
+    debug_log "Resposta da API do Portainer:\n;yellow;italic;default"
     debug_log "$response"
     debug_log "\n"
 
@@ -1389,7 +1393,7 @@ deploy_stack_portainer() {
     if [[ $response == *"err"* || $response == *"error"* ]]; then
         format_multi_part_text "❌ Erro ao implantar a stack: ;red;bold;default" "$STACK_NAME\n;white;default;default"
     else
-        format_multi_part_text "✅ Stack ;yellow;default;default" "$STACK_NAME;white;default;default" " implantada com sucesso.\n;yellow;default;default"
+        format_multi_part_text "✅ Stack ;yellow;italic;default" "$STACK_NAME;white;default;default" " implantada com sucesso.\n;yellow;italic;default"
     fi
     echo ""
 }
@@ -1459,6 +1463,7 @@ STACK_MYSQL_NAME="mysql_mautic"
 COMPOSE_MYSQL_PATH="stack-mysql-mautic.yml"
 
 deploy_stack_portainer "$STACK_MYSQL_NAME" "$COMPOSE_MYSQL_PATH"
+echo ""
 
 #########################################
 # Deploy stack Mautic via Portainer API #
@@ -1470,6 +1475,7 @@ COMPOSE_MAUTIC_PATH="stack-mautic.yml"
 if wait_for_mysql "127.0.0.1" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     # Deploy do Mautic se o MySQL estiver disponível
     deploy_stack_portainer "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
+    echo ""
 else
     format_multi_part_text "❌ O deploy do Mautic foi cancelado porque o MySQL não está disponível.\n;red;bold;default"
 fi
