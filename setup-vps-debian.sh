@@ -1311,7 +1311,7 @@ admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
 
-debug_log "Retorno da chamada admin/init\n;red;italic;default"
+debug_log "Retorno da chamada admin/init\n;yellow;italic;default"
 debug_log "$admin_init_response"
 debug_log "\n"
 
@@ -1338,7 +1338,7 @@ auth_response=$(
         "$PORTAINER_URL_LOCAL_API/api/auth"
 )
 
-debug_log "Retorno da autenticação no Portainer:\n;red;italic;default"
+debug_log "Retorno da autenticação no Portainer:\n;yellow;italic;default"
 debug_log "$auth_response"
 debug_log "\n"
 
