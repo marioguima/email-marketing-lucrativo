@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.44"
+VERSION="v0.0.45"
 
 MODE=$1
 
@@ -943,7 +943,7 @@ echo ""
 echo ""
 format_multi_part_text "$msg_confirmacao_revisar\n;yellow;underline;default"
 echo ""
-format_multi_part_text "$msg_prosseguir_enter\n;green;default;default"
+format_multi_part_text "$msg_prosseguir_enter\n;cyan;default;default"
 format_multi_part_text "$msg_cancelar_esc\n;red;italic;default"
 
 # Aguardar confirmação
