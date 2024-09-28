@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.35"
+VERSION="v0.0.36"
 
 MODE=$1
 
@@ -10,7 +10,6 @@ echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - $VERSION"
 echo ""
 echo ""
 
-#-----------------------------------------------
 # Função para logar saídas somente no modo DEBUG
 #-----------------------------------------------
 debug_log() {
@@ -30,7 +29,6 @@ debug_log() {
 
 debug_log "DEBUG\n"
 
-#-------------------
 # Valores pré-definido
 #-------------------
 SUBDOMINIO_PMA_DEFAULT="pma"
@@ -38,7 +36,6 @@ SUBDOMINIO_PORTAINER_DEFAULT="painel"
 SUBDOMINIO_MAUTIC_DEFAULT="leadmanager"
 PORTAINER_URL_LOCAL_API="http://localhost:9000"
 
-#---------------------------
 # Função para exibir o menu
 #---------------------------
 menu_idioma() {
@@ -54,7 +51,6 @@ menu_idioma() {
     echo ""
 }
 
-#----------------------------------------------------------
 # Função para imprimir uma linha de caracteres com um texto
 #----------------------------------------------------------
 print_with_line() {
@@ -70,12 +66,11 @@ print_with_line() {
     # Repete o caractere pelo tamanho da string
     local repeticao=$(printf "%${tamanho}s" | tr " " "$caracter")
 
-    echo "$repeticao" # Exibe a linha de caracteres superior
+    # echo "$repeticao" # Exibe a linha de caracteres superior
     echo -e "$texto"  # Exibe o texto
     echo "$repeticao" # Exibe a linha de caracteres inferior
 }
 
-#------------------------------
 # Função para validar o domínio
 #------------------------------
 validar_dominio() {
@@ -90,7 +85,6 @@ validar_dominio() {
     fi
 }
 
-#---------------------------------
 # Função para validar subdomínio
 #---------------------------------
 validar_subdominio() {
@@ -107,7 +101,6 @@ validar_subdominio() {
     fi
 }
 
-#--------------------------
 # Função para validar email
 #--------------------------
 validar_email() {
@@ -119,7 +112,6 @@ validar_email() {
     fi
 }
 
-#--------------------------
 # Função para validar senha
 #--------------------------
 validar_senha() {
@@ -172,9 +164,8 @@ validar_senha() {
     fi
 }
 
-#--------------------------------------
-# Definir mensagens no idioma escolhido
-#--------------------------------------
+# Mensagens do idioma escolhido
+#------------------------------
 definir_mensagens() {
     case $idioma in
     1)
@@ -184,26 +175,12 @@ definir_mensagens() {
         msg_dominio_informado="✅ Domínio informado:"
         msg_dominio_invalido="❌ Domínio inválido. Por favor, tente novamente."
 
-        msg_traefik_obter_email="⚙️  Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
+        # msg_traefik_obter_email="⚙️  Insira o seu e-mail para configurar o Let's Encrypt (certificado ssl) no Traefik:"
 
-        msg_subdominio_portainer="⚙️  Configurar o subdomínio para acessar o Portainer"
-        msg_subdominio_portainer_solicitar="🌐 Por favor, insira o subdomínio para acessar o Portainer:"
-
-        msg_portainer_obter_senha="⚙️  Insira a senha de administrador do Portainer"
-
-        msg_mysql_obter_senha="⚙️  Insira a senha de administrador do MySql"
-
-        msg_subdominio_pma="⚙️  Configurar o subdomínio para acessar o phpMyAdmin"
-        msg_subdominio_pma_solicitar="🌐 Por favor, insira o subdomínio para acessar o phpMyAdmin:"
-
-        msg_subdominio_mautic="⚙️  Configurar o subdomínio para acessar o Mautic"
-        msg_subdominio_mautic_solicitar="🌐 Por favor, insira o subdomínio para acessar o Mautic:"
+        msg_subdominio="🌐 Informe o subdomínio:"
 
         msg_subdominio_informado="✅ Subdomínio informado:"
         msg_subdominio_invalido="❌ Subdomínio inválido. Por favor, tente novamente."
-
-        msg_mautic_obter_email="⚙️  Insira o e-mail do administrador do Mautic"
-        msg_mautic_obter_senha="⚙️  Insira a senha de administrador do Mautic"
 
         msg_senha_solicitar="🔑 Por favor, insira sua senha:"
         msg_senha_ok="✅ Senha informada."
@@ -214,7 +191,7 @@ definir_mensagens() {
         msg_senha_requisito_numero="Conter ao menos 1 número"
         msg_senha_requisito_especial="Conter ao menos 1 caracter especial ! @ # $ % & *"
 
-        msg_email_solicitar="📧 Por favor, insira seu e-mail:"
+        msg_email_solicitar="📧 Informe o e-mail:"
         msg_email_informado="✅ Email informado:"
         msg_email_invalido="❌ Email inválido. Tente novamente."
 
@@ -299,31 +276,17 @@ definir_mensagens() {
         ;;
     2)
         # English
-        msg_configurar="⚙️  Set up the domain"
+        msg_configurar="⚙️  Start configuring"
         msg_dominio_solicitar="🌐 Please enter a domain:"
         msg_dominio_informado="✅ Domain provided:"
         msg_dominio_invalido="❌ Invalid domain. Please try again."
 
-        msg_traefik_obter_email="⚙️  Enter your email to configure Let's Encrypt (SSL certificate) in Traefik:"
+        # msg_traefik_obter_email="⚙️  Enter your email to configure Let's Encrypt (SSL certificate) in Traefik:"
 
-        msg_subdominio_portainer="⚙️  Set up the subdomain to access Portainer"
-        msg_subdominio_portainer_solicitar="🌐 Please enter the subdomain to access Portainer:"
-
-        msg_portainer_obter_senha="⚙️  Enter the Portainer administrator password"
-
-        msg_mysql_obter_senha="⚙️  Enter the MySQL administrator password"
-
-        msg_subdominio_pma="⚙️  Set up the subdomain to access phpMyAdmin"
-        msg_subdominio_pma_solicitar="🌐 Please enter the subdomain to access phpMyAdmin:"
-
-        msg_subdominio_mautic="⚙️  Set up the subdomain to access Mautic"
-        msg_subdominio_mautic_solicitar="🌐 Please enter the subdomain to access Mautic:"
+        msg_subdominio="🌐 Please enter the subdomain:"
 
         msg_subdominio_informado="✅ Subdomain provided:"
         msg_subdominio_invalido="❌ Invalid subdomain. Please try again."
-
-        msg_mautic_obter_email="⚙️  Enter the Mautic administrator's email"
-        msg_mautic_obter_senha="⚙️  Enter the Mautic administrator's password"
 
         msg_senha_solicitar="🔑 Please enter your password:"
         msg_senha_ok="✅ Password provided."
@@ -419,31 +382,17 @@ definir_mensagens() {
         ;;
     3)
         # Español
-        msg_configurar="⚙️  Configurar el dominio"
+        msg_configurar="⚙️  Iniciar configuraciones"
         msg_dominio_solicitar="🌐 Por favor, introduzca un dominio:"
         msg_dominio_informado="✅ Dominio informado:"
         msg_dominio_invalido="❌ Dominio inválido. Por favor, intente nuevamente."
 
-        msg_traefik_obter_email="⚙️  Introduzca su correo electrónico para configurar Let's Encrypt (certificado SSL) en Traefik:"
+        # msg_traefik_obter_email="⚙️  Introduzca su correo electrónico para configurar Let's Encrypt (certificado SSL) en Traefik:"
 
-        msg_subdominio_portainer="⚙️  Configurar el subdominio para acceder a Portainer"
-        msg_subdominio_portainer_solicitar="🌐 Por favor, ingrese el subdominio para acceder a Portainer:"
-
-        msg_portainer_obter_senha="⚙️  Ingrese la contraseña de administrador de Portainer"
-
-        msg_mysql_obter_senha="⚙️  Ingrese la contraseña de administrador de MySQL"
-
-        msg_subdominio_pma="⚙️  Configurar el subdominio para acceder a phpMyAdmin"
-        msg_subdominio_pma_solicitar="🌐 Por favor, ingrese el subdominio para acceder a phpMyAdmin:"
-
-        msg_subdominio_mautic="⚙️  Configurar el subdominio para acceder a Mautic"
-        msg_subdominio_mautic_solicitar="🌐 Por favor, ingrese el subdominio para acceder a Mautic:"
+        msg_subdominio="🌐 Informe el subdominio:"
 
         msg_subdominio_informado="✅ Subdominio informado:"
         msg_subdominio_invalido="❌ Subdominio inválido. Por favor, intente de nuevo."
-
-        msg_mautic_obter_email="⚙️  Ingrese el correo electrónico del administrador de Mautic"
-        msg_mautic_obter_senha="⚙️  Ingrese la contraseña del administrador de Mautic"
 
         msg_senha_solicitar="🔑 Por favor, introduzca su contraseña:"
         msg_senha_ok="✅ Contraseña proporcionada."
@@ -454,7 +403,7 @@ definir_mensagens() {
         msg_senha_requisito_numero="Contener al menos 1 número"
         msg_senha_requisito_especial="Contener al menos 1 carácter especial ! @ # $ % & *"
 
-        msg_email_solicitar="📧 Por favor, introduzca su correo electrónico:"
+        msg_email_solicitar="📧 Informe su correo electrónico:"
         msg_email_informado="✅ Correo electrónico informado:"
         msg_email_invalido="❌ Correo electrónico inválido. Intente nuevamente."
 
@@ -539,31 +488,17 @@ definir_mensagens() {
         ;;
     4)
         # Français
-        msg_configurar="⚙️  Configurer le domaine"
+        msg_configurar="⚙️  Commencer les configurations"
         msg_dominio_solicitar="🌐 Veuillez saisir un domaine :"
         msg_dominio_informado="✅ Domaine fourni :"
         msg_dominio_invalido="❌ Domaine invalide. Veuillez réessayer."
 
-        msg_traefik_obter_email="⚙️  Veuillez saisir votre e-mail pour configurer Let's Encrypt (certificat SSL) sur Traefik :"
+        # msg_traefik_obter_email="⚙️  Veuillez saisir votre e-mail pour configurer Let's Encrypt (certificat SSL) sur Traefik :"
 
-        msg_subdominio_portainer="⚙️  Configurer le sous-domaine pour accéder à Portainer"
-        msg_subdominio_portainer_solicitar="🌐 Veuillez entrer le sous-domaine pour accéder à Portainer :"
-
-        msg_portainer_obter_senha="⚙️  Entrez le mot de passe administrateur de Portainer"
-
-        msg_mysql_obter_senha="⚙️  Entrez le mot de passe administrateur de MySQL"
-
-        msg_subdominio_pma="⚙️  Configurer le sous-domaine pour accéder à phpMyAdmin"
-        msg_subdominio_pma_solicitar="🌐 Veuillez entrer le sous-domaine pour accéder à phpMyAdmin :"
-
-        msg_subdominio_mautic="⚙️  Configurer le sous-domaine pour accéder à Mautic"
-        msg_subdominio_mautic_solicitar="🌐 Veuillez entrer le sous-domaine pour accéder à Mautic :"
+        msg_subdominio="🌐 Veuillez entrer le sous-domaine :"
 
         msg_subdominio_informado="✅ Sous-domaine fourni :"
         msg_subdominio_invalido="❌ Sous-domaine invalide. Veuillez réessayer."
-
-        msg_mautic_obter_email="⚙️  Entrez l'e-mail de l'administrateur de Mautic"
-        msg_mautic_obter_senha="⚙️  Entrez le mot de passe de l'administrateur de Mautic"
 
         msg_senha_solicitar="🔑 Veuillez saisir votre mot de passe :"
         msg_senha_ok="✅ Mot de passe fourni."
@@ -574,7 +509,7 @@ definir_mensagens() {
         msg_senha_requisito_numero="Contenir au moins 1 chiffre"
         msg_senha_requisito_especial="Contenir au moins 1 caractère spécial ! @ # $ % & *"
 
-        msg_email_solicitar="📧 Veuillez saisir votre e-mail :"
+        msg_email_solicitar="📧 Veuillez entrer votre e-mail :"
         msg_email_informado="✅ E-mail fourni :"
         msg_email_invalido="❌ E-mail invalide. Veuillez réessayer."
 
@@ -659,31 +594,17 @@ definir_mensagens() {
         ;;
     5)
         # Italiano
-        msg_configurar="⚙️  Configurare il dominio"
+        msg_configurar="⚙️  Iniziare le configurazioni"
         msg_dominio_solicitar="🌐 Per favore, inserisci un dominio:"
         msg_dominio_informado="✅ Dominio fornito:"
         msg_dominio_invalido="❌ Dominio non valido. Per favore, riprova."
 
-        msg_traefik_obter_email="⚙️  Inserisci la tua email per configurare Let's Encrypt (certificato SSL) su Traefik:"
+        # msg_traefik_obter_email="⚙️  Inserisci la tua email per configurare Let's Encrypt (certificato SSL) su Traefik:"
 
-        msg_subdominio_portainer="⚙️  Configurare il sottodominio per accedere a Portainer"
-        msg_subdominio_portainer_solicitar="🌐 Per favore, inserisci il sottodominio per accedere a Portainer:"
-
-        msg_portainer_obter_senha="⚙️  Inserisci la password di amministratore di Portainer"
-
-        msg_mysql_obter_senha="⚙️  Inserisci la password di amministratore di MySQL"
-
-        msg_subdominio_pma="⚙️  Configurare il sottodominio per accedere a phpMyAdmin"
-        msg_subdominio_pma_solicitar="🌐 Per favore, inserisci il sottodominio per accedere a phpMyAdmin:"
-
-        msg_subdominio_mautic="⚙️  Configurare il sottodominio per accedere a Mautic"
-        msg_subdominio_mautic_solicitar="🌐 Per favore, inserisci il sottodominio per accedere a Mautic:"
+        msg_subdominio="🌐 Inserisci il sottodominio"
 
         msg_subdominio_informado="✅ Sottodominio fornito:"
         msg_subdominio_invalido="❌ Sottodominio non valido. Per favore, riprova."
-
-        msg_mautic_obter_email="⚙️  Inserisci l'e-mail dell'amministratore di Mautic"
-        msg_mautic_obter_senha="⚙️  Inserisci la password dell'amministratore di Mautic"
 
         msg_senha_solicitar="🔑 Per favore, inserisci la tua password:"
         msg_senha_ok="✅ Password fornita."
@@ -694,7 +615,7 @@ definir_mensagens() {
         msg_senha_requisito_numero="Contenere almeno 1 numero"
         msg_senha_requisito_especial="Contenere almeno 1 carattere speciale ! @ # $ % & *"
 
-        msg_email_solicitar="📧 Per favore, inserisci la tua email:"
+        msg_email_solicitar="📧 Inserisci la tua email:"
         msg_email_informado="✅ Email fornito:"
         msg_email_invalido="❌ Email non valida. Riprova."
 
@@ -790,9 +711,8 @@ definir_mensagens() {
     return 0
 }
 
-#-------------------------------------
-# Loop para garantir escolha do idioma
-#-------------------------------------
+# Escolha do idioma
+#------------------
 while true; do
     menu_idioma
     if definir_mensagens; then
@@ -800,207 +720,137 @@ while true; do
     fi
 done
 
-#########################
-# Iniciar configurações #
-#########################
+# Iniciar configurações
+#----------------------
 print_with_line "$msg_configurar"
 echo ""
 
-#-------------------------------
-# Solicitar o domínio ao usuário
-#-------------------------------
-# while true; do
-#     # echo -e "$msg_dominio_solicitar"
-#     read -p "$msg_dominio_solicitar " DOMINIO
-#     if validar_dominio "$DOMINIO"; then
-#         echo ""
-#         # echo "$msg_dominio_informado $DOMINIO"
-#         break
-#     else
-#         echo ""
-#         echo -e "$msg_dominio_invalido"
-#         echo ""
-#     fi
-# done
+# Domínio
+#--------
 while true; do
-    # Exibe a mensagem de solicitação de domínio
-    echo -n "$msg_dominio_solicitar " # Não pula linha
-    read -r DOMINIO                   # Lê a entrada do usuário
+    echo -e -n "$msg_dominio_solicitar "
+    read -r DOMINIO
 
     if validar_dominio "$DOMINIO"; then
-        # Se o domínio for válido, exibe o resultado e quebra o loop
-        # echo ""
-        # echo "$msg_dominio_solicitar $DOMINIO"
-        echo "" # Linha em branco
         break
     else
-        # Se o domínio for inválido, exibe a mensagem de erro
-        echo -e "\r$msg_dominio_invalido" # Sobrescreve a linha anterior com a mensagem de erro
-        echo ""                           # Pula para a próxima linha
+        echo -e "$msg_dominio_invalido"
+        echo ""
     fi
 done
 echo ""
 
-#################################
-# Solicitar o e-mail do traefik #
-#################################
-echo ""
-print_with_line "$msg_traefik_obter_email"
-echo ""
-
+echo "[Traefik]"
+# E-mail do traefik
+#------------------
 while true; do
-    echo -e "$msg_email_solicitar"
-    read -p "> " CHANGE_EMAIL_TRAEFIK
+    echo -e -n "$msg_email_solicitar"
+    read -p CHANGE_EMAIL_TRAEFIK
+
     if validar_email "$CHANGE_EMAIL_TRAEFIK"; then
-        echo ""
-        echo "$msg_email_informado $CHANGE_EMAIL_TRAEFIK"
         break
     else
         echo "$msg_email_invalido"
+        echo ""
     fi
 done
 echo ""
 
-#######################################
-# Solicitar o subdominio do Portainer #
-#######################################
-echo ""
-print_with_line "$msg_subdominio_portainer"
-echo ""
-
+echo "[Portainer]"
+# Subdominio do Portainer
+#------------------------------------
 while true; do
-    echo -e "$msg_subdominio_portainer_solicitar"
-    # Exibe o valor padrão e permite edição
-    read -e -p "> " -i "$SUBDOMINIO_PORTAINER_DEFAULT" SUBDOMINIO_PORTAINER
+    echo -e -n "$msg_subdominio"
+    read -e -p -i "$SUBDOMINIO_PORTAINER_DEFAULT" SUBDOMINIO_PORTAINER # Exibe o valor padrão e permite edição
+
     if validar_subdominio "$SUBDOMINIO_PORTAINER"; then
-        echo ""
-        echo "$msg_subdominio_informado $SUBDOMINIO_PORTAINER.$DOMINIO"
         break
     else
         echo -e "$msg_subdominio_invalido"
+        echo ""
     fi
 done
 echo ""
 
-############################################
-# Solicitar a senha do Admin do Portainer #
-############################################
-echo ""
-print_with_line "$msg_portainer_obter_senha"
-echo ""
-
+# Senha do Admin do Portainer
+#----------------------------------------
 while true; do
-    echo -e "$msg_senha_solicitar"
+    echo -e -n "$msg_senha_solicitar"
     if [ "$MODE" == "DEBUG" ]; then
         # exibe a senha
-        read -p "> " CHANGE_PORTAINER_ADMIN_PASSWORD
+        read -p CHANGE_PORTAINER_ADMIN_PASSWORD
     else
-        read -s -p "> " CHANGE_PORTAINER_ADMIN_PASSWORD
+        read -s -p CHANGE_PORTAINER_ADMIN_PASSWORD
     fi
-    echo ""
     if validar_senha "$CHANGE_PORTAINER_ADMIN_PASSWORD"; then
-        echo ""
-        echo "$msg_senha_ok"
         break
     fi
 done
 echo ""
 
-#######################################
-# Solicitar a senha do Admin do MySql #
-#######################################
-echo ""
-print_with_line "$msg_mysql_obter_senha"
-echo ""
-
+echo "[MySql]"
+# Senha do Admin do MySql
+#------------------------
 while true; do
-    echo -e "$msg_senha_solicitar"
-    # Exibe a senha do portainer e permite edição
+    echo -e -n "$msg_senha_solicitar"
     if [ "$MODE" == "DEBUG" ]; then
         # exibe a senha
-        read -p "> " CHANGE_MYSQL_ROOT_PASSWORD
+        read -p CHANGE_MYSQL_ROOT_PASSWORD
     else
-        read -s -p "> " CHANGE_MYSQL_ROOT_PASSWORD
+        read -s -p CHANGE_MYSQL_ROOT_PASSWORD
     fi
-    echo ""
     if validar_senha "$CHANGE_MYSQL_ROOT_PASSWORD"; then
-        echo ""
-        echo "$msg_senha_ok"
         break
     fi
 done
 echo ""
 
-############################################
-# Solicitar o subdomínio para o phpMyAdmin #
-############################################
-echo ""
-print_with_line "$msg_subdominio_pma"
-echo ""
-
+echo "phpMyAdmin"
+# Subdomínio para o phpMyAdmin
+#-----------------------------
 while true; do
-    echo -e "$msg_subdominio_pma_solicitar\n"
-    # Exibe o valor padrão e permite edição
-    read -e -p "> " -i "$SUBDOMINIO_PMA_DEFAULT" SUBDOMINIO_PMA
+    echo -e -n "$msg_subdominio\n"
+    read -e -p -i "$SUBDOMINIO_PMA_DEFAULT" SUBDOMINIO_PMA
     if validar_subdominio "$SUBDOMINIO_PMA"; then
-        echo ""
-        echo "$msg_subdominio_informado $SUBDOMINIO_PMA.$DOMINIO"
         break
     else
         echo -e "$msg_subdominio_invalido"
+        echo ""
     fi
 done
 echo ""
 
-########################################
-# Solicitar o subdomínio para o Mautic #
-########################################
-echo ""
-print_with_line "$msg_subdominio_mautic"
-echo ""
-
+echo "[Mautic]"
+# Subdomínio para o Mautic
+#-------------------------
 while true; do
-    echo -e "$msg_subdominio_mautic_solicitar\n"
-    # Exibe o valor padrão e permite edição
-    read -e -p "> " -i "$SUBDOMINIO_MAUTIC_DEFAULT" SUBDOMINIO_MAUTIC
+    echo -e -n "$msg_subdominio"
+    read -e -p -i "$SUBDOMINIO_MAUTIC_DEFAULT" SUBDOMINIO_MAUTIC
     if validar_subdominio "$SUBDOMINIO_MAUTIC"; then
-        echo ""
-        echo "$msg_subdominio_informado $SUBDOMINIO_MAUTIC.$DOMINIO"
         break
     else
         echo -e "$msg_subdominio_invalido"
+        echo ""
     fi
 done
 echo ""
 
-#########################################
-# Solicitar o e-mail do Admin do Mautic #
-#########################################
-echo ""
-print_with_line "$msg_mautic_obter_email"
-echo ""
-
+# E-mail do Admin do Mautic
+#--------------------------
 while true; do
-    echo -e "$msg_email_solicitar"
-    # Exibe o e-mail escolhido para o traefik e permite edição
-    read -e -p "> " -i "$CHANGE_EMAIL_TRAEFIK" CHANGE_MAUTIC_ADMIN_EMAIL
+    echo -e -n "$msg_email_solicitar"
+    read -e -p -i "$CHANGE_EMAIL_TRAEFIK" CHANGE_MAUTIC_ADMIN_EMAIL
     if validar_email "$CHANGE_MAUTIC_ADMIN_EMAIL"; then
-        echo ""
-        echo "$msg_email_informado $CHANGE_MAUTIC_ADMIN_EMAIL"
         break
     else
         echo -e "$msg_email_invalido"
+        echo ""
     fi
 done
 echo ""
 
-#########################################
-# Solicitar a senha do Admin do Mautic #
-#########################################
-echo ""
-print_with_line "$msg_mautic_obter_senha"
-echo ""
-
+# Senha do Admin do Mautic
+#-------------------------
 while true; do
     echo -e "$msg_senha_solicitar"
     # Exibe a senha do MySql e permite edição
@@ -1010,10 +860,7 @@ while true; do
     else
         read -s -p "> " CHANGE_MAUTIC_ADMIN_PASSWORD
     fi
-    echo ""
     if validar_senha "$CHANGE_MAUTIC_ADMIN_PASSWORD"; then
-        echo ""
-        echo "$msg_senha_ok"
         break
     fi
 done
