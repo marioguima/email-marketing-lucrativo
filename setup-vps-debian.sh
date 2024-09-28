@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.39"
+VERSION="v0.0.40"
 
 MODE=$1
 
@@ -804,7 +804,7 @@ echo "phpMyAdmin"
 # Subdomínio para o phpMyAdmin
 #-----------------------------
 while true; do
-    read -e -i -p "$msg_subdominio " "$SUBDOMINIO_PMA_DEFAULT" SUBDOMINIO_PMA
+    read -e -p "$msg_subdominio " -i "$SUBDOMINIO_PMA_DEFAULT" SUBDOMINIO_PMA
     if validar_subdominio "$SUBDOMINIO_PMA"; then
         break
     else
