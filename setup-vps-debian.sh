@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.47"
+VERSION="v0.0.48"
 
 MODE=$1
 
@@ -1397,7 +1397,6 @@ deploy_stack_portainer() {
     else
         format_multi_part_text "✅ Stack ;yellow;italic;default" "$STACK_NAME;white;default;default" " implantada com sucesso.\n;yellow;italic;default"
     fi
-    echo ""
 }
 
 #-----------------------------------------
@@ -1466,6 +1465,7 @@ COMPOSE_MYSQL_PATH="stack-mysql-mautic.yml"
 
 deploy_stack_portainer "$STACK_MYSQL_NAME" "$COMPOSE_MYSQL_PATH"
 echo ""
+echo ""
 
 #########################################
 # Deploy stack Mautic via Portainer API #
@@ -1477,10 +1477,10 @@ COMPOSE_MAUTIC_PATH="stack-mautic.yml"
 if wait_for_mysql "127.0.0.1" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     # Deploy do Mautic se o MySQL estiver disponível
     deploy_stack_portainer "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
-    echo ""
 else
     format_multi_part_text "❌ O deploy do Mautic foi cancelado porque o MySQL não está disponível.\n;red;bold;default"
 fi
+echo ""
 
 echo -e "\n$msg_script_executado_ok"
 echo ""
