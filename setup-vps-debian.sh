@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.40"
+VERSION="v0.0.41"
 
 MODE=$1
 
@@ -826,7 +826,6 @@ while true; do
         echo ""
     fi
 done
-echo ""
 
 # E-mail do Admin do Mautic
 #--------------------------
@@ -839,7 +838,6 @@ while true; do
         echo ""
     fi
 done
-echo ""
 
 # Senha do Admin do Mautic
 #-------------------------
