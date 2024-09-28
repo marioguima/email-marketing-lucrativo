@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.43"
+VERSION="v0.0.44"
 
 MODE=$1
 
@@ -74,7 +74,7 @@ debug_log() {
     fi
 }
 
-debug_log "DEBUG\n;red;bold;default"
+debug_log "DEBUG\n\n;red;bold;default"
 
 # Valores pré-definido
 #-------------------
@@ -944,7 +944,7 @@ echo ""
 format_multi_part_text "$msg_confirmacao_revisar\n;yellow;underline;default"
 echo ""
 format_multi_part_text "$msg_prosseguir_enter\n;green;default;default"
-format_multi_part_text "$msg_prosseguir_entemsg_cancelar_esc\n;red;italic;default"
+format_multi_part_text "$msg_cancelar_esc\n;red;italic;default"
 
 # Aguardar confirmação
 while true; do
