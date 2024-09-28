@@ -1,8 +1,12 @@
 #!/bin/bash
 
+VERSION="v0.0.25"
+
+MODE=$1
+
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.24"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - $VERSION"
 echo ""
 echo ""
 
@@ -13,6 +17,23 @@ SUBDOMINIO_PMA_DEFAULT="pma"
 SUBDOMINIO_PORTAINER_DEFAULT="painel"
 SUBDOMINIO_MAUTIC_DEFAULT="leadmanager"
 PORTAINER_URL_LOCAL_API="http://localhost:9000"
+
+#-----------------------------------------------
+# Função para logar saídas somente no modo DEBUG
+#-----------------------------------------------
+debug_log() {
+    if [[ "$MODE" == "DEBUG" ]]; then
+        local log_content=$1
+        # Verifica se o conteúdo é JSON, se não, apenas imprime
+        if echo "$log_content" | jq . >/dev/null 2>&1; then
+            # Formata a saída com jq
+            echo "$log_content" | jq
+        else
+            # Apenas imprime a mensagem de log sem formatação
+            echo "$log_content"
+        fi
+    fi
+}
 
 #---------------------------
 # Função para exibir o menu
@@ -181,7 +202,7 @@ definir_mensagens() {
         msg_mautic_obter_senha="⚙️  Insira a senha de administrador do Mautic"
 
         msg_senha_solicitar="🔑 Por favor, insira sua senha:"
-        msg_senha_ok="✅ Senha válida."
+        msg_senha_ok="✅ Senha informada."
 
         msg_senha_invalida="⚠️  Senha inválida. A senha precisa preencher todos os requisitos:"
         msg_senha_requisito_min_caracteres="Ter no mínimo 8 caracteres"
@@ -301,7 +322,7 @@ definir_mensagens() {
         msg_mautic_obter_senha="⚙️  Enter the Mautic administrator's password"
 
         msg_senha_solicitar="🔑 Please enter your password:"
-        msg_senha_ok="✅ Valid password."
+        msg_senha_ok="✅ Password provided."
 
         msg_senha_invalida="⚠️  Invalid password. The password must meet all requirements:"
         msg_senha_requisito_min_caracteres="Have at least 8 characters"
@@ -421,7 +442,7 @@ definir_mensagens() {
         msg_mautic_obter_senha="⚙️  Ingrese la contraseña del administrador de Mautic"
 
         msg_senha_solicitar="🔑 Por favor, introduzca su contraseña:"
-        msg_senha_ok="✅ Contraseña válida."
+        msg_senha_ok="✅ Contraseña proporcionada."
 
         msg_senha_invalida="⚠️  Contraseña inválida. La contraseña debe cumplir todos los requisitos:"
         msg_senha_requisito_min_caracteres="Tener al menos 8 caracteres"
@@ -541,7 +562,7 @@ definir_mensagens() {
         msg_mautic_obter_senha="⚙️  Entrez le mot de passe de l'administrateur de Mautic"
 
         msg_senha_solicitar="🔑 Veuillez saisir votre mot de passe :"
-        msg_senha_ok="✅ Mot de passe valide."
+        msg_senha_ok="✅ Mot de passe fourni."
 
         msg_senha_invalida="⚠️  Mot de passe invalide. Le mot de passe doit remplir toutes les conditions :"
         msg_senha_requisito_min_caracteres="Avoir au moins 8 caractères"
@@ -661,7 +682,7 @@ definir_mensagens() {
         msg_mautic_obter_senha="⚙️  Inserisci la password dell'amministratore di Mautic"
 
         msg_senha_solicitar="🔑 Per favore, inserisci la tua password:"
-        msg_senha_ok="✅ Password valida."
+        msg_senha_ok="✅ Password fornita."
 
         msg_senha_invalida="⚠️  Password non valida. La password deve soddisfare tutti i requisiti:"
         msg_senha_requisito_min_caracteres="Avere almeno 8 caratteri"
@@ -847,7 +868,12 @@ echo ""
 
 while true; do
     echo -e "$msg_senha_solicitar"
-    read -s -p "> " CHANGE_PORTAINER_ADMIN_PASSWORD
+    if [ "$MODE" == "DEBUG" ]; then
+        # exibe a senha
+        read -p "> " CHANGE_PORTAINER_ADMIN_PASSWORD
+    else
+        read -s -p "> " CHANGE_PORTAINER_ADMIN_PASSWORD
+    fi
     echo ""
     if validar_senha "$CHANGE_PORTAINER_ADMIN_PASSWORD"; then
         echo ""
@@ -867,7 +893,12 @@ echo ""
 while true; do
     echo -e "$msg_senha_solicitar"
     # Exibe a senha do portainer e permite edição
-    read -s -p "> " CHANGE_MYSQL_ROOT_PASSWORD
+    if [ "$MODE" == "DEBUG" ]; then
+        # exibe a senha
+        read -p "> " CHANGE_MYSQL_ROOT_PASSWORD
+    else
+        read -s -p "> " CHANGE_MYSQL_ROOT_PASSWORD
+    fi
     echo ""
     if validar_senha "$CHANGE_MYSQL_ROOT_PASSWORD"; then
         echo ""
@@ -950,7 +981,12 @@ echo ""
 while true; do
     echo -e "$msg_senha_solicitar"
     # Exibe a senha do MySql e permite edição
-    read -s -p "> " CHANGE_MAUTIC_ADMIN_PASSWORD
+    if [ "$MODE" == "DEBUG" ]; then
+        # exibe a senha
+        read -p "> " CHANGE_MAUTIC_ADMIN_PASSWORD
+    else
+        read -s -p "> " CHANGE_MAUTIC_ADMIN_PASSWORD
+    fi
     echo ""
     if validar_senha "$CHANGE_MAUTIC_ADMIN_PASSWORD"; then
         echo ""
@@ -979,8 +1015,15 @@ echo "$msg_subdominio_informado [Mautic] $SUBDOMINIO_MAUTIC.$DOMINIO"
 echo ""
 echo "$msg_email_informado [Mautic] $CHANGE_MAUTIC_ADMIN_EMAIL"
 echo ""
-# Não exibir as senhas
-echo "$msg_senhas_nao_exibidas"
+if [ "$MODE" == "DEBUG" ]; then
+    # exibe a senha
+    echo "$msg_senha_ok [Portainer] $CHANGE_PORTAINER_ADMIN_PASSWORD"
+    echo "$msg_senha_ok [MySql] $CHANGE_MYSQL_ROOT_PASSWORD"
+    echo "$msg_senha_ok [Mautic] $CHANGE_MAUTIC_ADMIN_PASSWORD"
+else
+    # Não exibir as senhas
+    echo "$msg_senhas_nao_exibidas"
+fi
 echo ""
 echo ""
 echo -e "$msg_confirmacao_revisar"
@@ -1353,14 +1396,14 @@ admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
 
-echo "Retorno da chamada admin/init"
-echo $admin_init_response
-echo ""
+debug_log "Retorno da chamada admin/init"
+debug_log "$admin_init_response"
+debug_log ""
 
 # Verificar se houve algum erro
 if [[ "$admin_init_response" == *"err"* || "$admin_init_response" == *"error"* ]]; then
     echo -e "$msg_portainer_definir_senha_admin_erro"
-    echo $admin_init_response | jq
+    debug_log "$admin_init_response"
     exit 1
 else
     echo -e "$msg_portainer_definir_senha_admin_ok"
@@ -1377,9 +1420,9 @@ auth_response=$(curl -s -X POST -H "Content-Type: application/json" \
     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
     "$PORTAINER_URL_LOCAL_API/api/auth")
 
-echo "Retorno da autenticação no Portainer"
-echo $auth_response
-echo ""
+debug_log "Retorno da autenticação no Portainer:"
+debug_log "$auth_response"
+debug_log ""
 
 # Extrair o token do JSON de resposta
 PORTAINER_TOKEN=$(echo $auth_response | jq -r .jwt)
@@ -1392,7 +1435,6 @@ if [[ "$PORTAINER_TOKEN" == "null" ]]; then
 fi
 
 echo -e "$msg_portainer_autenticacao_token_ok"
-echo "Token: $PORTAINER_TOKEN"
 echo ""
 
 #------------------------------
@@ -1422,12 +1464,9 @@ deploy_stack_portainer() {
     )
 
     # Exibir a resposta da API para depuração
-    echo "deploy_stack_portainer: Resposta da API do Portainer:"
-    echo ""
-    echo "$response"
-    echo ""
-    echo "$response" | jq
-    echo ""
+    debug_log "Resposta da API do Portainer:"
+    debug_log "$response"
+    debug_log ""
 
     # Verificar se a resposta contém erros
     if [[ $response == *"err"* || $response == *"error"* ]]; then
