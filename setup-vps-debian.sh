@@ -1110,7 +1110,7 @@ echo ""
 print_with_line "$msg_repository"
 echo ""
 
-apt-get update && apt install -y sudo gnupg2 wget ca-certificates apt-transport-https curl gnupg nano htop jq
+apt-get update && apt install -y sudo gnupg2 wget ca-certificates apt-transport-https curl gnupg nano htop mysql-client jq
 
 echo ""
 if [ $? -eq 0 ]; then
@@ -1515,7 +1515,7 @@ STACK_MAUTIC_NAME="mautic"
 COMPOSE_MAUTIC_PATH="stack-mautic.yml"
 
 # Aguardar o MySQL ficar disponível
-if wait_for_mysql "localhost:3306" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
+if wait_for_mysql "localhost" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     # Deploy do Mautic se o MySQL estiver disponível
     deploy_stack_portainer "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
 else
