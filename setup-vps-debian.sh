@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.49"
+VERSION="v0.1.0"
 
 MODE=$1
 
@@ -1364,7 +1364,7 @@ deploy_stack_portainer() {
     local STACK_NAME=$1
     local COMPOSE_FILE_PATH=$2
 
-    debug_log "Fazendo deploy da stack ;yellow;italic;default"
+    debug_log "Fazendo deploy da stack ;yellow;underline;default"
     debug_log "$STACK_NAME\n\n;white;default;default"
 
     # Obter o Swarm ID
