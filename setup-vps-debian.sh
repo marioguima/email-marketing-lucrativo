@@ -1,12 +1,61 @@
 #!/bin/bash
 
-VERSION="v0.0.41"
+VERSION="v0.0.42"
 
 MODE=$1
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - $VERSION"
+# Função para formatar o texto com cor e estilo
+format_multi_part_text() {
+    # Cada argumento consiste em "texto;cor;estilo;background"
+    for arg in "$@"; do
+        IFS=";" read -r text color style background <<<"$arg"
+
+        # Aplicando as cores de texto
+        case $color in
+        "red") color_code="31" ;;
+        "green") color_code="32" ;;
+        "yellow") color_code="33" ;;
+        "blue") color_code="34" ;;
+        "purple") color_code="35" ;;
+        "cyan") color_code="36" ;;
+        "white") color_code="37" ;;
+        "default") color_code="39" ;;
+        *) color_code="39" ;; # Cor padrão
+        esac
+
+        # Aplicando os estilos
+        case $style in
+        "bold") style_code="1" ;;
+        "underline") style_code="4" ;;
+        "italic") style_code="3" ;;
+        "default") style_code="0" ;;
+        *) style_code="0" ;; # Estilo padrão
+        esac
+
+        # Aplicando as cores de fundo
+        case $background in
+        "red") bg_code="41" ;;
+        "green") bg_code="42" ;;
+        "yellow") bg_code="43" ;;
+        "blue") bg_code="44" ;;
+        "purple") bg_code="45" ;;
+        "cyan") bg_code="46" ;;
+        "white") bg_code="47" ;;
+        "default") bg_code="49" ;;
+        *) bg_code="49" ;; # Cor de fundo padrão
+        esac
+
+        # Exibindo o texto com formatação
+        echo -ne "\e[${style_code};${color_code};${bg_code}m${text}\e[0m"
+    done
+
+    # Pulando linha após a impressão
+    echo
+}
+
+format_multi_part_text "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - ;cyan;default;default" "$VERSION;yellow;bold;default"
 echo ""
 echo ""
 
@@ -22,12 +71,13 @@ debug_log() {
             echo "$log_content" | jq .
         else
             # Usa echo -e para permitir a interpretação de sequências de escape
-            echo -e "$log_content"
+            # echo -e "$log_content"
+            format_multi_part_text "$log_content"
         fi
     fi
 }
 
-debug_log "DEBUG\n"
+debug_log "DEBUG\n;red;bold;default"
 
 # Valores pré-definido
 #-------------------
@@ -39,13 +89,13 @@ PORTAINER_URL_LOCAL_API="http://localhost:9000"
 # Função para exibir o menu
 #---------------------------
 menu_idioma() {
-    echo "🌍 Escolha seu idioma / Choose your language / Elija su idioma / Choisissez votre langue / Scegli la tua lingua"
+    format_multi_part_text "🌍 Escolha seu idioma / Choose your language / Elija su idioma / Choisissez votre langue / Scegli la tua lingua;cyan;bold;default"
     echo ""
-    echo "1 - Português"
-    echo "2 - English"
-    echo "3 - Español"
-    echo "4 - Français"
-    echo "5 - Italiano"
+    format_multi_part_text "1 - Português;white;default;default"
+    format_multi_part_text "2 - English;white;default;default"
+    format_multi_part_text "3 - Español;white;default;default"
+    format_multi_part_text "4 - Français;white;default;default"
+    format_multi_part_text "5 - Italiano;white;default;default"
     echo ""
     read -p "> " idioma
     echo ""
@@ -55,10 +105,11 @@ menu_idioma() {
 #----------------------------------------------------------
 print_with_line() {
     local texto="$1"        # O texto a ser exibido
+    local formato="$2"      # Formato para a ser utilizado
     local tamanho=${#texto} # Conta o número de caracteres na string
 
-    # Verifica se um caractere foi passado como segundo parâmetro
-    local caracter="$2"
+    # Verifica se um caractere foi passado como terceiro parâmetro
+    local caracter="$3"
     if [ -z "$caracter" ]; then
         caracter="-" # Usa '-' como padrão
     fi
@@ -67,8 +118,10 @@ print_with_line() {
     local repeticao=$(printf "%${tamanho}s" | tr " " "$caracter")
 
     # echo "$repeticao" # Exibe a linha de caracteres superior
-    echo -e "$texto"  # Exibe o texto
-    echo "$repeticao" # Exibe a linha de caracteres inferior
+    # echo -e "$texto"  # Exibe o texto
+    # echo "$repeticao" # Exibe a linha de caracteres inferior
+    format_multi_part_text "$texto;$formato"
+    format_multi_part_text "$repeticao;$formato"
 }
 
 # Função para validar o domínio
@@ -722,7 +775,7 @@ done
 
 # Iniciar configurações
 #----------------------
-print_with_line "$msg_configurar"
+print_with_line "$msg_configurar" "yellow;bold;default"
 echo ""
 
 # Domínio
@@ -800,7 +853,7 @@ while true; do
 done
 echo ""
 
-echo "phpMyAdmin"
+echo "[phpMyAdmin]"
 # Subdomínio para o phpMyAdmin
 #-----------------------------
 while true; do
@@ -859,7 +912,7 @@ echo ""
 # Revisar entradas antes de prosseguir #
 ########################################
 echo ""
-print_with_line "$msg_revisao_informacoes"
+print_with_line "$msg_revisao_informacoes" "yellow;bold;default"
 echo ""
 
 echo "$msg_dominio_informado $DOMINIO"
@@ -914,7 +967,7 @@ echo ""
 # Baixar stack Traefik #
 ########################
 echo ""
-print_with_line "$msg_obter_stack_traefik"
+print_with_line "$msg_obter_stack_traefik" "yellow;bold;default"
 echo ""
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-traefik-v2.yml | sed "s/CHANGE_EMAIL_TRAEFIK/${CHANGE_EMAIL_TRAEFIK}/g" >stack-traefik-v2.yml
@@ -931,7 +984,7 @@ echo ""
 # Baixar stack Portainer #
 ##########################
 echo ""
-print_with_line "$msg_obter_stack_portainer"
+print_with_line "$msg_obter_stack_portainer" "yellow;bold;default"
 echo ""
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-portainer.yml | sed "s/CHANGE_URL_PORTAINER/${SUBDOMINIO_PORTAINER}.${DOMINIO}/g" >stack-portainer.yml
@@ -948,7 +1001,7 @@ echo ""
 # Baixar stack MySql #
 ######################
 echo ""
-print_with_line "$msg_obter_stack_mysql"
+print_with_line "$msg_obter_stack_mysql" "yellow;bold;default"
 echo ""
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-mysql-mautic.yml | sed "s/CHANGE_MYSQL_ROOT_PASSWORD/${CHANGE_MYSQL_ROOT_PASSWORD}/g" >stack-mysql-mautic.yml
@@ -965,7 +1018,7 @@ echo ""
 # Baixar stack phpMyAdmin #
 ###########################
 echo ""
-print_with_line "$msg_obter_stack_pma"
+print_with_line "$msg_obter_stack_pma" "yellow;bold;default"
 echo ""
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-pma.yml | sed "s/CHANGE_URL_PMA/${SUBDOMINIO_PMA}.${DOMINIO}/g" >stack-pma.yml
@@ -982,7 +1035,7 @@ echo ""
 # Baixar stack Mautic #
 #######################
 echo ""
-print_with_line "$msg_obter_stack_mautic"
+print_with_line "$msg_obter_stack_mautic" "yellow;bold;default"
 echo ""
 
 curl -s https://raw.githubusercontent.com/marioguima/email-marketing-lucrativo/main/stack-mautic.yml |
@@ -1003,7 +1056,7 @@ echo ""
 # Update repositórios #
 #######################
 echo ""
-print_with_line "$msg_repository"
+print_with_line "$msg_repository" "yellow;bold;default"
 echo ""
 
 apt-get update && apt install -y sudo gnupg2 wget ca-certificates apt-transport-https curl gnupg nano htop default-mysql-client jq
@@ -1021,7 +1074,7 @@ echo ""
 # Verificar chave GPG do Docker #
 #################################
 echo ""
-print_with_line "$msg_docker_chave_gpg"
+print_with_line "$msg_docker_chave_gpg" "yellow;bold;default"
 echo ""
 
 if [ ! -f /etc/apt/keyrings/docker.gpg ]; then
@@ -1043,7 +1096,7 @@ echo ""
 # Configurando Repositórios do Docker #
 #######################################
 echo ""
-print_with_line "$msg_repositorio_docker"
+print_with_line "$msg_repositorio_docker" "yellow;bold;default"
 echo ""
 
 if [ ! -f /etc/apt/sources.list.d/docker.list ]; then
@@ -1066,7 +1119,7 @@ echo ""
 # Instalar Docker #
 ###################
 echo ""
-print_with_line "$msg_instalar_docker"
+print_with_line "$msg_instalar_docker" "yellow;bold;default"
 echo ""
 
 if ! command -v docker &>/dev/null; then
@@ -1087,7 +1140,7 @@ echo ""
 # Configurar Docker para iniciar automaticamente #
 ##################################################
 echo ""
-print_with_line "$msg_docker_init_auto"
+print_with_line "$msg_docker_init_auto" "yellow;bold;default"
 echo ""
 
 sudo systemctl enable docker.service
@@ -1100,7 +1153,7 @@ echo ""
 # Obter o IP da máquina #
 #########################
 echo ""
-print_with_line "$msg_obter_ip"
+print_with_line "$msg_obter_ip" "yellow;bold;default"
 echo ""
 
 IP_ADDR=$(hostname -I | awk '{print $1}')
@@ -1117,7 +1170,7 @@ echo ""
 # Verificar se Docker Swarm já está inicializado #
 ##################################################
 echo ""
-print_with_line "$msg_docker_swarm"
+print_with_line "$msg_docker_swarm" "yellow;bold;default"
 echo ""
 
 if docker info | grep -q "Swarm: active"; then
@@ -1139,7 +1192,7 @@ echo ""
 # Verificar/criar a rede #
 ##########################
 echo ""
-print_with_line "$msg_docker_network_swarm"
+print_with_line "$msg_docker_network_swarm" "yellow;bold;default"
 echo ""
 
 if docker network ls | grep -q "network_swarm_public"; then
@@ -1160,7 +1213,7 @@ echo ""
 # Deploy stack do Traefik #
 ###########################
 echo ""
-print_with_line "$msg_stack_traefik_deploy"
+print_with_line "$msg_stack_traefik_deploy" "yellow;bold;default"
 echo ""
 
 docker stack deploy --prune --detach=false --resolve-image always -c stack-traefik-v2.yml traefik
@@ -1178,7 +1231,7 @@ echo ""
 # Deploy stack do Portainer #
 #############################
 echo ""
-print_with_line "$msg_stack_portainer_deploy"
+print_with_line "$msg_stack_portainer_deploy" "yellow;bold;default"
 echo ""
 
 docker stack deploy --prune --detach=false --resolve-image always -c stack-portainer.yml portainer
@@ -1251,7 +1304,7 @@ echo ""
 # Portainer API - Definindo senha do admin #
 ############################################
 echo ""
-print_with_line "$msg_portainer_definir_senha_admin"
+print_with_line "$msg_portainer_definir_senha_admin" "yellow;bold;default"
 echo ""
 
 # Definir a senha do admin usando o endpoint de inicialização
@@ -1276,7 +1329,7 @@ fi
 # Portainer API - Autenticar no Portainer e obter o token JWT #
 ###############################################################
 echo ""
-print_with_line "$msg_portainer_autenticacao_token"
+print_with_line "$msg_portainer_autenticacao_token" "yellow;bold;default"
 echo ""
 
 auth_response=$(
