@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.32"
+VERSION="v0.0.33"
 
 MODE=$1
 
@@ -42,10 +42,15 @@ PORTAINER_URL_LOCAL_API="http://localhost:9000"
 #---------------------------
 menu_idioma() {
     echo "🌍 Escolha seu idioma / Choose your language / Elija su idioma / Choisissez votre langue / Scegli la tua lingua"
+    echo ""
     echo "1) Português - Digite 1 e pressione ENTER"
+    echo ""
     echo "2) English   - Enter 2 and press ENTER"
+    echo ""
     echo "3) Español   - Escriba 3 y presione ENTER"
+    echo ""
     echo "4) Français  - Entrez 4 et appuyez sur ENTER"
+    echo ""
     echo "5) Italiano  - Inserisci 5 e premi INVIO"
     echo ""
     read -p "> " idioma
