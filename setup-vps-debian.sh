@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.30"
+VERSION="v0.0.31"
 
 MODE=$1
 
@@ -649,7 +649,7 @@ definir_mensagens() {
 
         msg_revisao_informacoes="📝 Vérifiez les informations avant de continuer"
         msg_senhas_nao_exibidas="👀 Les mots de passe ont été masqués pour des raisons de sécurité"
-        msg_confirmacao_revisar="👉 Les informations sont-elles correctes ?"
+        msg_confirmacao_revisar="👉 Les informations sont-elles correctes ?"
         msg_prosseguir_enter="🟢 Pour confirmer, appuyez sur ENTER"
         msg_cancelar_esc="🔴 Pour annuler, appuyez sur ESC"
         msg_cancelado_pelo_usuario="💔 Annulé."
@@ -1007,23 +1007,25 @@ echo ""
 
 echo "$msg_dominio_informado $DOMINIO"
 echo ""
-echo "$msg_email_informado [Traefik] $CHANGE_EMAIL_TRAEFIK"
+echo "[Traefik]"
+echo "$msg_email_informado $CHANGE_EMAIL_TRAEFIK"
 echo ""
-echo "$msg_subdominio_informado [Portainer] $SUBDOMINIO_PORTAINER.$DOMINIO"
+echo "[Portainer]"
+echo "$msg_subdominio_informado $SUBDOMINIO_PORTAINER.$DOMINIO"
+debug_log "${msg_senha_ok/.//:} $CHANGE_PORTAINER_ADMIN_PASSWORD"
 echo ""
-echo "$msg_subdominio_informado [phpMyAdmin] $SUBDOMINIO_PMA.$DOMINIO"
+echo "[phpMyAdmin]"
+echo "$msg_subdominio_informado $SUBDOMINIO_PMA.$DOMINIO"
 echo ""
-echo "$msg_subdominio_informado [Mautic] $SUBDOMINIO_MAUTIC.$DOMINIO"
-echo ""
-echo "$msg_email_informado [Mautic] $CHANGE_MAUTIC_ADMIN_EMAIL"
+echo "[Mautic]"
+echo "$msg_subdominio_informado $SUBDOMINIO_MAUTIC.$DOMINIO"
+echo "$msg_email_informado $CHANGE_MAUTIC_ADMIN_EMAIL"
+debug_log "${msg_senha_ok/.//:} $CHANGE_MAUTIC_ADMIN_PASSWORD"
 echo ""
 if [ "$MODE" == "DEBUG" ]; then
     # exibe a senha
-    echo "$msg_senha_ok [Portainer] $CHANGE_PORTAINER_ADMIN_PASSWORD"
-    echo ""
-    echo "$msg_senha_ok [MySql] $CHANGE_MYSQL_ROOT_PASSWORD"
-    echo ""
-    echo "$msg_senha_ok [Mautic] $CHANGE_MAUTIC_ADMIN_PASSWORD"
+    debug_log "[MySql]"
+    debug_log "${msg_senha_ok/.//:} $CHANGE_MYSQL_ROOT_PASSWORD"
 else
     # Não exibir as senhas
     echo "$msg_senhas_nao_exibidas"
@@ -1419,9 +1421,11 @@ echo ""
 print_with_line "$msg_portainer_autenticacao_token"
 echo ""
 
-auth_response=$(curl -s -X POST -H "Content-Type: application/json" \
-    -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
-    "$PORTAINER_URL_LOCAL_API/api/auth")
+auth_response=$(
+    curl -s -X POST -H "Content-Type: application/json" \
+        -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
+        "$PORTAINER_URL_LOCAL_API/api/auth"
+)
 
 debug_log "Retorno da autenticação no Portainer:"
 debug_log "$auth_response\n"
