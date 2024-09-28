@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.48"
+VERSION="v0.0.49"
 
 MODE=$1
 
@@ -1365,7 +1365,7 @@ deploy_stack_portainer() {
     local COMPOSE_FILE_PATH=$2
 
     debug_log "Fazendo deploy da stack ;yellow;italic;default"
-    debug_log "$STACK_NAME;white;default;default"
+    debug_log "$STACK_NAME\n\n;white;default;default"
 
     # Obter o Swarm ID
     SWARM_ID=$(curl -s -H "Authorization: Bearer $PORTAINER_TOKEN" \
@@ -1476,8 +1476,10 @@ COMPOSE_MAUTIC_PATH="stack-mautic.yml"
 # Aguardar o MySQL ficar disponível
 if wait_for_mysql "127.0.0.1" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     # Deploy do Mautic se o MySQL estiver disponível
+    echo ""
     deploy_stack_portainer "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
 else
+    echo ""
     format_multi_part_text "❌ O deploy do Mautic foi cancelado porque o MySQL não está disponível.\n;red;bold;default"
 fi
 echo ""
