@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.22"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.23"
 echo ""
 echo ""
 
@@ -1476,10 +1476,12 @@ wait_for_mysql() {
     local msg_mysql_falha_completa=${msg_mysql_falha//_RETRIES_/$RETRIES}
 
     echo "$msg_mysql_verificando"
+    echo ""
 
     # Loop até que o MySQL esteja disponível ou o número máximo de tentativas seja atingido
     while [ $attempt -lt $RETRIES ]; do
         if mysql -h"$MYSQL_HOST" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "SELECT 1;" >/dev/null 2>&1; then
+            echo ""
             echo "$msg_mysql_disponivel"
             return 0
         else
@@ -1493,6 +1495,7 @@ wait_for_mysql() {
 
             # Chama a função aguardar passando a mensagem atualizada
             aguardar $DELAY
+            echo ""
         fi
     done
 
