@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.36"
+VERSION="v0.0.37"
 
 MODE=$1
 
@@ -729,7 +729,7 @@ echo ""
 #--------
 while true; do
     echo -e -n "$msg_dominio_solicitar "
-    read -r DOMINIO
+    read -e DOMINIO
 
     if validar_dominio "$DOMINIO"; then
         break
@@ -745,7 +745,7 @@ echo "[Traefik]"
 #------------------
 while true; do
     echo -e -n "$msg_email_solicitar"
-    read -p CHANGE_EMAIL_TRAEFIK
+    read -e CHANGE_EMAIL_TRAEFIK
 
     if validar_email "$CHANGE_EMAIL_TRAEFIK"; then
         break
@@ -761,7 +761,7 @@ echo "[Portainer]"
 #------------------------------------
 while true; do
     echo -e -n "$msg_subdominio"
-    read -e -p -i "$SUBDOMINIO_PORTAINER_DEFAULT" SUBDOMINIO_PORTAINER # Exibe o valor padrão e permite edição
+    read -e -i "$SUBDOMINIO_PORTAINER_DEFAULT" SUBDOMINIO_PORTAINER # Exibe o valor padrão e permite edição
 
     if validar_subdominio "$SUBDOMINIO_PORTAINER"; then
         break
@@ -778,9 +778,9 @@ while true; do
     echo -e -n "$msg_senha_solicitar"
     if [ "$MODE" == "DEBUG" ]; then
         # exibe a senha
-        read -p CHANGE_PORTAINER_ADMIN_PASSWORD
+        read -e CHANGE_PORTAINER_ADMIN_PASSWORD
     else
-        read -s -p CHANGE_PORTAINER_ADMIN_PASSWORD
+        read -e -s CHANGE_PORTAINER_ADMIN_PASSWORD
     fi
     if validar_senha "$CHANGE_PORTAINER_ADMIN_PASSWORD"; then
         break
@@ -795,9 +795,9 @@ while true; do
     echo -e -n "$msg_senha_solicitar"
     if [ "$MODE" == "DEBUG" ]; then
         # exibe a senha
-        read -p CHANGE_MYSQL_ROOT_PASSWORD
+        read -e CHANGE_MYSQL_ROOT_PASSWORD
     else
-        read -s -p CHANGE_MYSQL_ROOT_PASSWORD
+        read -e -s CHANGE_MYSQL_ROOT_PASSWORD
     fi
     if validar_senha "$CHANGE_MYSQL_ROOT_PASSWORD"; then
         break
@@ -810,7 +810,7 @@ echo "phpMyAdmin"
 #-----------------------------
 while true; do
     echo -e -n "$msg_subdominio\n"
-    read -e -p -i "$SUBDOMINIO_PMA_DEFAULT" SUBDOMINIO_PMA
+    read -e -i "$SUBDOMINIO_PMA_DEFAULT" SUBDOMINIO_PMA
     if validar_subdominio "$SUBDOMINIO_PMA"; then
         break
     else
@@ -825,7 +825,7 @@ echo "[Mautic]"
 #-------------------------
 while true; do
     echo -e -n "$msg_subdominio"
-    read -e -p -i "$SUBDOMINIO_MAUTIC_DEFAULT" SUBDOMINIO_MAUTIC
+    read -e -i "$SUBDOMINIO_MAUTIC_DEFAULT" SUBDOMINIO_MAUTIC
     if validar_subdominio "$SUBDOMINIO_MAUTIC"; then
         break
     else
@@ -839,7 +839,7 @@ echo ""
 #--------------------------
 while true; do
     echo -e -n "$msg_email_solicitar"
-    read -e -p -i "$CHANGE_EMAIL_TRAEFIK" CHANGE_MAUTIC_ADMIN_EMAIL
+    read -e -i "$CHANGE_EMAIL_TRAEFIK" CHANGE_MAUTIC_ADMIN_EMAIL
     if validar_email "$CHANGE_MAUTIC_ADMIN_EMAIL"; then
         break
     else
@@ -852,13 +852,13 @@ echo ""
 # Senha do Admin do Mautic
 #-------------------------
 while true; do
-    echo -e "$msg_senha_solicitar"
+    echo -e -n "$msg_senha_solicitar"
     # Exibe a senha do MySql e permite edição
     if [ "$MODE" == "DEBUG" ]; then
         # exibe a senha
-        read -p "> " CHANGE_MAUTIC_ADMIN_PASSWORD
+        read -e CHANGE_MAUTIC_ADMIN_PASSWORD
     else
-        read -s -p "> " CHANGE_MAUTIC_ADMIN_PASSWORD
+        read -e -s CHANGE_MAUTIC_ADMIN_PASSWORD
     fi
     if validar_senha "$CHANGE_MAUTIC_ADMIN_PASSWORD"; then
         break
