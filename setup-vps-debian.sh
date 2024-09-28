@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.34"
+VERSION="v0.0.35"
 
 MODE=$1
 
@@ -44,15 +44,11 @@ PORTAINER_URL_LOCAL_API="http://localhost:9000"
 menu_idioma() {
     echo "🌍 Escolha seu idioma / Choose your language / Elija su idioma / Choisissez votre langue / Scegli la tua lingua"
     echo ""
-    echo "1) Português - Digite 1 e pressione ENTER"
-    echo ""
-    echo "2) English   - Enter 2 and press ENTER"
-    echo ""
-    echo "3) Español   - Escriba 3 y presione ENTER"
-    echo ""
-    echo "4) Français  - Entrez 4 et appuyez sur ENTER"
-    echo ""
-    echo "5) Italiano  - Inserisci 5 e premi INVIO"
+    echo "1 - Português"
+    echo "2 - English"
+    echo "3 - Español"
+    echo "4 - Français"
+    echo "5 - Italiano"
     echo ""
     read -p "> " idioma
     echo ""
@@ -183,8 +179,8 @@ definir_mensagens() {
     case $idioma in
     1)
         # Português
-        msg_dominio="⚙️  Configurar o domínio"
-        msg_dominio_solicitar="🌐 Por favor, insira um domínio:"
+        msg_configurar="⚙️  Iniciar configurações"
+        msg_dominio_solicitar="🌐 Informe o domínio:"
         msg_dominio_informado="✅ Domínio informado:"
         msg_dominio_invalido="❌ Domínio inválido. Por favor, tente novamente."
 
@@ -303,7 +299,7 @@ definir_mensagens() {
         ;;
     2)
         # English
-        msg_dominio="⚙️  Set up the domain"
+        msg_configurar="⚙️  Set up the domain"
         msg_dominio_solicitar="🌐 Please enter a domain:"
         msg_dominio_informado="✅ Domain provided:"
         msg_dominio_invalido="❌ Invalid domain. Please try again."
@@ -423,7 +419,7 @@ definir_mensagens() {
         ;;
     3)
         # Español
-        msg_dominio="⚙️  Configurar el dominio"
+        msg_configurar="⚙️  Configurar el dominio"
         msg_dominio_solicitar="🌐 Por favor, introduzca un dominio:"
         msg_dominio_informado="✅ Dominio informado:"
         msg_dominio_invalido="❌ Dominio inválido. Por favor, intente nuevamente."
@@ -543,7 +539,7 @@ definir_mensagens() {
         ;;
     4)
         # Français
-        msg_dominio="⚙️  Configurer le domaine"
+        msg_configurar="⚙️  Configurer le domaine"
         msg_dominio_solicitar="🌐 Veuillez saisir un domaine :"
         msg_dominio_informado="✅ Domaine fourni :"
         msg_dominio_invalido="❌ Domaine invalide. Veuillez réessayer."
@@ -663,7 +659,7 @@ definir_mensagens() {
         ;;
     5)
         # Italiano
-        msg_dominio="⚙️  Configurare il dominio"
+        msg_configurar="⚙️  Configurare il dominio"
         msg_dominio_solicitar="🌐 Per favore, inserisci un dominio:"
         msg_dominio_informado="✅ Dominio fornito:"
         msg_dominio_invalido="❌ Dominio non valido. Per favore, riprova."
@@ -804,24 +800,43 @@ while true; do
     fi
 done
 
-##################################
-# Solicitar o domínio ao usuário #
-##################################
-print_with_line "$msg_dominio"
+#########################
+# Iniciar configurações #
+#########################
+print_with_line "$msg_configurar"
 echo ""
 
-#------------------------------------------
-# Loop para garantir a definição do domínio
-#------------------------------------------
+#-------------------------------
+# Solicitar o domínio ao usuário
+#-------------------------------
+# while true; do
+#     # echo -e "$msg_dominio_solicitar"
+#     read -p "$msg_dominio_solicitar " DOMINIO
+#     if validar_dominio "$DOMINIO"; then
+#         echo ""
+#         # echo "$msg_dominio_informado $DOMINIO"
+#         break
+#     else
+#         echo ""
+#         echo -e "$msg_dominio_invalido"
+#         echo ""
+#     fi
+# done
 while true; do
-    echo -e "$msg_dominio_solicitar"
-    read -p "> " DOMINIO
+    # Exibe a mensagem de solicitação de domínio
+    echo -n "$msg_dominio_solicitar " # Não pula linha
+    read -r DOMINIO                   # Lê a entrada do usuário
+
     if validar_dominio "$DOMINIO"; then
-        echo ""
-        echo "$msg_dominio_informado $DOMINIO"
+        # Se o domínio for válido, exibe o resultado e quebra o loop
+        # echo ""
+        # echo "$msg_dominio_solicitar $DOMINIO"
+        echo "" # Linha em branco
         break
     else
-        echo -e "$msg_dominio_invalido"
+        # Se o domínio for inválido, exibe a mensagem de erro
+        echo -e "\r$msg_dominio_invalido" # Sobrescreve a linha anterior com a mensagem de erro
+        echo ""                           # Pula para a próxima linha
     fi
 done
 echo ""
