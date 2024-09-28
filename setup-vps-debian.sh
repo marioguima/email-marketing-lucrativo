@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.45"
+VERSION="v0.0.46"
 
 MODE=$1
 
@@ -920,6 +920,13 @@ format_multi_part_text "$msg_subdominio_informado;yellow;default;default" " $SUB
 debug_log "${msg_senha_ok/./:};yellow;default;default"
 debug_log " $CHANGE_PORTAINER_ADMIN_PASSWORD\n;white;default;default"
 echo ""
+if [ "$MODE" == "DEBUG" ]; then
+    # exibe a senha
+    format_multi_part_text "[;yellow;default;default" "MySql;white;default;default" "]\n;yellow;default;default"
+    debug_log "${msg_senha_ok/./:};yellow;default;default"
+    debug_log " $CHANGE_MYSQL_ROOT_PASSWORD\n;white;default;default"
+fi
+echo ""
 format_multi_part_text "[;yellow;default;default" "phpMyAdmin;white;default;default" "]\n;yellow;default;default"
 format_multi_part_text "$msg_subdominio_informado;yellow;default;default" " $SUBDOMINIO_PMA.$DOMINIO\n;white;default;default"
 echo ""
@@ -929,12 +936,7 @@ format_multi_part_text "$msg_email_informado;yellow;default;default" " $CHANGE_M
 debug_log "${msg_senha_ok/./:};yellow;default;default"
 debug_log " $CHANGE_MAUTIC_ADMIN_PASSWORD\n;white;default;default"
 echo ""
-if [ "$MODE" == "DEBUG" ]; then
-    # exibe a senha
-    format_multi_part_text "[;yellow;default;default" "MySql;white;default;default" "]\n;yellow;default;default"
-    debug_log "${msg_senha_ok/./:};yellow;default;default"
-    debug_log " $CHANGE_MYSQL_ROOT_PASSWORD\n;white;default;default"
-else
+if [ "$MODE" != "DEBUG" ]; then
     # Não exibir as senhas
     format_multi_part_text "$msg_senhas_nao_exibidas\n;purple;italic;default"
 fi
