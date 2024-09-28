@@ -22,7 +22,7 @@ services:
       # Configura o Nome do Banco de Dados
       - MAUTIC_DB_NAME=mautic
       # Configura o Host do Banco de Dados
-      - MAUTIC_DB_HOST=mysql
+      - MAUTIC_DB_HOST=mysql_mautic
       # Configura a Porta do Banco de Dados
       - MAUTIC_DB_PORT=3306
       # Configura o Usuário do Banco de Dados
