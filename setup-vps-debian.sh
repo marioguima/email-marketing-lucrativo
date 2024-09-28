@@ -935,9 +935,9 @@ format_multi_part_text "$msg_subdominio_informado;yellow;default;default" " $SUB
 format_multi_part_text "$msg_email_informado;yellow;default;default" " $CHANGE_MAUTIC_ADMIN_EMAIL\n;white;default;default"
 debug_log "${msg_senha_ok/./:};yellow;default;default"
 debug_log " $CHANGE_MAUTIC_ADMIN_PASSWORD\n;white;default;default"
-echo ""
 if [ "$MODE" != "DEBUG" ]; then
     # Não exibir as senhas
+    echo ""
     format_multi_part_text "$msg_senhas_nao_exibidas\n;purple;italic;default"
 fi
 echo ""
