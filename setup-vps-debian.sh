@@ -1110,7 +1110,7 @@ echo ""
 print_with_line "$msg_repository"
 echo ""
 
-apt-get update && apt install -y sudo gnupg2 wget ca-certificates apt-transport-https curl gnupg nano htop mysql-client jq
+apt-get update && apt install -y sudo gnupg2 wget ca-certificates apt-transport-https curl gnupg nano htop default-mysql-client jq
 
 echo ""
 if [ $? -eq 0 ]; then
