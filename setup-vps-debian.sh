@@ -1357,12 +1357,22 @@ deploy_stack_portainer() {
     local STACK_NAME=$1
     local COMPOSE_FILE_PATH=$2
 
+    # Obter o Swarm ID
+    SWARM_ID=$(curl -s -H "Authorization: Bearer $PORTAINER_TOKEN" \
+        "$PORTAINER_URL_LOCAL_API/api/endpoints/1/docker/swarm" | jq -r '.ID')
+
+    # Verificar se o Swarm ID foi obtido corretamente
+    if [[ -z "$SWARM_ID" ]]; then
+        echo "❌ Não foi possível obter o Swarm ID."
+        return 1
+    fi
+
     # Enviar a stack para o Portainer como um arquivo
     response=$(
         curl -s -X POST "$PORTAINER_URL_LOCAL_API/api/stacks/create/swarm/file?endpointId=1" \
             -H "Authorization: Bearer $PORTAINER_TOKEN" \
             -F "Name=$STACK_NAME" \
-            -F "SwarmID=" \
+            -F "SwarmID=$SWARM_ID" \
             -F "file=@$COMPOSE_FILE_PATH"
     )
 
