@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.0.29"
+VERSION="v0.0.30"
 
 MODE=$1
 
@@ -21,8 +21,8 @@ debug_log() {
             # Formata a saída com jq
             echo "$log_content" | jq
         else
-            # Apenas imprime a mensagem de log sem formatação
-            echo "$log_content"
+            # Usa echo -e para permitir a interpretação de sequências de escape, como \n
+            echo -e "$log_content"
         fi
     fi
 }
