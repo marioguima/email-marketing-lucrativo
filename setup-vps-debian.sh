@@ -2,7 +2,7 @@
 
 clear
 
-echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.20"
+echo "$(date +"%d/%m/%Y") $(date +"%H:%M:%S") - v0.0.21"
 echo ""
 echo ""
 
@@ -1515,7 +1515,7 @@ STACK_MAUTIC_NAME="mautic"
 COMPOSE_MAUTIC_PATH="stack-mautic.yml"
 
 # Aguardar o MySQL ficar disponível
-if wait_for_mysql "localhost" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
+if wait_for_mysql "127.0.0.1" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     # Deploy do Mautic se o MySQL estiver disponível
     deploy_stack_portainer "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
 else
