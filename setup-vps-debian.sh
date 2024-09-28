@@ -816,7 +816,6 @@ while true; do
         echo ""
     fi
 done
-echo ""
 
 # Senha do Admin do Portainer
 #----------------------------------------
