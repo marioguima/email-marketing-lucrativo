@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.12"
+VERSION="v0.1.13"
 
 MODE=$1
 
@@ -122,6 +122,7 @@ ajustar_fuso_horario() {
         return 0 # Sai da função sem fazer nada
     fi
 
+    echo ""
     # Mostrar o horário atual e o novo horário
     format_multi_part_text "$msg_horario_atual;yellow;default;default" " $(date)\n;white;default;default"
     eval msg_novo_horario_eval=\"$msg_novo_horario\"
@@ -130,8 +131,8 @@ ajustar_fuso_horario() {
     echo ""
 
     # Pergunta se o usuário deseja ajustar
+    eval msg_ajuste_horario_confirmacao_eval=\"$msg_ajuste_horario_confirmacao\"
     while true; do
-        eval msg_ajuste_horario_confirmacao_eval=\"$msg_ajuste_horario_confirmacao\"
         read -e -p "⏱️  $msg_ajuste_horario_confirmacao_eval" confirm
         case $confirm in
         [SsYyOo]*)
@@ -149,6 +150,7 @@ ajustar_fuso_horario() {
             ;;
         esac
     done
+    echo ""
 }
 
 # Função para imprimir uma linha de caracteres com um texto
@@ -924,9 +926,7 @@ definir_mensagens() {
 while true; do
     menu_idioma
     if definir_mensagens; then
-        echo ""
         ajustar_fuso_horario $idioma
-        echo ""
         break
     fi
 done
