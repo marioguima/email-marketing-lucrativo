@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.7"
+VERSION="v0.1.8"
 
 MODE=$1
 
@@ -100,31 +100,27 @@ menu_idioma() {
 # Função para ajustar o fuso horário
 ajustar_fuso_horario() {
     case $1 in
-    1)
-        # Português - São Paulo
-        new_timezone="America/Sao_Paulo"
-        ;;
-    2)
-        # English - New York
-        new_timezone="America/New_York"
-        ;;
-    3)
-        # Español - Madrid
-        new_timezone="Europe/Madrid"
-        ;;
-    4)
-        # Français - Paris
-        new_timezone="Europe/Paris"
-        ;;
-    5)
-        # Italiano - Roma
-        new_timezone="Europe/Rome"
-        ;;
+    1) new_timezone="America/Sao_Paulo" ;;
+    2) new_timezone="America/New_York" ;;
+    3) new_timezone="Europe/Madrid" ;;
+    4) new_timezone="Europe/Paris" ;;
+    5) new_timezone="Europe/Rome" ;;
     *)
         echo "Opção inválida."
         return 1
         ;;
     esac
+
+    # Captura a data e hora atual no formato YYYY-MM-DD HH:MM
+    current_time=$(date +"%Y-%m-%d %H:%M")
+
+    # Captura a data e hora no novo fuso horário, também no formato YYYY-MM-DD HH:MM
+    new_time=$(TZ="$new_timezone" date +"%Y-%m-%d %H:%M")
+
+    # Verifica se as datas e horas são iguais
+    if [ "$current_time" = "$new_time" ]; then
+        return 0 # Sai da função sem fazer nada
+    fi
 
     # Mostrar o horário atual e o novo horário
     eval echo "$msg_horario_atual"
@@ -137,7 +133,7 @@ ajustar_fuso_horario() {
         read -e -p "$msg_ajuste_horario_confirmacao_eval" confirm
         case $confirm in
         [SsYyOo]*)
-            sudo timedatectl set-timezone $new_timezone
+            sudo timedatectl set-timezone "$new_timezone"
             eval msg_fuso_horario_ajustado_eval=\"$msg_fuso_horario_ajustado\"
             echo "$msg_fuso_horario_ajustado_eval"
             break
