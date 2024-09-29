@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.2"
+VERSION="v0.1.3"
 
 MODE=$1
 
@@ -997,7 +997,9 @@ debug_log " $CHANGE_PORTAINER_ADMIN_PASSWORD\n;white;default;default"
 echo ""
 
 # MySql - exibe a senha se está no modo DEBUG
-debug_log "[;yellow;default;default" "MySql;white;default;default" "]\n;yellow;default;default"
+debug_log "[;yellow;default;default"
+debug_log "MySql;white;default;default"
+debug_log "]\n;yellow;default;default"
 debug_log "${msg_senha_ok/./:};yellow;default;default"
 debug_log " $CHANGE_MYSQL_ROOT_PASSWORD\n\n;white;default;default"
 
