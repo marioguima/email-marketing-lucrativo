@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.21"
+VERSION="v0.1.22"
 
 MODE=$1
 
@@ -1554,11 +1554,12 @@ echo ""
 #------------------------------
 # Função Deploy Stack Portainer
 #------------------------------
-deploy_stack_portainer() {
+deploying_stack_using_portainer_api() {
     local STACK_NAME=$1
     local COMPOSE_FILE_PATH=$2
 
     print_with_line "$msg_fazendo_deploy_stack $STACK_NAME" "yellow;bold;default"
+    echo ""
 
     # Obter o Swarm ID
     SWARM_ID=$(curl -s -H "Authorization: Bearer $PORTAINER_TOKEN" \
@@ -1622,7 +1623,7 @@ wait_for_mysql() {
     # Substituindo as variáveis nas mensagens com os valores atuais
     local msg_mysql_falha_completa=${msg_mysql_falha//_RETRIES_/$RETRIES}
 
-    format_multi_part_text "$msg_mysql_verificando\n;yellow;italic;default"
+    print_with_line "$msg_mysql_verificando" "yellow;italic;default"
     echo ""
 
     # Loop até que o MySQL esteja disponível ou o número máximo de tentativas seja atingido
@@ -1656,7 +1657,7 @@ wait_for_mysql() {
 STACK_MYSQL_NAME="mysql_mautic"
 COMPOSE_MYSQL_PATH="stack-mysql-mautic.yml"
 
-deploy_stack_portainer "$STACK_MYSQL_NAME" "$COMPOSE_MYSQL_PATH"
+deploying_stack_using_portainer_api "$STACK_MYSQL_NAME" "$COMPOSE_MYSQL_PATH"
 echo ""
 
 #########################################
@@ -1665,11 +1666,12 @@ echo ""
 STACK_MAUTIC_NAME="mautic"
 COMPOSE_MAUTIC_PATH="stack-mautic.yml"
 
+echo ""
 # Aguardar o MySQL ficar disponível
 if wait_for_mysql "127.0.0.1" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     # Deploy do Mautic se o MySQL estiver disponível
     echo ""
-    deploy_stack_portainer "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
+    deploying_stack_using_portainer_api "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
 else
     echo ""
     format_multi_part_text "$msg_deploy_mautic_cancelado_mysql\n;red;bold;default"
