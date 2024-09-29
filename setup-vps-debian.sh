@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.11"
+VERSION="v0.1.12"
 
 MODE=$1
 
@@ -132,7 +132,7 @@ ajustar_fuso_horario() {
     # Pergunta se o usuário deseja ajustar
     while true; do
         eval msg_ajuste_horario_confirmacao_eval=\"$msg_ajuste_horario_confirmacao\"
-        read -e -p "$msg_ajuste_horario_confirmacao_eval" confirm
+        read -e -p "⏱️  $msg_ajuste_horario_confirmacao_eval" confirm
         case $confirm in
         [SsYyOo]*)
             sudo timedatectl set-timezone "$new_timezone"
@@ -277,7 +277,7 @@ definir_mensagens() {
         msg_novo_horario="🕦 Novo horário (após ajuste para \$new_timezone):"
         msg_ajuste_horario_cancelado="❌ Ajuste do fuso horário cancelado."
         msg_ajuste_horario_resposta_sn="❌ Por favor, responda com 's' para sim ou 'n' para não."
-        msg_ajuste_horario_confirmacao="⏱️  Deseja ajustar o fuso horário para \$new_timezone? (s/n): "
+        msg_ajuste_horario_confirmacao="Deseja ajustar o fuso horário para \$new_timezone? (s/n): "
         msg_fuso_horario_ajustado="✅ Fuso horário ajustado para \$new_timezone. 🕗 Horário atual:"
 
         msg_configurar="⚙️  Iniciar configurações"
@@ -404,7 +404,7 @@ definir_mensagens() {
         msg_novo_horario="🕦 New time (after adjustment to \$new_timezone):"
         msg_ajuste_horario_cancelado="Time zone adjustment canceled."
         msg_ajuste_horario_resposta_sn="Please respond with 'y' for yes or 'n' for no."
-        msg_ajuste_horario_confirmacao="⏱️  Do you want to adjust the time zone to \$new_timezone? (y/n): "
+        msg_ajuste_horario_confirmacao="Do you want to adjust the time zone to \$new_timezone? (y/n): "
         msg_fuso_horario_ajustado="Time zone adjusted to \$new_timezone. 🕗 Current time:"
 
         msg_configurar="⚙️  Start configuring"
@@ -531,7 +531,7 @@ definir_mensagens() {
         msg_novo_horario="🕦 Nueva hora (tras ajuste a \$new_timezone):"
         msg_ajuste_horario_cancelado="Ajuste de la zona horaria cancelado."
         msg_ajuste_horario_resposta_sn="Por favor, responda con 's' para sí o 'n' para no."
-        msg_ajuste_horario_confirmacao="⏱️  ¿Desea ajustar la zona horaria a \$new_timezone? (s/n): "
+        msg_ajuste_horario_confirmacao="¿Desea ajustar la zona horaria a \$new_timezone? (s/n): "
         msg_fuso_horario_ajustado="Zona horaria ajustada a \$new_timezone. 🕗 Hora actual:"
 
         msg_configurar="⚙️  Iniciar configuraciones"
@@ -658,7 +658,7 @@ definir_mensagens() {
         msg_novo_horario="🕦 Nouvelle heure (après ajustement pour \$new_timezone) :"
         msg_ajuste_horario_cancelado="Ajustement du fuseau horaire annulé."
         msg_ajuste_horario_resposta_sn="Veuillez répondre par 'o' pour oui ou 'n' pour non."
-        msg_ajuste_horario_confirmacao="⏱️  Voulez-vous ajuster le fuseau horaire à \$new_timezone ? (o/n): "
+        msg_ajuste_horario_confirmacao="Voulez-vous ajuster le fuseau horaire à \$new_timezone ? (o/n): "
         msg_fuso_horario_ajustado="Fuseau horaire ajusté à \$new_timezone. 🕗 Heure actuelle :"
 
         msg_configurar="⚙️  Commencer les configurations"
@@ -785,7 +785,7 @@ definir_mensagens() {
         msg_novo_horario="🕦 Nuovo orario (dopo l'adeguamento a \$new_timezone):"
         msg_ajuste_horario_cancelado="Regolazione del fuso orario annullata."
         msg_ajuste_horario_resposta_sn="Rispondi con 's' per sì o 'n' per no."
-        msg_ajuste_horario_confirmacao="⏱️  Vuoi regolare il fuso orario a \$new_timezone? (s/n): "
+        msg_ajuste_horario_confirmacao="Vuoi regolare il fuso orario a \$new_timezone? (s/n): "
         msg_fuso_horario_ajustado="Fuso orario regolato a \$new_timezone. 🕗 Ora attuale:"
 
         msg_configurar="⚙️  Iniziare le configurazioni"
