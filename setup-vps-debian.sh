@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.6"
+VERSION="v0.1.7"
 
 MODE=$1
 
@@ -133,11 +133,13 @@ ajustar_fuso_horario() {
 
     # Pergunta se o usuário deseja ajustar
     while true; do
-        read -e -p "$(eval echo $msg_ajuste_horario_confirmacao)" confirm
+        eval msg_ajuste_horario_confirmacao_eval=\"$msg_ajuste_horario_confirmacao\"
+        read -e -p "$msg_ajuste_horario_confirmacao_eval" confirm
         case $confirm in
         [SsYyOo]*)
             sudo timedatectl set-timezone $new_timezone
-            eval echo "$msg_fuso_horario_ajustado"
+            eval msg_fuso_horario_ajustado_eval=\"$msg_fuso_horario_ajustado\"
+            echo "$msg_fuso_horario_ajustado_eval"
             break
             ;;
         [Nn]*)
