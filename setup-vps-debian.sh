@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.15"
+VERSION="v0.1.16"
 
 MODE=$1
 
@@ -152,22 +152,6 @@ ajustar_fuso_horario() {
     done
     echo ""
 }
-
-# Função para exibir quadro de aviso
-exibir_quadro_aviso() {
-    local mensagem="$1"
-    local tamanho_mensagem=${#mensagem}
-    local linha=$(printf "%${tamanho_mensagem}s" "" | tr " " "-")
-
-    format_multi_part_text "+$linha-+;yellow;default;default\n"
-    format_multi_part_text "| $mensagem |;yellow;default;default\n"
-    format_multi_part_text "+$linha-+;yellow;default;default\n"
-}
-
-# Chamar a função para exibir o quadro de aviso
-if [ "$MODE" == "DEBUG" ]; then
-    exibir_quadro_aviso "$msg_aviso_debug"
-fi
 
 # Função para imprimir uma linha de caracteres com um texto
 #----------------------------------------------------------
@@ -956,6 +940,22 @@ while true; do
         break
     fi
 done
+
+# Função para exibir quadro de aviso
+exibir_quadro_aviso() {
+    local mensagem="$1"
+    local tamanho_mensagem=${#mensagem}
+    local linha=$(printf "%${tamanho_mensagem}s" "" | tr " " "-")
+
+    format_multi_part_text "+$linha-+;yellow;default;default\n"
+    format_multi_part_text "| $mensagem |;yellow;default;default\n"
+    format_multi_part_text "+$linha-+;yellow;default;default\n"
+}
+
+# Chamar a função para exibir o quadro de aviso
+if [ "$MODE" == "DEBUG" ]; then
+    exibir_quadro_aviso "$msg_aviso_debug"
+fi
 
 # Iniciar configurações
 #----------------------
