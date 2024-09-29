@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.22"
+VERSION="v0.1.23"
 
 MODE=$1
 
@@ -994,7 +994,7 @@ echo ""
 
 format_multi_part_text "[;yellow;default;default" "Portainer;white;default;default" "]\n;yellow;default;default"
 # Subdominio do Portainer
-#------------------------------------
+#------------------------
 while true; do
     read -e -p "$msg_subdominio " -i "$SUBDOMINIO_PORTAINER_DEFAULT" SUBDOMINIO_PORTAINER # Exibe o valor padrão e permite edição
 
@@ -1007,7 +1007,7 @@ while true; do
 done
 
 # Senha do Admin do Portainer
-#----------------------------------------
+#----------------------------
 while true; do
     if [ "$MODE" == "DEBUG" ]; then
         # exibe a senha
@@ -1092,23 +1092,25 @@ while true; do
 done
 echo ""
 
-########################################
-# Revisar entradas antes de prosseguir #
-########################################
+# Revisar entradas antes de prosseguir
+#-------------------------------------
 echo ""
 print_with_line "$msg_revisao_informacoes" "yellow;bold;default"
 echo ""
 
 # dominio
+#--------
 format_multi_part_text "$msg_dominio_informado;yellow;default;default" " $DOMINIO\n;white;default;default"
 echo ""
 
 # Traefik
+#--------
 format_multi_part_text "[;yellow;default;default" "Traefik;white;default;default" "]\n;yellow;default;default"
 format_multi_part_text "$msg_email_informado;yellow;default;default" " $CHANGE_EMAIL_TRAEFIK\n;white;default;default"
 echo ""
 
 # Portainer
+#----------
 format_multi_part_text "[;yellow;default;default" "Portainer;white;default;default" "]\n;yellow;default;default"
 format_multi_part_text "$msg_subdominio_informado;yellow;default;default" " $SUBDOMINIO_PORTAINER.$DOMINIO\n;white;default;default"
 debug_log "${msg_senha_ok/./:};yellow;default;default"
@@ -1116,6 +1118,7 @@ debug_log " $CHANGE_PORTAINER_ADMIN_PASSWORD\n;white;default;default"
 echo ""
 
 # MySql - exibe a senha se está no modo DEBUG
+#--------------------------------------------
 debug_log "[;yellow;default;default"
 debug_log "MySql;white;default;default"
 debug_log "]\n;yellow;default;default"
@@ -1123,11 +1126,13 @@ debug_log "${msg_senha_ok/./:};yellow;default;default"
 debug_log " $CHANGE_MYSQL_ROOT_PASSWORD\n\n;white;default;default"
 
 # phpMyAdmin
+#-----------
 format_multi_part_text "[;yellow;default;default" "phpMyAdmin;white;default;default" "]\n;yellow;default;default"
 format_multi_part_text "$msg_subdominio_informado;yellow;default;default" " $SUBDOMINIO_PMA.$DOMINIO\n;white;default;default"
 echo ""
 
 # Mautic
+#-------
 format_multi_part_text "[;yellow;default;default" "Mautic;white;default;default" "]\n;yellow;default;default"
 format_multi_part_text "$msg_subdominio_informado;yellow;default;default" " $SUBDOMINIO_MAUTIC.$DOMINIO\n;white;default;default"
 format_multi_part_text "$msg_email_informado;yellow;default;default" " $CHANGE_MAUTIC_ADMIN_EMAIL\n;white;default;default"
@@ -1146,6 +1151,7 @@ format_multi_part_text "$msg_prosseguir_enter\n;cyan;default;default"
 format_multi_part_text "$msg_cancelar_esc\n;red;italic;default"
 
 # Aguardar confirmação
+#--------------------
 while true; do
     read -rsn1 input
     if [[ "$input" == "" ]]; then
@@ -1161,9 +1167,8 @@ while true; do
 done
 echo ""
 
-########################
-# Baixar stack Traefik #
-########################
+# Baixar stack Traefik
+#---------------------
 echo ""
 print_with_line "$msg_obter_stack_traefik" "yellow;bold;default"
 echo ""
@@ -1178,9 +1183,8 @@ else
 fi
 echo ""
 
-##########################
-# Baixar stack Portainer #
-##########################
+# Baixar stack Portainer
+#-----------------------
 echo ""
 print_with_line "$msg_obter_stack_portainer" "yellow;bold;default"
 echo ""
@@ -1195,9 +1199,8 @@ else
 fi
 echo ""
 
-######################
-# Baixar stack MySql #
-######################
+# Baixar stack MySql
+#-------------------
 echo ""
 print_with_line "$msg_obter_stack_mysql" "yellow;bold;default"
 echo ""
@@ -1212,9 +1215,8 @@ else
 fi
 echo ""
 
-###########################
-# Baixar stack phpMyAdmin #
-###########################
+# Baixar stack phpMyAdmin
+#------------------------
 echo ""
 print_with_line "$msg_obter_stack_pma" "yellow;bold;default"
 echo ""
@@ -1229,9 +1231,8 @@ else
 fi
 echo ""
 
-#######################
-# Baixar stack Mautic #
-#######################
+# Baixar stack Mautic
+#--------------------
 echo ""
 print_with_line "$msg_obter_stack_mautic" "yellow;bold;default"
 echo ""
@@ -1250,9 +1251,8 @@ else
 fi
 echo ""
 
-#######################
-# Update repositórios #
-#######################
+# Update repositórios
+#--------------------
 echo ""
 print_with_line "$msg_repository" "yellow;bold;default"
 echo ""
@@ -1268,9 +1268,8 @@ else
 fi
 echo ""
 
-#################################
-# Verificar chave GPG do Docker #
-#################################
+# Verificar chave GPG do Docker
+#------------------------------
 echo ""
 print_with_line "$msg_docker_chave_gpg" "yellow;bold;default"
 echo ""
@@ -1290,9 +1289,8 @@ else
 fi
 echo ""
 
-#######################################
-# Configurando Repositórios do Docker #
-#######################################
+# Configurando Repositórios do Docker
+#------------------------------------
 echo ""
 print_with_line "$msg_repositorio_docker" "yellow;bold;default"
 echo ""
@@ -1313,9 +1311,8 @@ else
 fi
 echo ""
 
-###################
-# Instalar Docker #
-###################
+# Instalar Docker
+#----------------
 echo ""
 print_with_line "$msg_instalar_docker" "yellow;bold;default"
 echo ""
@@ -1334,9 +1331,8 @@ else
 fi
 echo ""
 
-##################################################
-# Configurar Docker para iniciar automaticamente #
-##################################################
+# Configurar Docker para iniciar automaticamente
+#-----------------------------------------------
 echo ""
 print_with_line "$msg_docker_init_auto" "yellow;bold;default"
 echo ""
@@ -1347,9 +1343,8 @@ echo ""
 echo "$msg_docker_init_auto_ok"
 echo ""
 
-#########################
-# Obter o IP da máquina #
-#########################
+# Obter o IP da máquina
+#----------------------
 echo ""
 print_with_line "$msg_obter_ip" "yellow;bold;default"
 echo ""
@@ -1364,9 +1359,8 @@ else
 fi
 echo ""
 
-##################################################
-# Verificar se Docker Swarm já está inicializado #
-##################################################
+# Verificar se Docker Swarm já está inicializado
+#-----------------------------------------------
 echo ""
 print_with_line "$msg_docker_swarm" "yellow;bold;default"
 echo ""
@@ -1386,9 +1380,8 @@ else
 fi
 echo ""
 
-##########################
-# Verificar/criar a rede #
-##########################
+# Verificar/criar a rede
+#-----------------------
 echo ""
 print_with_line "$msg_docker_network_swarm" "yellow;bold;default"
 echo ""
@@ -1407,9 +1400,8 @@ else
 fi
 echo ""
 
-###########################
-# Deploy stack do Traefik #
-###########################
+# Deploy stack do Traefik
+#------------------------
 echo ""
 print_with_line "$msg_stack_traefik_deploy" "yellow;bold;default"
 echo ""
@@ -1425,9 +1417,8 @@ else
 fi
 echo ""
 
-#############################
-# Deploy stack do Portainer #
-#############################
+# Deploy stack do Portainer
+#--------------------------
 echo ""
 print_with_line "$msg_stack_portainer_deploy" "yellow;bold;default"
 echo ""
@@ -1443,7 +1434,6 @@ else
 fi
 echo ""
 
-#----------------------------------------------------------------------------------
 # Função para verificar se o Portainer está ativo e pronto para receber requisições
 #----------------------------------------------------------------------------------
 wait_for_portainer() {
@@ -1451,7 +1441,7 @@ wait_for_portainer() {
     local DELAY=5    # Intervalo entre tentativas (em segundos)
     local attempt=0  # Contador de tentativas
 
-    format_multi_part_text "$msg_portainer_verificando\n;yellow;italic;default"
+    print_with_line "$msg_portainer_verificando" "yellow;italic;default"
     echo ""
 
     # Loop até que o Portainer esteja disponível ou o número máximo de tentativas seja atingido
@@ -1481,9 +1471,9 @@ wait_for_portainer() {
     return 1
 }
 
-########################################
-# Esperar o Portainer ficar disponível #
-########################################
+# Esperar o Portainer ficar disponível
+#-------------------------------------
+echo ""
 if wait_for_portainer; then
     format_multi_part_text "$msg_portainer_disponivel\n;yellow;default;default"
 else
@@ -1493,14 +1483,14 @@ else
 fi
 echo ""
 
-############################################
-# Portainer API - Definindo senha do admin #
-############################################
+# Portainer API - Definindo senha do admin
+#-----------------------------------------
 echo ""
 print_with_line "$msg_portainer_definir_senha_admin" "yellow;bold;default"
 echo ""
 
 # Definir a senha do admin usando o endpoint de inicialização
+#------------------------------------------------------------
 admin_init_response=$(curl -s -X POST -H "Content-Type: application/json" \
     -d "{\"Username\":\"admin\",\"Password\":\"$CHANGE_PORTAINER_ADMIN_PASSWORD\"}" \
     "$PORTAINER_URL_LOCAL_API/api/users/admin/init")
@@ -1520,9 +1510,8 @@ else
 fi
 echo ""
 
-###############################################################
-# Portainer API - Autenticar no Portainer e obter o token JWT #
-###############################################################
+# Portainer API - Autenticar no Portainer e obter o token JWT
+#------------------------------------------------------------
 echo ""
 print_with_line "$msg_portainer_autenticacao_token" "yellow;bold;default"
 echo ""
@@ -1538,6 +1527,7 @@ debug_log "$auth_response"
 debug_log "\n"
 
 # Extrair o token do JSON de resposta
+#------------------------------------
 PORTAINER_TOKEN=$(echo $auth_response | jq -r .jwt)
 
 # Verificar se o token foi obtido corretamente
@@ -1551,7 +1541,6 @@ echo -e "$msg_portainer_autenticacao_token_ok"
 echo ""
 echo ""
 
-#------------------------------
 # Função Deploy Stack Portainer
 #------------------------------
 deploying_stack_using_portainer_api() {
@@ -1594,7 +1583,6 @@ deploying_stack_using_portainer_api() {
     fi
 }
 
-#-----------------------------------------
 # Função para exibir o contador e aguardar
 #-----------------------------------------
 aguardar() {
@@ -1609,7 +1597,6 @@ aguardar() {
     echo "" # Para que tenha uma linha em branco entro os cíclos
 }
 
-#-------------------------------------------------
 # Função para verificar se o MySQL está disponível
 #-------------------------------------------------
 wait_for_mysql() {
@@ -1651,23 +1638,22 @@ wait_for_mysql() {
     return 1
 }
 
-########################################
-# Deploy stack MySql via Portainer API #
-########################################
+# Deploy stack MySql via Portainer API
+#-------------------------------------
 STACK_MYSQL_NAME="mysql_mautic"
 COMPOSE_MYSQL_PATH="stack-mysql-mautic.yml"
 
 deploying_stack_using_portainer_api "$STACK_MYSQL_NAME" "$COMPOSE_MYSQL_PATH"
 echo ""
 
-#########################################
-# Deploy stack Mautic via Portainer API #
-#########################################
+# Deploy stack Mautic via Portainer API
+#--------------------------------------
 STACK_MAUTIC_NAME="mautic"
 COMPOSE_MAUTIC_PATH="stack-mautic.yml"
 
 echo ""
 # Aguardar o MySQL ficar disponível
+#----------------------------------
 if wait_for_mysql "127.0.0.1" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     # Deploy do Mautic se o MySQL estiver disponível
     echo ""
