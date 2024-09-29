@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.14"
+VERSION="v0.1.15"
 
 MODE=$1
 
@@ -153,6 +153,22 @@ ajustar_fuso_horario() {
     echo ""
 }
 
+# Função para exibir quadro de aviso
+exibir_quadro_aviso() {
+    local mensagem="$1"
+    local tamanho_mensagem=${#mensagem}
+    local linha=$(printf "%${tamanho_mensagem}s" "" | tr " " "-")
+
+    format_multi_part_text "+$linha-+;yellow;default;default\n"
+    format_multi_part_text "| $mensagem |;yellow;default;default\n"
+    format_multi_part_text "+$linha-+;yellow;default;default\n"
+}
+
+# Chamar a função para exibir o quadro de aviso
+if [ "$MODE" == "DEBUG" ]; then
+    exibir_quadro_aviso "$msg_aviso_debug"
+fi
+
 # Função para imprimir uma linha de caracteres com um texto
 #----------------------------------------------------------
 print_with_line() {
@@ -282,6 +298,8 @@ definir_mensagens() {
         msg_ajuste_horario_confirmacao="Deseja ajustar o fuso horário para \$new_timezone? (s/n): "
         msg_fuso_horario_ajustado="✅ Fuso horário ajustado para \$new_timezone. 🕗 Horário atual:"
 
+        msg_aviso_debug="⚠️  Modo DEBUG ativado. Todas as senhas serão exibidas. Tenha cuidado ao compartilhar a tela."
+
         msg_configurar="⚙️  Iniciar configurações"
         msg_dominio_solicitar="🌐 Informe o domínio:"
         msg_dominio_informado="✅ Domínio informado:"
@@ -408,6 +426,8 @@ definir_mensagens() {
         msg_ajuste_horario_resposta_sn="Please respond with 'y' for yes or 'n' for no."
         msg_ajuste_horario_confirmacao="Do you want to adjust the time zone to \$new_timezone? (y/n): "
         msg_fuso_horario_ajustado="Time zone adjusted to \$new_timezone. 🕗 Current time:"
+
+        msg_aviso_debug="⚠️  DEBUG mode activated. All passwords will be displayed. Be careful when sharing your screen."
 
         msg_configurar="⚙️  Start configuring"
         msg_dominio_solicitar="🌐 Please enter a domain:"
@@ -536,6 +556,8 @@ definir_mensagens() {
         msg_ajuste_horario_confirmacao="¿Desea ajustar la zona horaria a \$new_timezone? (s/n): "
         msg_fuso_horario_ajustado="Zona horaria ajustada a \$new_timezone. 🕗 Hora actual:"
 
+        msg_aviso_debug="⚠️  Modo DEBUG activado. Se mostrarán todas las contraseñas. Ten cuidado al compartir tu pantalla."
+
         msg_configurar="⚙️  Iniciar configuraciones"
         msg_dominio_solicitar="🌐 Por favor, introduzca un dominio:"
         msg_dominio_informado="✅ Dominio informado:"
@@ -663,6 +685,8 @@ definir_mensagens() {
         msg_ajuste_horario_confirmacao="Voulez-vous ajuster le fuseau horaire à \$new_timezone ? (o/n): "
         msg_fuso_horario_ajustado="Fuseau horaire ajusté à \$new_timezone. 🕗 Heure actuelle :"
 
+        msg_aviso_debug="⚠️  Mode DEBUG activé. Tous les mots de passe seront affichés. Faites attention lorsque vous partagez votre écran."
+
         msg_configurar="⚙️  Commencer les configurations"
         msg_dominio_solicitar="🌐 Veuillez saisir un domaine :"
         msg_dominio_informado="✅ Domaine fourni :"
@@ -789,6 +813,8 @@ definir_mensagens() {
         msg_ajuste_horario_resposta_sn="Rispondi con 's' per sì o 'n' per no."
         msg_ajuste_horario_confirmacao="Vuoi regolare il fuso orario a \$new_timezone? (s/n): "
         msg_fuso_horario_ajustado="Fuso orario regolato a \$new_timezone. 🕗 Ora attuale:"
+
+        msg_aviso_debug="⚠️  Modalità DEBUG attivata. Tutte le password verranno visualizzate. Fai attenzione a condividere lo schermo."
 
         msg_configurar="⚙️  Iniziare le configurazioni"
         msg_dominio_solicitar="🌐 Per favore, inserisci un dominio:"
