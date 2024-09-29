@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.5"
+VERSION="v0.1.6"
 
 MODE=$1
 
@@ -128,7 +128,8 @@ ajustar_fuso_horario() {
 
     # Mostrar o horário atual e o novo horário
     eval echo "$msg_horario_atual"
-    eval echo "$msg_novo_horario"
+    eval msg_novo_horario_ajustado=\"$msg_novo_horario\"
+    echo "$msg_novo_horario_ajustado"
 
     # Pergunta se o usuário deseja ajustar
     while true; do
