@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.20"
+VERSION="v0.1.21"
 
 MODE=$1
 
@@ -1558,7 +1558,7 @@ deploy_stack_portainer() {
     local STACK_NAME=$1
     local COMPOSE_FILE_PATH=$2
 
-    print_with_line "$msg_fazendo_deploy_stack ;yellow;default;default" "$STACK_NAME\n\n;white;default;default"
+    print_with_line "$msg_fazendo_deploy_stack $STACK_NAME" "yellow;bold;default"
 
     # Obter o Swarm ID
     SWARM_ID=$(curl -s -H "Authorization: Bearer $PORTAINER_TOKEN" \
