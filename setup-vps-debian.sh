@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.18"
+VERSION="v0.1.19"
 
 MODE=$1
 
@@ -1604,6 +1604,8 @@ aguardar() {
         echo -ne "\r"                         # Retorna o cursor para o início da linha
         sleep 1
     done
+
+    echo "" # Para que tenha uma linha em branco entro os cíclos
 }
 
 #-------------------------------------------------
@@ -1655,7 +1657,6 @@ STACK_MYSQL_NAME="mysql_mautic"
 COMPOSE_MYSQL_PATH="stack-mysql-mautic.yml"
 
 deploy_stack_portainer "$STACK_MYSQL_NAME" "$COMPOSE_MYSQL_PATH"
-echo ""
 echo ""
 
 #########################################
