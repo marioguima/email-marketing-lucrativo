@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.19"
+VERSION="v0.1.20"
 
 MODE=$1
 
@@ -370,11 +370,11 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ Rede 'network_swarm_public' criada com sucesso."
         msg_docker_network_swarm_erro="❌ Erro ao criar a rede."
 
-        msg_stack_traefik_deploy="🐋 Subindo Stack Traefik"
+        msg_stack_traefik_deploy="🐋 Fazendo deploy da Stack Traefik"
         msg_stack_traefik_deploy_ok="✅ Stack Traefik implantada com sucesso!"
         msg_stack_traefik_deploy_erro="❌ Erro ao implantar Stack Traefik."
 
-        msg_stack_portainer_deploy="🐋 Subindo Stack Portainer"
+        msg_stack_portainer_deploy="🐋 Fazendo deploy da Stack Portainer"
         msg_stack_portainer_deploy_ok="✅ Stack Portainer implantada com sucesso!"
         msg_stack_portainer_deploy_erro="❌ Erro ao implantar Stack Portainer."
 
@@ -388,7 +388,7 @@ definir_mensagens() {
         msg_erro_implantar_stack="❌ Erro ao implantar a stack:"
         msg_stack_implantada_sucesso="implantada com sucesso."
         msg_aguardando="Aguardando: %d de %d segundos"
-        msg_fazendo_deploy_stack="Fazendo deploy da stack"
+        msg_fazendo_deploy_stack="🐋 Fazendo deploy da stack"
         msg_resposta_api_portainer="Resposta da API do Portainer:"
         msg_deploy_mautic_cancelado_mysql="❌ O deploy do Mautic foi cancelado porque o MySQL não está disponível."
 
@@ -517,7 +517,7 @@ definir_mensagens() {
         msg_erro_implantar_stack="❌ Error deploying the stack:"
         msg_stack_implantada_sucesso="deployed successfully."
         msg_aguardando="Waiting %d of %d seconds"
-        msg_fazendo_deploy_stack="Deploying the stack"
+        msg_fazendo_deploy_stack="🐋 Deploying the stack"
         msg_resposta_api_portainer="Portainer API response:"
         msg_deploy_mautic_cancelado_mysql="❌ Mautic deployment was canceled because MySQL is unavailable."
 
@@ -646,7 +646,7 @@ definir_mensagens() {
         msg_erro_implantar_stack="❌ Error al desplegar la stack:"
         msg_stack_implantada_sucesso="desplegada con éxito."
         msg_aguardando="Aguardando %d de %d segundos"
-        msg_fazendo_deploy_stack="Desplegando la stack"
+        msg_fazendo_deploy_stack="🐋 Desplegando la stack"
         msg_resposta_api_portainer="Respuesta de la API de Portainer:"
         msg_deploy_mautic_cancelado_mysql="❌ El despliegue de Mautic fue cancelado porque MySQL no está disponible."
 
@@ -775,7 +775,7 @@ definir_mensagens() {
         msg_erro_implantar_stack="❌ Erreur lors du déploiement de la stack :"
         msg_stack_implantada_sucesso="déployée avec succès."
         msg_aguardando="Attendre %d seconde sur %d"
-        msg_fazendo_deploy_stack="Déploiement de la stack"
+        msg_fazendo_deploy_stack="🐋 Déploiement de la stack"
         msg_resposta_api_portainer="Réponse de l'API Portainer :"
         msg_deploy_mautic_cancelado_mysql="❌ Le déploiement de Mautic a été annulé car MySQL n'est pas disponible."
 
@@ -886,11 +886,11 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ Rete 'network_swarm_public' creata con successo."
         msg_docker_network_swarm_erro="❌ Errore nella creazione della rete."
 
-        msg_stack_traefik_deploy="🐋 Avvio della Stack Traefik"
+        msg_stack_traefik_deploy="🐋 Distribuzione della Stack Traefik"
         msg_stack_traefik_deploy_ok="✅ Stack Traefik avviata con successo!"
         msg_stack_traefik_deploy_erro="❌ Errore nell'avvio della Stack Traefik."
 
-        msg_stack_portainer_deploy="🐋 Esecuzione della Stack Portainer"
+        msg_stack_portainer_deploy="🐋 Distribuzione della Stack Portainer"
         msg_stack_portainer_deploy_ok="✅ Stack Portainer eseguita con successo!"
         msg_stack_portainer_deploy_erro="❌ Errore durante l'esecuzione della Stack Portainer."
 
@@ -904,7 +904,7 @@ definir_mensagens() {
         msg_erro_implantar_stack="❌ Errore durante il deploy della stack:"
         msg_stack_implantada_sucesso="distribuita con successo."
         msg_aguardando="In attesa di %d secondo su %d"
-        msg_fazendo_deploy_stack="Distribuzione della stack"
+        msg_fazendo_deploy_stack="🐋 Distribuzione della stack"
         msg_resposta_api_portainer="Risposta dell'API Portainer:"
         msg_deploy_mautic_cancelado_mysql="❌ Il deploy di Mautic è stato annullato perché MySQL non è disponibile."
 
@@ -1558,7 +1558,7 @@ deploy_stack_portainer() {
     local STACK_NAME=$1
     local COMPOSE_FILE_PATH=$2
 
-    format_multi_part_text "$msg_fazendo_deploy_stack ;yellow;underline;default" "$STACK_NAME\n\n;white;underline;default"
+    print_with_line "$msg_fazendo_deploy_stack ;yellow;default;default" "$STACK_NAME\n\n;white;default;default"
 
     # Obter o Swarm ID
     SWARM_ID=$(curl -s -H "Authorization: Bearer $PORTAINER_TOKEN" \
@@ -1668,7 +1668,6 @@ COMPOSE_MAUTIC_PATH="stack-mautic.yml"
 # Aguardar o MySQL ficar disponível
 if wait_for_mysql "127.0.0.1" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     # Deploy do Mautic se o MySQL estiver disponível
-    echo ""
     echo ""
     deploy_stack_portainer "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
 else
