@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.1"
+VERSION="v0.1.2"
 
 MODE=$1
 
@@ -305,13 +305,27 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ Rede 'network_swarm_public' criada com sucesso."
         msg_docker_network_swarm_erro="❌ Erro ao criar a rede."
 
-        msg_stack_traefik_deploy="🖧  Subindo Stack Traefik"
+        msg_stack_traefik_deploy="🐋 Subindo Stack Traefik"
         msg_stack_traefik_deploy_ok="✅ Stack Traefik implantada com sucesso!"
         msg_stack_traefik_deploy_erro="❌ Erro ao implantar Stack Traefik."
 
-        msg_stack_portainer_deploy="📦 Subindo Stack Portainer"
+        msg_stack_portainer_deploy="🐋 Subindo Stack Portainer"
         msg_stack_portainer_deploy_ok="✅ Stack Portainer implantada com sucesso!"
         msg_stack_portainer_deploy_erro="❌ Erro ao implantar Stack Portainer."
+
+        msg_portainer_verificando="⏳ Verificando se o Portainer está disponível"
+        msg_portainer_disponivel="✅ O Portainer está ativo."
+        msg_portainer_verificando_tentativa="🔄 Tentativa _ATTEMPT_ de _RETRIES_ para conectar ao Portainer..."
+        msg_portainer_falha_completa="❌ Falha ao conectar ao Portainer após _RETRIES_ tentativas."
+
+        msg_encerrando_script="❌ Encerrando o script."
+        msg_nao_obteve_swarm_id="❌ Não foi possível obter o Swarm ID."
+        msg_erro_implantar_stack="❌ Erro ao implantar a stack:"
+        msg_stack_implantada_sucesso="implantada com sucesso."
+        msg_aguardando="Aguardando: \$i de \$segundos segundos\r"
+        msg_fazendo_deploy_stack="Fazendo deploy da stack"
+        msg_resposta_api_portainer="Resposta da API do Portainer:"
+        msg_deploy_mautic_cancelado_mysql="❌ O deploy do Mautic foi cancelado porque o MySQL não está disponível."
 
         msg_script_executado_ok="🚀 Script executado com sucesso!"
 
@@ -411,13 +425,27 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ 'network_swarm_public' network created successfully."
         msg_docker_network_swarm_erro="❌ Error creating the network."
 
-        msg_stack_traefik_deploy="🖧  Deploying Traefik Stack"
+        msg_stack_traefik_deploy="🐋 Deploying Traefik Stack"
         msg_stack_traefik_deploy_ok="✅ Traefik Stack deployed successfully!"
         msg_stack_traefik_deploy_erro="❌ Error deploying Traefik Stack."
 
-        msg_stack_portainer_deploy="📦 Deploying Portainer Stack"
+        msg_stack_portainer_deploy="🐋 Deploying Portainer Stack"
         msg_stack_portainer_deploy_ok="✅ Portainer stack deployed successfully!"
         msg_stack_portainer_deploy_erro="❌ Error deploying Portainer stack."
+
+        msg_portainer_verificando="⏳ Checking if Portainer is available"
+        msg_portainer_disponivel="✅ Portainer is active."
+        msg_portainer_verificando_tentativa="🔄 Attempt _ATTEMPT_ of _RETRIES_ to connect to Portainer..."
+        msg_portainer_falha_completa="❌ Failed to connect to Portainer after _RETRIES_ attempts."
+
+        msg_encerrando_script="❌ Terminating script."
+        msg_nao_obteve_swarm_id="❌ Unable to obtain Swarm ID."
+        msg_erro_implantar_stack="❌ Error deploying the stack:"
+        msg_stack_implantada_sucesso="deployed successfully."
+        msg_aguardando="Waiting \$i of \$segundos seconds\r"
+        msg_fazendo_deploy_stack="Deploying the stack"
+        msg_resposta_api_portainer="Portainer API response:"
+        msg_deploy_mautic_cancelado_mysql="❌ Mautic deployment was canceled because MySQL is unavailable."
 
         msg_script_executado_ok="🚀 Script executed successfully!"
 
@@ -517,13 +545,27 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ Red 'network_swarm_public' creada con éxito."
         msg_docker_network_swarm_erro="❌ Error al crear la red."
 
-        msg_stack_traefik_deploy="🖧  Desplegando la Stack de Traefik"
+        msg_stack_traefik_deploy="🐋 Desplegando la Stack de Traefik"
         msg_stack_traefik_deploy_ok="✅ Stack de Traefik desplegada con éxito!"
         msg_stack_traefik_deploy_erro="❌ Error al desplegar la Stack de Traefik."
 
-        msg_stack_portainer_deploy="📦 Desplegando Stack Portainer"
+        msg_stack_portainer_deploy="🐋 Desplegando Stack Portainer"
         msg_stack_portainer_deploy_ok="✅ Stack Portainer desplegada con éxito!"
         msg_stack_portainer_deploy_erro="❌ Error al desplegar Stack Portainer."
+
+        msg_portainer_verificando="⏳ Verificando si Portainer está disponible"
+        msg_portainer_disponivel="✅ Portainer está activo."
+        msg_portainer_verificando_tentativa="🔄 Intento _ATTEMPT_ de _RETRIES_ para conectar a Portainer..."
+        msg_portainer_falha_completa="❌ Error al conectar con Portainer después de _RETRIES_ intentos."
+
+        msg_encerrando_script="❌ Cerrando el script."
+        msg_nao_obteve_swarm_id="❌ No se pudo obtener el ID de Swarm."
+        msg_erro_implantar_stack="❌ Error al desplegar la stack:"
+        msg_stack_implantada_sucesso="desplegada con éxito."
+        msg_aguardando="Aguardando \$i de \$segundos segundos\r"
+        msg_fazendo_deploy_stack="Desplegando la stack"
+        msg_resposta_api_portainer="Respuesta de la API de Portainer:"
+        msg_deploy_mautic_cancelado_mysql="❌ El despliegue de Mautic fue cancelado porque MySQL no está disponible."
 
         msg_script_executado_ok="🚀 ¡Script ejecutado con éxito!"
 
@@ -623,13 +665,27 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ Réseau 'network_swarm_public' créé avec succès."
         msg_docker_network_swarm_erro="❌ Erreur lors de la création du réseau."
 
-        msg_stack_traefik_deploy="🖧  Déploiement de la Stack Traefik"
+        msg_stack_traefik_deploy="🐋 Déploiement de la Stack Traefik"
         msg_stack_traefik_deploy_ok="✅ Stack Traefik déployée avec succès !"
         msg_stack_traefik_deploy_erro="❌ Erreur lors du déploiement de la Stack Traefik."
 
-        msg_stack_portainer_deploy="📦 Déploiement de la Stack Portainer"
+        msg_stack_portainer_deploy="🐋 Déploiement de la Stack Portainer"
         msg_stack_portainer_deploy_ok="✅ Stack Portainer déployée avec succès !"
         msg_stack_portainer_deploy_erro="❌ Erreur lors du déploiement de la Stack Portainer."
+
+        msg_portainer_verificando="⏳ Vérification si Portainer est disponible"
+        msg_portainer_disponivel="✅ Portainer est actif."
+        msg_portainer_verificando_tentativa="🔄 Tentative _ATTEMPT_ de _RETRIES_ pour se connecter à Portainer..."
+        msg_portainer_falha_completa="❌ Échec de la connexion à Portainer après _RETRIES_ tentatives."
+
+        msg_encerrando_script="❌ Fermeture du script."
+        msg_nao_obteve_swarm_id="❌ Impossible d'obtenir l'ID Swarm."
+        msg_erro_implantar_stack="❌ Erreur lors du déploiement de la stack :"
+        msg_stack_implantada_sucesso="déployée avec succès."
+        msg_aguardando="Attendre \$i seconde sur \$segundos\r"
+        msg_fazendo_deploy_stack="Déploiement de la stack"
+        msg_resposta_api_portainer="Réponse de l'API Portainer :"
+        msg_deploy_mautic_cancelado_mysql="❌ Le déploiement de Mautic a été annulé car MySQL n'est pas disponible."
 
         msg_script_executado_ok="🚀 Script exécuté avec succès !"
 
@@ -729,13 +785,27 @@ definir_mensagens() {
         msg_docker_network_swarm_ok="✅ Rete 'network_swarm_public' creata con successo."
         msg_docker_network_swarm_erro="❌ Errore nella creazione della rete."
 
-        msg_stack_traefik_deploy="🖧  Avvio della Stack Traefik"
+        msg_stack_traefik_deploy="🐋 Avvio della Stack Traefik"
         msg_stack_traefik_deploy_ok="✅ Stack Traefik avviata con successo!"
         msg_stack_traefik_deploy_erro="❌ Errore nell'avvio della Stack Traefik."
 
-        msg_stack_portainer_deploy="📦 Esecuzione della Stack Portainer"
+        msg_stack_portainer_deploy="🐋 Esecuzione della Stack Portainer"
         msg_stack_portainer_deploy_ok="✅ Stack Portainer eseguita con successo!"
         msg_stack_portainer_deploy_erro="❌ Errore durante l'esecuzione della Stack Portainer."
+
+        msg_portainer_verificando="⏳ Verificando se Portainer è disponibile"
+        msg_portainer_disponivel="✅ Portainer è attivo."
+        msg_portainer_verificando_tentativa="🔄 Tentativo _ATTEMPT_ di _RETRIES_ per connettersi a Portainer..."
+        msg_portainer_falha_completa="❌ Impossibile connettersi a Portainer dopo _RETRIES_ tentativi."
+
+        msg_encerrando_script="❌ Chiusura dello script."
+        msg_nao_obteve_swarm_id="❌ Impossibile ottenere l'ID Swarm."
+        msg_erro_implantar_stack="❌ Errore durante il deploy della stack:"
+        msg_stack_implantada_sucesso="distribuita con successo."
+        msg_aguardando="In attesa di \$i secondo su \$segundos\r"
+        msg_fazendo_deploy_stack="Distribuzione della stack"
+        msg_resposta_api_portainer="Risposta dell'API Portainer:"
+        msg_deploy_mautic_cancelado_mysql="❌ Il deploy di Mautic è stato annullato perché MySQL non è disponibile."
 
         msg_script_executado_ok="🚀 Script eseguito con successo!"
 
@@ -1252,11 +1322,6 @@ else
 fi
 echo ""
 
-msg_portainer_verificando="⏳ Verificando se o Portainer está disponível"
-msg_portainer_disponivel="✅ O Portainer está ativo."
-msg_portainer_verificando_tentativa="🔄 Tentativa _ATTEMPT_ de _RETRIES_ para conectar ao Portainer..."
-msg_portainer_falha_completa="❌ Falha ao conectar ao Portainer após _RETRIES_ tentativas."
-
 #----------------------------------------------------------------------------------
 # Função para verificar se o Portainer está ativo e pronto para receber requisições
 #----------------------------------------------------------------------------------
@@ -1302,7 +1367,7 @@ if wait_for_portainer; then
     format_multi_part_text "$msg_portainer_disponivel\n;yellow;default;default"
 else
     echo ""
-    format_multi_part_text "❌ Encerrando o script.\n;red;bold;default"
+    format_multi_part_text "$msg_encerrando_script\n;red;bold;default"
     exit 1
 fi
 echo ""
@@ -1372,7 +1437,7 @@ deploy_stack_portainer() {
     local STACK_NAME=$1
     local COMPOSE_FILE_PATH=$2
 
-    format_multi_part_text "Fazendo deploy da stack ;yellow;underline;default" "$STACK_NAME\n\n;white;underline;default"
+    format_multi_part_text "$msg_fazendo_deploy_stack ;yellow;underline;default" "$STACK_NAME\n\n;white;underline;default"
 
     # Obter o Swarm ID
     SWARM_ID=$(curl -s -H "Authorization: Bearer $PORTAINER_TOKEN" \
@@ -1380,7 +1445,7 @@ deploy_stack_portainer() {
 
     # Verificar se o Swarm ID foi obtido corretamente
     if [[ -z "$SWARM_ID" ]]; then
-        format_multi_part_text "❌ Não foi possível obter o Swarm ID.\n;red;bold;default"
+        format_multi_part_text "$msg_nao_obteve_swarm_id\n;red;bold;default"
         return 1
     fi
 
@@ -1394,16 +1459,16 @@ deploy_stack_portainer() {
     )
 
     # Exibir a resposta da API para depuração
-    debug_log "Resposta da API do Portainer:\n;yellow;italic;default"
+    debug_log "$msg_resposta_api_portainer\n;yellow;italic;default"
     debug_log "$response"
     debug_log "\n"
 
     # Verificar se a resposta contém erros
     if [[ $response == *"err"* || $response == *"error"* ]]; then
-        format_multi_part_text "❌ Erro ao implantar a stack: ;red;bold;default" "$STACK_NAME\n;white;default;default"
+        format_multi_part_text "$msg_erro_implantar_stack ;red;bold;default" "$STACK_NAME\n;white;default;default"
         exit 1
     else
-        format_multi_part_text "✅ Stack ;yellow;italic;default" "$STACK_NAME;white;default;default" " implantada com sucesso.\n;yellow;italic;default"
+        format_multi_part_text "✅ Stack ;yellow;italic;default" "$STACK_NAME;white;default;default" " $msg_stack_implantada_sucesso\n;yellow;italic;default"
     fi
 }
 
@@ -1415,7 +1480,7 @@ aguardar() {
 
     for ((i = 1; i <= segundos; i++)); do
         # Mostra o contador na mesma linha
-        echo -ne "Aguardando: $i de $segundos segundos\r"
+        eval echo -ne "$msg_aguardando"
         sleep 1
     done
 
@@ -1488,7 +1553,7 @@ if wait_for_mysql "127.0.0.1" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     deploy_stack_portainer "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
 else
     echo ""
-    format_multi_part_text "❌ O deploy do Mautic foi cancelado porque o MySQL não está disponível.\n;red;bold;default"
+    format_multi_part_text "$msg_deploy_mautic_cancelado_mysql\n;red;bold;default"
     exit 1
 fi
 echo ""
