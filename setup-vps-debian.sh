@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.16"
+VERSION="v0.1.17"
 
 MODE=$1
 
@@ -947,9 +947,9 @@ exibir_quadro_aviso() {
     local tamanho_mensagem=${#mensagem}
     local linha=$(printf "%${tamanho_mensagem}s" "" | tr " " "-")
 
-    format_multi_part_text "+$linha-+;yellow;default;default\n"
-    format_multi_part_text "| $mensagem |;yellow;default;default\n"
-    format_multi_part_text "+$linha-+;yellow;default;default\n"
+    format_multi_part_text "+$linha-+\n;yellow;default;default"
+    format_multi_part_text "| $mensagem |\n;yellow;default;default"
+    format_multi_part_text "+$linha-+\n;yellow;default;default"
 }
 
 # Chamar a função para exibir o quadro de aviso
