@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.13"
+VERSION="v0.1.14"
 
 MODE=$1
 
@@ -933,6 +933,7 @@ done
 
 # Iniciar configurações
 #----------------------
+echo ""
 print_with_line "$msg_configurar" "yellow;bold;default"
 echo ""
 
