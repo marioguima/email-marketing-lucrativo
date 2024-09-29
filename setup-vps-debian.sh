@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.9"
+VERSION="v0.1.10"
 
 MODE=$1
 
@@ -127,6 +127,7 @@ ajustar_fuso_horario() {
     eval msg_novo_horario_eval=\"$msg_novo_horario\"
     eval horario_timezone_eval=\"$(TZ=\$new_timezone date)\"
     format_multi_part_text "$msg_novo_horario_eval;yellow;default;default" " $horario_timezone_eval\n;white;default;default"
+    echo ""
 
     # Pergunta se o usuário deseja ajustar
     while true; do
