@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="v0.1.17"
+VERSION="v0.1.18"
 
 MODE=$1
 
@@ -387,7 +387,7 @@ definir_mensagens() {
         msg_nao_obteve_swarm_id="❌ Não foi possível obter o Swarm ID."
         msg_erro_implantar_stack="❌ Erro ao implantar a stack:"
         msg_stack_implantada_sucesso="implantada com sucesso."
-        msg_aguardando="Aguardando: \$i de \$segundos segundos"
+        msg_aguardando="Aguardando: %d de %d segundos"
         msg_fazendo_deploy_stack="Fazendo deploy da stack"
         msg_resposta_api_portainer="Resposta da API do Portainer:"
         msg_deploy_mautic_cancelado_mysql="❌ O deploy do Mautic foi cancelado porque o MySQL não está disponível."
@@ -516,7 +516,7 @@ definir_mensagens() {
         msg_nao_obteve_swarm_id="❌ Unable to obtain Swarm ID."
         msg_erro_implantar_stack="❌ Error deploying the stack:"
         msg_stack_implantada_sucesso="deployed successfully."
-        msg_aguardando="Waiting \$i of \$segundos seconds"
+        msg_aguardando="Waiting %d of %d seconds"
         msg_fazendo_deploy_stack="Deploying the stack"
         msg_resposta_api_portainer="Portainer API response:"
         msg_deploy_mautic_cancelado_mysql="❌ Mautic deployment was canceled because MySQL is unavailable."
@@ -645,7 +645,7 @@ definir_mensagens() {
         msg_nao_obteve_swarm_id="❌ No se pudo obtener el ID de Swarm."
         msg_erro_implantar_stack="❌ Error al desplegar la stack:"
         msg_stack_implantada_sucesso="desplegada con éxito."
-        msg_aguardando="Aguardando \$i de \$segundos segundos"
+        msg_aguardando="Aguardando %d de %d segundos"
         msg_fazendo_deploy_stack="Desplegando la stack"
         msg_resposta_api_portainer="Respuesta de la API de Portainer:"
         msg_deploy_mautic_cancelado_mysql="❌ El despliegue de Mautic fue cancelado porque MySQL no está disponible."
@@ -774,7 +774,7 @@ definir_mensagens() {
         msg_nao_obteve_swarm_id="❌ Impossible d'obtenir l'ID Swarm."
         msg_erro_implantar_stack="❌ Erreur lors du déploiement de la stack :"
         msg_stack_implantada_sucesso="déployée avec succès."
-        msg_aguardando="Attendre \$i seconde sur \$segundos"
+        msg_aguardando="Attendre %d seconde sur %d"
         msg_fazendo_deploy_stack="Déploiement de la stack"
         msg_resposta_api_portainer="Réponse de l'API Portainer :"
         msg_deploy_mautic_cancelado_mysql="❌ Le déploiement de Mautic a été annulé car MySQL n'est pas disponible."
@@ -903,7 +903,7 @@ definir_mensagens() {
         msg_nao_obteve_swarm_id="❌ Impossibile ottenere l'ID Swarm."
         msg_erro_implantar_stack="❌ Errore durante il deploy della stack:"
         msg_stack_implantada_sucesso="distribuita con successo."
-        msg_aguardando="In attesa di \$i secondo su \$segundos"
+        msg_aguardando="In attesa di %d secondo su %d"
         msg_fazendo_deploy_stack="Distribuzione della stack"
         msg_resposta_api_portainer="Risposta dell'API Portainer:"
         msg_deploy_mautic_cancelado_mysql="❌ Il deploy di Mautic è stato annullato perché MySQL non è disponibile."
@@ -1600,13 +1600,10 @@ aguardar() {
     local segundos=$1
 
     for ((i = 1; i <= segundos; i++)); do
-        # Mostra o contador na mesma linha
-        eval echo -ne "$msg_aguardando\r"
+        printf "$msg_aguardando" $i $segundos # Mostra o contador na mesma linha, usando printf diretamente
+        echo -ne "\r"                         # Retorna o cursor para o início da linha
         sleep 1
     done
-
-    # Garante que a próxima linha seja exibida corretamente
-    echo ""
 }
 
 #-------------------------------------------------
@@ -1670,6 +1667,7 @@ COMPOSE_MAUTIC_PATH="stack-mautic.yml"
 # Aguardar o MySQL ficar disponível
 if wait_for_mysql "127.0.0.1" "root" "$CHANGE_MYSQL_ROOT_PASSWORD"; then
     # Deploy do Mautic se o MySQL estiver disponível
+    echo ""
     echo ""
     deploy_stack_portainer "$STACK_MAUTIC_NAME" "$COMPOSE_MAUTIC_PATH"
 else
